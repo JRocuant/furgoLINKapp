@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coke-KRONOS - Inicio de Sesión</title>
+    <!-- Cargar CSS Principal -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Cargar CSS Específico para Login -->
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <!-- Contenedor Principal del Login -->
+    <div class="login-container">
+        <div class="login-card">
+            <h1>Coke-KRONOS</h1>
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="text" id="username" required placeholder=" ">
+                    <label for="username">Usuario</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" required placeholder=" ">
+                    <label for="password">Contraseña</label>
+                </div>
+                <button type="submit" class="login-btn">Ingresar</button>
+                <p><a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a></p>
+                <p id="errorMessage" class="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Alerta de éxito o error -->
+    <div class="alert-message" id="alertMessage"></div>
+
+    <!-- JavaScript para Validación y Alerta -->
+    <script src="js/login.js"></script>
+</body>
+</html>
