@@ -1,0 +1,19 @@
+
+- - - - - - - - - -TAREAS PENDIENTES ETAPA ACTUAL - - - - - - - - - -
+- REARMAR ESTRUCTURA DE LA APLICACIÓN
+    - Redefinir basado en el proyecto los siguientes aspectos:
+        - Funciones
+        - Rutas
+        - Base de datos (Modulos/Schemas)
+        - Vistas
+        - Controladores
+- REALIZAR FUSIÓN FRONTEND & BACKEND
+    - Pull desde FRONTEND
+    - Modularizar usando Handelbars (.hbs)
+    - Corregir y ajustar
+    - Vincular a Base de datos local
+- - - - - - - - - -TRABAJO REALIZADO - - - - - - - - - -
+-RESTRUCTURACION BASE DE LA APLICACIÓN
+-- Borrar templates y codigo innecesario (REALIZADO)
+-- Establecer Esquemas/Modulos para MongoDB (REALIZADO)
+-- Establecer base para HTML (Manejado con Handlebars .hbs) modular (REALIZADO)

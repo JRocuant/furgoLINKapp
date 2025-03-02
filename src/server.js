@@ -1,35 +1,31 @@
-const express = require('express');
-const path = require('path');
-const {engine} = require('express-handlebars');
-
-//Inicialización
+const express = require('express'); //Importar express modulo de integración (Para el motor de plantillas Handlebars .hbs)
+const {engine} = require('express-handlebars'); //Motor de plantillas para las vistas html en modulos .hbs
+const path = require('path'); //Importar rutas (para el acceso entre elementos)
+//Inicializaciones
 const app = express();
 
 //Configuración
-app.set('port', process.env.PORT || 4000); //Utilizar el puerto predeterminado de la conexión, si no utilizar el puerto 4000
-app.set('views', path.join(__dirname, 'views')); //Establecer ubicación carpeta views
-app.engine('.hbs', engine({
-    defalutLayout: 'main',
-    layoutDir: path.join(app.get('views'), 'layouts'),
-    partialsDir: path.join(app.get('views'), 'partials'),
+app.set('port', process.env.PORT || 4000); //Establecer puerto (Si no hay uno designado como PORT utilizar el puerto 4000)
+app.set('views', path.join(__dirname, 'views')); //Establecer path para las vistas
+app.engine('.hbs',engine({
+    defaultLayout: 'main', //Layout Preddeterminado es main.hbs
+    layoutsDir: path.join(app.get('views'), 'layouts'), //Carpeta para los layouts
+    partialsDir: path.join(app.get('views'), 'partials'), //Carpeta para los partials (modulos de html)
     extname: '.hbs'
 }));
-
 app.set('view engine', '.hbs');
 
-//Midlewares (Funciones en respuesta a peticiones)
-app.use(express.urlencoded({extended:false})); //Cuando lleguen datos al servidor se deben convertir a JSON
+//Middlewares
+app.use(express.urlencoded({extended: false})); //Utilizar express para traducir a JSON
+
+//Rutas
+app.get('/',(req,res) => {
+    res.render('index');
+});
 
 //Variables Globales
 
-//Rutas
-app.use(require('./routes/index.routes'));
-/*app.get('/', (req,res) =>{
-    res.render('index') //Respuesta predeterminada para una request
-})*/
-
-//Archivos Estaticos
-app.use(express.static(path.join(__dirname, 'public')));
-
+//Archivos estaticos
+app.use(express.static(path.join(__dirname, 'public')))
 
 module.exports = app;
