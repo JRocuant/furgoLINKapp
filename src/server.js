@@ -18,12 +18,10 @@ app.set('view engine', '.hbs');
 //Middlewares
 app.use(express.urlencoded({extended: false})); //Utilizar express para traducir a JSON
 
-//Rutas
-app.get('/',(req,res) => {
-    res.render('index');
-});
-
 //Variables Globales
+
+//Rutas
+app.use(require('./routes/index.routes'));
 
 //Archivos estaticos
 app.use(express.static(path.join(__dirname, 'public')))

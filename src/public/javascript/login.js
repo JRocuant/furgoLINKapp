@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Redirige a la pantalla de selección de tarea
                 setTimeout(() => {
-                    window.location.href = 'selecciontarea.html';
+                    window.location.href = '/tareas';
                 }, 500);
             } else {
                 // Mostrar alerta de error

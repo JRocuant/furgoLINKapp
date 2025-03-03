@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sessionStorage.setItem('selectedTask', selectedTask);
 
             // Redirige a la pantalla de Esperando Escaneo
-            window.location.href = 'espera.html';
+            window.location.href = 'espera';
         });
     });
 
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             alertMessage.classList.remove('show');
             sessionStorage.clear(); // Borra la sesión
-            window.location.href = 'Login.html'; // Redirige a Login
+            window.location.href = '/'; // Redirige a Login
         }, 1500);
     }
 
