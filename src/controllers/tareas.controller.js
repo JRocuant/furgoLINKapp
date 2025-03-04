@@ -6,16 +6,18 @@ tareasCtrl.renderTareaForm = (req,res) => {
     res.render('tareas/tarea-nueva');
 };
 
-tareasCtrl.crearTarea = (req,res) => {
+tareasCtrl.crearTarea = async (req,res) => {
     console.log(req.body)
     const {idTarea:idTarea} =req.body;
     const newTarea = new Tarea({idTarea});
-    console.table(newTarea)    
+    console.table(newTarea);
+    await newTarea.save()    
     res.send('Tarea Nueva')
 };
 
-tareasCtrl.renderTareas = (req,res) => {
-    res.send('Renderizar Tareas')
+tareasCtrl.renderTareas = async(req,res) => {
+    const tareas = await Tarea.find();
+    res.render('tareas/all-tareas');
 };
 
 tareasCtrl.renderEditForm = (req,res) => {

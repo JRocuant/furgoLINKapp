@@ -6,6 +6,8 @@ const TareaSchema = new Schema({
     operacionFin: { type: Date },
     turno: { type: String },
     duracion: { type: Number }
+}, {
+    timestamps: true
 });
 
 module.exports = model('Tarea', TareaSchema);
