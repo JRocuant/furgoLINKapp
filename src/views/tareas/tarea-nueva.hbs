@@ -1,0 +1,30 @@
+<!-- Contenedor Principal de Esperando Escaneo -->
+<head>
+    <link rel="stylesheet" href="/css/espera.css">
+
+</head>
+
+<div class="scan-waiting-container">
+    <h1>Coke-KRONOS</h1>
+    <h2>Esperando Escaneo...</h2>
+
+    <!-- Mostrar la tarea seleccionada -->
+    <p class="selected-task" id="selectedTask">Tarea seleccionada: </p>
+
+    <!-- Animación de Carga -->
+    <div class="loader"></div>
+
+    <!-- Mensaje de Espera -->
+    <p class="waiting-message">Por favor, escanea el código para continuar.</p>
+
+    <!-- Formulario para ingresar código manualmente -->
+    <form action="/tareas/tarea-nueva" method="POST">
+        <input type="text" name="idTarea" placeholder="Ingrese código" required>
+        <button type="submit" class="submit-btn">Enviar</button>
+    </form>
+
+    <!-- Botón de Cancelar (Opcional) -->
+    <button id="cancelBtn" class="cancel-btn">Cancelar</button>
+</div>
+
+<script src="javascript/espera.js"></script>

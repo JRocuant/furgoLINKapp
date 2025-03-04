@@ -1,0 +1,94 @@
+
+- - - - - - - - - -TAREAS PENDIENTES ETAPA ACTUAL (backend)- - - - - - - - - -
+- REALIZAR CONEXIÓN CON BASE DE DATOS
+    - Establecer base de datos
+    - Vinculación de la aplicación con la Base de datos en nube
+
+- VERIFICACIÓN DE TAREAS
+    - RETIRAR PALLET
+        - retirarPallet()
+            - Iniciar Tarea
+            - Escanear Pallet
+            --- llevar a bahia de carga ---
+            - Escanear Bahía
+            - Terminar Tarea
+
+    - CAMBIO BAHIA
+        - cambiarBahia()
+            - Iniciar Tarea
+            - Escanear bahía de carga inicial
+            - Escanear Pallet
+            --- cambiar pallet de bahía de carga ---
+            - Escanear pallets cambiados (Loop)
+            - Escanear bahía de carga final
+            - Terminar Tarea
+
+    - CARGAR CAMION
+        - cargarCamion()
+            -- Iniciar Tarea
+            - Escanear Pallet
+            --- cargar camion ---
+            - Escanear pallets cargados (Loop)
+            - Terminar Tarea
+
+- OBTENCIÓN DE DATOS
+    - TAREA
+        - Obtener idOperador
+        - Obtener Tiempo inicio de Tarea 
+        - Obtener Tiempo fin de Tarea
+        - Obtener turno
+        - Calcular duracion()
+
+        - DATOS TAREA RETIRAR PALLET
+            - Obtener codigoTarea
+            - Obtener bahiaCarga
+            - Obtener codigoTicket
+            - Obtener idCamion
+
+        - DATOS TAREA CAMBIO BAHIA
+            - Obtener codigoTarea
+            - Obtener bahiaInicio
+            - Obtener bahiaFinal
+            - Obtener idCamion
+
+        - DATOS TAREA CARGAR CAMION
+            - Obtener codigoTarea
+            - Obtener bahiaCarga
+            - Obtener codigoTicketCargas[]
+            - Obtener idCamion
+
+    - USUARIO
+        - Obtener id
+        - Obtener name
+        - Obtener email
+        - Obtener password
+
+
+- - - - - - - - - -TRABAJO REALIZADO (semana 01 24 de Marzo) - - - - - - - - - -
+- OBTENCIÓN DE DATOS 
+    - Obtener Código de Ticket (idTarea) y guardarlo en modelo Tarea 
+
+- OTROS AVANCES
+    - Establecer rutas de las interconexiones al realizar una tarea
+    - Establecer Controladores de las rutas
+    - Editar Schemas/Modelos ajustandolo a la realidad de ejecución 
+
+
+
+
+- - - - - - - - - -TRABAJO REALIZADO (semana 01 24 de Marzo) - - - - - - - - - -
+-RESTRUCTURACION BASE DE LA APLICACIÓN
+    - Borrar templates y codigo innecesario (REALIZADO)
+    - Establecer Esquemas/Modulos para MongoDB (REALIZADO)
+    - Establecer base para HTML (Manejado con Handlebars .hbs) modular (REALIZADO)
+- REALIZAR FUSIÓN FRONTEND & BACKEND
+    - Pull desde FRONTEND (REALIZADO)
+    - Modularizar usando Handelbars (.hbs) (REALIZADO)
+    - Corregir y ajustar (REALIZADO)
+- REARMAR ESTRUCTURA DE LA APLICACIÓN
+    - Redefinir basado en el proyecto los siguientes aspectos:(REALIZADO)
+        - Funciones (REALIZADO)
+        - Rutas (REALIZADO)
+        - Base de datos (Modulos/Schemas) (REALIZADO)
+        - Vistas (REALIZADO)
+        - Controladores (REALIZADO)
