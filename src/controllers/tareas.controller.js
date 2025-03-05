@@ -12,6 +12,7 @@ tareasCtrl.crearTarea = async (req,res) => {
     const newTarea = new Tarea({idTarea});
     console.table(newTarea);
     await newTarea.save()    
+    req.flash('success_msg', 'Tarea registrada correctamente');//Mensaje para el servidor
     res.redirect('/tareass')
 };
 
@@ -30,6 +31,7 @@ tareasCtrl.updateTarea = async (req,res) => {
     console.log(req.body)
     const {idTarea} = req.body;
     await Tarea.findByIdAndUpdate(req.params.id, {idTarea});
+    req.flash('success_msg', 'Tarea actualizada correctamente');//Mensaje para el servidor
     res.redirect('/tareass');
 };
 

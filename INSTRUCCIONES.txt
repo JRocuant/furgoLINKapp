@@ -8,7 +8,8 @@ Se pueden ingresar en la barra de busqueda de cualquier navegador, luego de habe
 - Crear Nueva Tarea : localhost:4000/tareas/add
 - Ver Tareas creadas : http://localhost:4000/tareass
 - Eliminar tarea :  desde http://localhost:4000/tareass presionar el boton eliminar junto al id que se desea eliminar   
-
+- Registrarse template : http://localhost:4000/users/signup
+- Inicio de Sesión template : http://localhost:4000/users/signin
 COMANDOS BASE DE DATOS
 Para esto se debe tener instalado MongoDb Shell.
 Ademas se debe iniciar en una tercera consola cmd:

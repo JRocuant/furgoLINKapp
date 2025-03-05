@@ -3,6 +3,9 @@ const {engine} = require('express-handlebars'); //Motor de plantillas para las v
 const path = require('path'); //Importar rutas (para el acceso entre elementos)
 const morgan = require('morgan'); //Importar morgan de express para registrar información sobre las solicitudes entrantes
 const methodOverride = require('method-override'); //Para poder eliminar y sobreescribir información
+const flash = require('connect-flash'); //Para poder relaizar conexiones entre vistas
+const session = require('express-session'); //Para poder inicial la sesion que utilizara connect-flash
+
 //Inicializaciones
 const app = express();
 
@@ -22,11 +25,23 @@ app.use(morgan('dev')); //Utilizar morgan en modo desarrollo para ver las solici
 app.use(express.urlencoded({extended: false})); //Utilizar express para traducir a JSON
 app.use(methodOverride('_method'));
 
+app.use(session({ //Utilización de express-session
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+//Utilización de connect flash
+app.use(flash());
 //Variables Globales
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    next();
+})
 
 //Rutas
 app.use(require('./routes/index.routes'));
 app.use(require('./routes/tareas.routes'));
+app.use(require('./routes/users.routes'));
 //Archivos estaticos
 app.use(express.static(path.join(__dirname, 'public')))
 

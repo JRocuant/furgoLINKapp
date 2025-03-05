@@ -69,11 +69,14 @@
 
 - MANEJO DE TAREAS
     - Eliminar tareas guardadas en la base de datos
+    - Editar tareas guardadas en la base de datos
 
 - OTROS AVANCES
     - Establecer rutas de las interconexiones al realizar una tarea
     - Establecer Controladores de las rutas
-    - Editar Schemas/Modelos ajustandolo a la realidad de ejecución 
+    - Editar Schemas/Modelos ajustandolo a la realidad de ejecución
+    - Establecer bases para rutas y controladores para registro de usuario e inicio de sesión
+    - Establecer bases interfaz para registro de usuario e inicio de sesión
 
 
 
