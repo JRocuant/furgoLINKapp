@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="css/espera.css">
     <!-- Cargar CSS ventana seleccion tarea -->
     <link rel="stylesheet" href="css/seleccionTarea.css">
-
+    <!-- Cargar CSS footer -->
+    <link rel="stylesheet" href="css/footer.css">
+    <!--FONT AWESOME para los iconos -->
     <link href="https://cdn.jsdelivr.net/npm/fontawesome-4.7@4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 
@@ -20,4 +22,39 @@
 <body>
     {{{body}}}
 </body>
+
+<footer class="footer">
+    <div class="dropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown()">Opciones de desarrollo</button>
+        <div class="dropdown-content" id="dropdownMenu">
+            <a href="/tareas/add">Escanear Ticket</a>
+            <a href="/tareass">Ver Tickets Escaneados</a>
+            <a href="/">volver a login</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function toggleDropdown() {
+        var dropdown = document.getElementById("dropdownMenu");
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+    
+    // Cerrar el menú si se hace clic fuera de él
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown-btn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.style.display === "block") {
+                    openDropdown.style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 </html>

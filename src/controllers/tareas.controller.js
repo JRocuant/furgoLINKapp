@@ -20,12 +20,17 @@ tareasCtrl.renderTareas = async(req,res) => {
     res.render('tareas/all-tareas', { tareas });
 };
 
-tareasCtrl.renderEditForm = (req,res) => {
-    res.send('Renderizar Formulario Edit')
+tareasCtrl.renderEditForm = async(req,res) => {
+    const tarea = await Tarea.findById(req.params.id).lean();
+    console.log(tarea);
+    res.render('tareas/edit-tarea', { tarea });
 };
 
-tareasCtrl.updateTarea = (req,res) => {
-    res.send('Tarea Actualizada')
+tareasCtrl.updateTarea = async (req,res) => {
+    console.log(req.body)
+    const {idTarea} = req.body;
+    await Tarea.findByIdAndUpdate(req.params.id, {idTarea});
+    res.redirect('/tareass');
 };
 
 tareasCtrl.eliminarTarea = async(req,res) =>{
