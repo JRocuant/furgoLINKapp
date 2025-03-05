@@ -1,0 +1,29 @@
+- - - - - - - - - -INSTRUCTIVO PARA TESTEAR FUNCIONALIDADES- - - - - - - - - -
+Recordar tener MongoDB instalado, para iniciar la app se necesitan dos consolas cmd (recomiendo abrirlas en VS Code)
+cmd 1 ingresar comando "mongod" (Inicializa MongoDB)
+cmd 2 ingresar comando "npm run dev" (inicia el codigo en modo desarrollador, esto ayuda a notiificar cada cambio realizado en la consola)
+
+RUTAS PARA TESTEO
+Se pueden ingresar en la barra de busqueda de cualquier navegador, luego de haber inicializado la app y mongod (cmd 1 y cmd 2):
+- Crear Nueva Tarea : localhost:4000/tareas/add
+- Ver Tareas creadas : http://localhost:4000/tareass
+- Eliminar tarea :  desde http://localhost:4000/tareass presionar el boton eliminar junto al id que se desea eliminar   
+
+COMANDOS BASE DE DATOS
+Para esto se debe tener instalado MongoDb Shell.
+Ademas se debe iniciar en una tercera consola cmd:
+cmd 3 ingresar comando "mongosh"
+luego de iniciar mongosh se deben utilizar los siguientes comandos en orden para ver las tareas creadas en la consola:
+
+- show dbs : Mostrar bases de datos
+- use nombre_de_la_base_de_datos_a_acceder : Seleccionar base de datos
+- show collections : Mostrar colecciones
+- db.nombre_colección_que_se_quiere_revisar.find() : Buscar/Mostrar elementos de la colección indicada
+- db.nombre_colección_que_se_quiere_revisar.find().pretty() : Buscar/Mostrar elementos de la colección indicada de manera ordenada
+
+Por defecto deberian ser los siguientes comandos:
+- show dbs
+- use coke_KRONOS
+- show collections
+- db.tareas.find()
+- db.tareas.find().pretty()
