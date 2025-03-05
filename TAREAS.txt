@@ -1,0 +1,26 @@
+Estimados,
+
+"Implementar API keys"
+Definir variables locales en un archivo .env externo para evitar backdoors
+EJ: https://stackoverflow.com/questions/35356692/best-practice-when-using-an-api-key-in-node-js
+
+Se pueden definir todas las variales a las que se necesiten proteger, como Usuario y contraseña de admin, Puertos, etc.
+
+"Agregar últimas funcionalidades a las vistas"
+Faltan tareas en la vista de tareas, 
+analizar si es necesario el tiempo de espera, se ve bonito, pero la idea es que
+la productividad sea alta.
+
+Estimar si es posible hacer flujo continuo, quiero decir que cada escaneo sea automático.
+
+Analizar si los barcode tienen información extra que permita esto, se conversará en la prox. reunión.
+
+Puede ser si se detecta que es un producto, entonces la tarea será cargar camión o relacionada a productos.
+Si detecta que es un pallet, redirigir automáticamente a tareas relacionadas con pallets.
+
+Esto puede realizarse leyendo los keystrokes de forma continua.
+Ejemplo: https://chatgpt.com/share/67c85ef7-eb60-800a-9a20-4f84d1251f35
+
+Pueden utilizar localstorage para la lectura del string que entrega la pistola y un listener
+continuo.
+Según cierta condicional pueden clasificar el string también.
