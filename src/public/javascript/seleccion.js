@@ -1,3 +1,5 @@
+// TODO: Analizar si el tiempo de espera afectará al tiempo de productividad
+
 // Ejecutar el script solo cuando el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', () => {
     // Selecciona todos los botones de tarea

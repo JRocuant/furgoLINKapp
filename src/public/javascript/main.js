@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     checkSession();
 });
 
+// TODO: José, Definir Usuario en MongoDB
 // Función para iniciar sesión y guardar el rol en sessionStorage
 function login(username, password) {
     if (username === 'admin' && password === '1234') {
