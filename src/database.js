@@ -10,3 +10,14 @@ mongoose.connect(MONGODB_URI, { //Conexión con la base de datos
 
     .then(db => console.log('La base de datos esta conectada'))//Mensaje de confirmación conexion con la base de datos
     .catch(err => console.log(err)); //Mensaje de erro para conexión fallida
+
+
+
+/*
+COMANDOS BASE DE DATOS
+- show dbs : Mostrar bases de datos
+- use "name" : Seleccionar base de datos
+- show collections : Mostrar colecciones
+- db."colección".find() : Buscar/Mostrar elementos de la colección indicada
+- db."colección".find().pretty() : Buscar/Mostrar elementos de la colección indicada de manera ordenada
+*/

@@ -12,12 +12,12 @@ tareasCtrl.crearTarea = async (req,res) => {
     const newTarea = new Tarea({idTarea});
     console.table(newTarea);
     await newTarea.save()    
-    res.send('Tarea Nueva')
+    res.redirect('/tareass')
 };
 
 tareasCtrl.renderTareas = async(req,res) => {
-    const tareas = await Tarea.find();
-    res.render('tareas/all-tareas');
+    const tareas = await Tarea.find().lean();
+    res.render('tareas/all-tareas', { tareas });
 };
 
 tareasCtrl.renderEditForm = (req,res) => {
@@ -28,8 +28,9 @@ tareasCtrl.updateTarea = (req,res) => {
     res.send('Tarea Actualizada')
 };
 
-tareasCtrl.eliminarTarea = (req,res) =>{
-    res.send('Eliminando Tarea')
+tareasCtrl.eliminarTarea = async(req,res) =>{
+    await Tarea.findByIdAndDelete(req.params.id);
+    res.redirect('/tareass')
 };
 
 module.exports = tareasCtrl;

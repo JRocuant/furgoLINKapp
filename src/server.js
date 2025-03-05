@@ -2,6 +2,7 @@ const express = require('express'); //Importar express modulo de integración (P
 const {engine} = require('express-handlebars'); //Motor de plantillas para las vistas html en modulos .hbs
 const path = require('path'); //Importar rutas (para el acceso entre elementos)
 const morgan = require('morgan'); //Importar morgan de express para registrar información sobre las solicitudes entrantes
+const methodOverride = require('method-override'); //Para poder eliminar y sobreescribir información
 //Inicializaciones
 const app = express();
 
@@ -19,6 +20,7 @@ app.set('view engine', '.hbs');
 //Middlewares
 app.use(morgan('dev')); //Utilizar morgan en modo desarrollo para ver las solicitudes de la app web
 app.use(express.urlencoded({extended: false})); //Utilizar express para traducir a JSON
+app.use(methodOverride('_method'));
 
 //Variables Globales
 

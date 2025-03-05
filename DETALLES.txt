@@ -1,4 +1,3 @@
-
 - - - - - - - - - -TAREAS PENDIENTES ETAPA ACTUAL (backend)- - - - - - - - - -
 - REALIZAR CONEXIÓN CON BASE DE DATOS
     - Establecer base de datos
@@ -66,7 +65,10 @@
 
 - - - - - - - - - -TRABAJO REALIZADO (semana 01 24 de Marzo) - - - - - - - - - -
 - OBTENCIÓN DE DATOS 
-    - Obtener Código de Ticket (idTarea) y guardarlo en modelo Tarea 
+    - Obtener Código de Ticket (idTarea) y guardarlo en la base de datos con el modelo/Schema Tarea 
+
+- MANEJO DE TAREAS
+    - Eliminar tareas guardadas en la base de datos
 
 - OTROS AVANCES
     - Establecer rutas de las interconexiones al realizar una tarea
