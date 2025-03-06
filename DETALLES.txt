@@ -56,16 +56,18 @@
             - Obtener codigoTicketCargas[]
             - Obtener idCamion
 
-    - USUARIO
-        - Obtener id
-        - Obtener name
-        - Obtener email
-        - Obtener password
+    
 
 
 - - - - - - - - - -TRABAJO REALIZADO (semana 01 24 de Marzo) - - - - - - - - - -
 - OBTENCIÓN DE DATOS 
     - Obtener Código de Ticket (idTarea) y guardarlo en la base de datos con el modelo/Schema Tarea 
+    
+    - USUARIO
+        - Obtener id
+        - Obtener name
+        - Obtener email
+        - Obtener password
 
 - MANEJO DE TAREAS
     - Eliminar tareas guardadas en la base de datos

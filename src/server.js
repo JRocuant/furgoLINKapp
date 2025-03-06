@@ -4,10 +4,12 @@ const path = require('path'); //Importar rutas (para el acceso entre elementos)
 const morgan = require('morgan'); //Importar morgan de express para registrar información sobre las solicitudes entrantes
 const methodOverride = require('method-override'); //Para poder eliminar y sobreescribir información
 const flash = require('connect-flash'); //Para poder relaizar conexiones entre vistas
-const session = require('express-session'); //Para poder inicial la sesion que utilizara connect-flash
+const session = require('express-session'); //Para poder inicializar la sesion que utilizara connect-flash
+const passport = require('passport'); //Para poder inicializar y verificar credenciales
 
 //Inicializaciones
 const app = express();
+require('./config/passport');
 
 //Configuración
 app.set('port', process.env.PORT || 4000); //Establecer puerto (Si no hay uno designado como PORT utilizar el puerto 4000)
@@ -24,17 +26,21 @@ app.set('view engine', '.hbs');
 app.use(morgan('dev')); //Utilizar morgan en modo desarrollo para ver las solicitudes de la app web
 app.use(express.urlencoded({extended: false})); //Utilizar express para traducir a JSON
 app.use(methodOverride('_method'));
-
 app.use(session({ //Utilización de express-session
     secret: 'secret',
     resave: true,
     saveUninitialized: true
 }));
-//Utilización de connect flash
-app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(flash()); //Utilización de connect flash
+
 //Variables Globales
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
     next();
 })
 
@@ -42,6 +48,7 @@ app.use((req, res, next) => {
 app.use(require('./routes/index.routes'));
 app.use(require('./routes/tareas.routes'));
 app.use(require('./routes/users.routes'));
+
 //Archivos estaticos
 app.use(express.static(path.join(__dirname, 'public')))
 

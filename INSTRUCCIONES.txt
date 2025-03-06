@@ -3,13 +3,15 @@ Recordar tener MongoDB instalado, para iniciar la app se necesitan dos consolas 
 cmd 1 ingresar comando "mongod" (Inicializa MongoDB)
 cmd 2 ingresar comando "npm run dev" (inicia el codigo en modo desarrollador, esto ayuda a notiificar cada cambio realizado en la consola)
 
-RUTAS PARA TESTEO
-Se pueden ingresar en la barra de busqueda de cualquier navegador, luego de haber inicializado la app y mongod (cmd 1 y cmd 2):
+RUTAS PARA TESTEO ---------------------------------------------------------------------------------------------
+Recomiendo utilizar el menu de opciones de desarrollo ubicado en el FOOTER
+Tambien se pueden ingresar en la barra de busqueda de cualquier navegador, luego de haber inicializado la app y mongod (cmd 1 y cmd 2):
 - Crear Nueva Tarea : localhost:4000/tareas/add
 - Ver Tareas creadas : http://localhost:4000/tareass
 - Eliminar tarea :  desde http://localhost:4000/tareass presionar el boton eliminar junto al id que se desea eliminar   
-- Registrarse template : http://localhost:4000/users/signup
-- Inicio de Sesión template : http://localhost:4000/users/signin
+- Registrar Usuario : http://localhost:4000/users/signup
+- Iniciar Sesión : http://localhost:4000/users/signin     (Luego de iniciar sesion va a la pestaña tareass donde aparecen los codigos escaneados, si no aparece nada desde el menu de desarrollo se puede ir a la pestaña para agregar un codigo)
+
 COMANDOS BASE DE DATOS
 Para esto se debe tener instalado MongoDb Shell.
 Ademas se debe iniciar en una tercera consola cmd:

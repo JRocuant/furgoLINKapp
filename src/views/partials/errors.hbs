@@ -1,24 +1,24 @@
-{{#if success_msg}}
-    <div class="alert">
-        {{success_msg}}
+{{#if error}}
+     <div class="alert">
+        {{error}}
         <button class="close-btn" onclick="this.parentElement.style.display='none'">&times;</button>
     </div>
 {{/if}}
 
-{{#if error_msg}}
-    <div class="alert">
-        {{error_msg}}
+{{#each errors}}
+     <div class="alert">
+        {{text}}
         <button class="close-btn" onclick="this.parentElement.style.display='none'">&times;</button>
     </div>
-{{/if}}
+{{/each}}
 
 <style>
     .alert {
-        background-color: #d4edda;
-        color: #155724;
+        background-color: #c5537b;
+        color: #f5c0cb;
         padding: 15px;
         margin: 10px 0;
-        border: 1px solid #c3e6cb;
+        border: 1px solid #c5537b;
         border-radius: 5px;
         position: relative;
     }
@@ -28,7 +28,7 @@
         border: none;
         font-size: 18px;
         font-weight: bold;
-        color: #155724;
+        color: #f5c0cb;
         cursor: pointer;
         position: absolute;
         top: 5px;
