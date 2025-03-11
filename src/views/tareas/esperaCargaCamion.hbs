@@ -1,0 +1,31 @@
+<head>
+       <title>Carga de Camión</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/espera_carga_camion.css">
+</head>
+
+
+<!-- Contenedor principal de la interfaz -->
+<div class="container">
+    <h1>Escanear Pallets para Cargar</h1>
+    <p>Escanee cada pallet antes de completar la carga.</p><!-- Instrucción para el usuario -->
+
+    <!-- Campo de entrada para escanear códigos de pallets -->
+    <input type="text" id="palletCode" placeholder="Escanea un pallet...">
+
+    <!-- Botón para agregar un pallet a la lista -->
+    <button onclick="agregarPallet()">Agregar Pallet</button>
+
+    <!-- Lista donde se mostrarán los pallets escaneados -->
+    <ul id="palletList"></ul>
+
+    <!-- Botón para finalizar la tarea, inicialmente deshabilitado -->
+    <button id="terminarTarea" disabled>Terminar Tarea</button>
+
+    <!-- Enlace para cancelar la operación y volver a la pantalla de espera -->
+    <a href="/tareas/espera">Cancelar</a>
+</div>
+
+<!-- Script que maneja la funcionalidad de escaneo y registro de pallets -->
+<script src="/javascript/esperaCargaCamion.js"></script>
+

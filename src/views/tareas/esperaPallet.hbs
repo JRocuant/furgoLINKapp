@@ -1,0 +1,29 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esperando Acción</title>
+    <link rel="stylesheet" href="./css/espera_pallet.css">
+</head>
+
+
+<!-- Contenedor principal de la interfaz -->
+<div class="container">
+    <h1>Esperando Acción</h1>
+    <p>El pallet ha sido escaneado. Presione "Terminar Tarea" cuando haya sido transportado.</p><!-- Mensaje de instrucción -->
+
+    <!-- Botón para indicar que la tarea ha finalizado -->
+    <button onclick="terminarTarea()">Terminar Tarea</button>
+
+    <!-- Enlace para cancelar la operación y volver a la pantalla de espera -->
+    <a href="/tareas/espera">Cancelar</a>
+</div>
+
+<!-- Script que maneja la finalización de la tarea -->
+<script>
+    function terminarTarea() {
+        window.location.href = "/tareas/escanearBahia";
+    }
+</script>
+</body>
+</html>

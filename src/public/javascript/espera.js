@@ -1,48 +1,57 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Obtiene la tarea seleccionada de sessionStorage
-    const selectedTask = sessionStorage.getItem('selectedTask');
-    const selectedTaskElement = document.getElementById('selectedTask');
+// Espera a que el DOM esté completamente cargado antes de ejecutar el código
+document.addEventListener("DOMContentLoaded", function () {
+    let redirectTimeout; // Variable para almacenar el temporizador de redirección automática
 
-    // Muestra la tarea seleccionada en la pantalla de Esperando Escaneo
+    // Obtiene la tarea seleccionada desde sessionStorage
+    const selectedTask = sessionStorage.getItem("selectedTask");
+    console.log("Tarea seleccionada desde sessionStorage:", selectedTask);
+
+    // Obtiene el elemento donde se mostrará la tarea seleccionada
+    const selectedTaskElement = document.getElementById("selectedTask");
+
+    // Verifica si hay una tarea seleccionada y la muestra en la pantalla
     if (selectedTask) {
         selectedTaskElement.textContent = `Tarea seleccionada: ${selectedTask}`;
     } else {
-        selectedTaskElement.textContent = 'No se ha seleccionado ninguna tarea.';
+        selectedTaskElement.textContent = "No se ha seleccionado ninguna tarea.";
     }
 
-    /* // Evento ORIGINAL de clic en el botón de Cancelar
-    const cancelBtn = document.getElementById('cancelBtn');
-    cancelBtn.addEventListener('click', () => {
-        // Borra la tarea seleccionada y vuelve a la selección de tarea
-        sessionStorage.removeItem('selectedTask');
-        window.location.href = 'tareas';
-    });*/
+    let nextPage; // Variable para determinar la página a la que se redirigirá
 
-    // Función para cancelar selección de tarea
-    function cancel() {
-        // Crea el mensaje de alerta
-        const alertMessage = document.createElement('div');
-        alertMessage.classList.add('alert-message', 'success');
-        alertMessage.textContent = 'Volviendo al menu de tareas';
-
-        // Agrega el mensaje al body
-        document.body.appendChild(alertMessage);
-
-        // Muestra la alerta con animación
-        setTimeout(() => {
-            alertMessage.classList.add('show');
-        }, 100);
-
-        // Espera 1.5 segundos antes de redirigir
-        setTimeout(() => {
-            alertMessage.classList.remove('show');
-            sessionStorage.clear(); // Borra la sesión
-            window.location.href = 'tareas'; // Redirige a tareas
-        }, 1500);
+    // Asigna la página de redirección según la tarea seleccionada
+    if (selectedTask === "cambio-entre-bahías") {
+        nextPage = "/tareas/esperaCambioBahia";
+    } else if (selectedTask === "cargar-camion") { // Ahora en minúsculas
+        nextPage = "/tareas/esperaCargaCamion";
+    } else {
+        nextPage = "/tareas/esperaPallet"; // Página por defecto si no coincide con las otras tareas
     }
 
-    const cancelBtn = document.getElementById('cancelBtn');
-    if (cancelBtn) {
-        cancelBtn.addEventListener('click', cancel);
+    console.log(`Página de redirección seleccionada: ${nextPage}`);
+
+    // Configura un temporizador para redirigir automáticamente después de 5 segundos
+    redirectTimeout = setTimeout(function () {
+        console.log(`Redirigiendo automáticamente a ${nextPage}...`);
+        window.location.href = nextPage;
+    }, 5000);
+
+    // Función que se ejecuta cuando el usuario escanea un código
+    function escanearCodigo(event) {
+        const scannedCode = event.target.value.trim(); // Obtiene y limpia el código escaneado
+        if (scannedCode !== "") {
+            clearTimeout(redirectTimeout); // Cancela la redirección automática
+            console.log(`Código escaneado, redirigiendo a ${nextPage}...`);
+            window.location.href = nextPage; // Redirige a la página correspondiente
+        }
     }
+
+    // Agrega un evento de entrada (input) para detectar el escaneo de códigos
+    document.addEventListener("input", escanearCodigo);
+
+    // Manejo del botón "Cancelar"
+    document.getElementById("cancelBtn").addEventListener("click", function () {
+        clearTimeout(redirectTimeout); // Cancela la redirección automática
+        console.log("Redirección cancelada, volviendo a selección de tarea.");
+        window.location.href = "/tareas/seleccion"; // Vuelve a la pantalla de selección de tarea
+    });
 });

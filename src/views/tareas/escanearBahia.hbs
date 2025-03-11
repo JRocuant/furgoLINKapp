@@ -1,0 +1,27 @@
+
+<head>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/escanearBahia.css">
+</head>
+
+<!-- Contenedor principal de la pantalla de escaneo -->
+<div class="container">
+    <h1>Escanear Bahía</h1>
+    <p>Por favor, escanee la bahía donde dejará el pallet.</p><!-- Mensaje con instrucciones para el usuario -->
+
+    <!-- Campo de entrada para escanear la bahía -->
+    <input type="text" id="bahiaCode" placeholder="Escanea la bahía...">
+
+    <!-- Botón para confirmar el escaneo de la bahía (inicialmente deshabilitado) -->
+    <button id="confirmarBtn" disabled>Confirmar</button>
+
+    <!-- Mensaje de confirmación o error tras la acción del usuario -->
+    <p id="mensaje"></p>
+
+    <!-- Enlace para regresar a la pantalla anterior -->
+    <a href="/tareas/esperaPallet">Volver</a>
+</div>
+
+<!-- Script que maneja la lógica de escaneo de bahía -->
+<script src="/javascript/escanearBahia.js" defer></script>
+

@@ -1,0 +1,35 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esperando Acción</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/espera_cambio_bahia.css">
+</head>
+
+
+<!-- Contenedor principal de la pantalla de espera de acción -->
+<div class="container">
+    <h1>Esperando Acción</h1>
+
+
+    <!-- Este cambio es nuevo -->
+    <p>Escanee el pallet a cambiar.</p>
+    <!-- Input para escanear el primer pallet -->
+    <input type="text" id="palletInput" placeholder="Escanear pallet">
+
+    <p>Escanee la bahía de inicio.</p>
+    <!-- Input para escanear la bahía de inicio (inicialmente deshabilitado) -->
+    <input type="text" id="bahiaInput" placeholder="Escanear bahía" disabled>
+
+    <!-- Botón para continuar, inicialmente deshabilitado -->
+    <button id="continuarBtn" disabled>Continuar</button>
+    <!-- Hasta acá -->
+
+
+    <!-- Enlace para cancelar la operación y regresar a la pantalla anterior -->
+    <a href="/tareas/espera">Cancelar</a>
+</div>
+
+<!-- Script que maneja la lógica de la espera y finalización del proceso -->
+<script src="/javascript/esperaCambioBahia.js"></script>

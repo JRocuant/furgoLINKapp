@@ -40,4 +40,41 @@ tareasCtrl.eliminarTarea = async(req,res) =>{
     res.redirect('/tareass')
 };
 
+tareasCtrl.seleccion = (req, res) =>{
+    res.render('tareas/seleccion');
+};
+
+tareasCtrl.espera = (req, res) =>{
+    res.render('tareas/espera');
+};
+
+tareasCtrl.escanearBahia = (req, res) =>{
+    res.render('tareas/escanearBahia');
+};
+
+tareasCtrl.esperaCargaCamion = (req, res) =>{
+    res.render('tareas/esperaCargaCamion');
+};
+
+tareasCtrl.resumenCargaCamion = (req, res) =>{
+    res.render('tareas/resumenCargaCamion');
+};
+
+tareasCtrl.esperaCambioBahia = (req, res) =>{
+    res.render('tareas/esperaCambioBahia');
+};
+
+tareasCtrl.escanearPalletCambio = (req, res) =>{
+    res.render('tareas/escanearPalletCambio');
+};
+
+tareasCtrl.esperaCambioBahia = (req, res) =>{
+    res.render('tareas/esperaCambioBahia');
+};
+
+tareasCtrl.esperaPallet = (req, res) =>{
+    res.render('tareas/esperaPallet');
+};
+
+
 module.exports = tareasCtrl;

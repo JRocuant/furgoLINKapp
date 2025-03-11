@@ -1,4 +1,4 @@
-/* ===== Colores Principales ===== */
+/*Se definen variables CSS para facilitar la gestión de colores y reutilizarlos en todo el archivo*/
 :root {
     --fondo-celeste: #e0f7fa;
     --celeste-oscuro: #00796b;
@@ -7,7 +7,7 @@
     --sombra-cuadro: rgba(0, 0, 0, 0.1);
 }
 
-/* ===== Fondo General ===== */
+/*Estilos generales*/
 body {
     background: var(--fondo-celeste);
     color: var(--celeste-oscuro);
@@ -23,14 +23,14 @@ body {
     box-sizing: border-box;
 }
 
-/* ===== Contenedor Principal del Login ===== */
+/*Estilos del contenedor del login*/
 .login-container {
     background: var(--blanco);
     border-radius: 15px;
     box-shadow: 0 8px 16px var(--sombra-cuadro);
     padding: 40px 30px;
     text-align: center;
-    max-width: 350px;    /* Ajuste del ancho máximo */
+    max-width: 350px;
     width: 100%;
     box-sizing: border-box;
     min-height: 480px;
@@ -39,21 +39,23 @@ body {
     justify-content: center;
 }
 
-/* ===== Título ===== */
+/*Estilos del título h1*/
 .login-container h1 {
     color: var(--celeste-oscuro);
     margin-bottom: 30px;
     font-size: 32px;
     font-weight: bold;
+    text-transform: uppercase;
 }
 
-/* ===== Input de Texto y Contraseña ===== */
+/*Campos de entrada*/
 .input-group {
     margin-bottom: 20px;
     position: relative;
     text-align: left;
 }
 
+/*Estilos de los inputs*/
 .input-group input {
     width: 100%;
     padding: 12px 15px;
@@ -66,12 +68,13 @@ body {
     box-sizing: border-box;
 }
 
+/*Efecto de foco en los inputs*/
 .input-group input:focus {
     border-color: var(--celeste-oscuro);
     box-shadow: 0 0 8px rgba(0, 121, 107, 0.4);
 }
 
-/* ===== Botón de Ingresar ===== */
+/*Botón de ingreso*/
 .login-btn {
     background-color: var(--celeste-oscuro);
     color: var(--blanco);
@@ -87,6 +90,7 @@ body {
     margin-top: 20px;
 }
 
+/*Efectos Hover y Active en el Botón*/
 .login-btn:hover {
     background-color: #004d40;
     transform: scale(1.02);
@@ -97,7 +101,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* ===== Enlace de Contraseña ===== */
+/*Enlace de Olvido de Contraseña*/
 .forgot-password {
     color: var(--celeste-oscuro);
     text-decoration: none;
@@ -112,7 +116,6 @@ body {
     text-decoration: underline;
 }
 
-/* ===== RESPONSIVIDAD ===== */
 @media (max-width: 768px) {
     .login-container {
         max-width: 300px;
@@ -147,38 +150,14 @@ body {
     }
 }
 
-/* ===== Alerta de Inicio de Sesión ===== */
-.alert-message {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
-    background: var(--celeste-oscuro);
-    color: var(--blanco);
-    padding: 15px 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    font-size: 20px;
-    font-weight: bold;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease;
-    z-index: 9999;
-}
-
-.alert-message.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-/* ===== Colores para Diferentes Mensajes ===== */
-.alert-message.success {
-    background: var(--celeste-oscuro);
-    border: 2px solid var(--celeste-claro);
-}
-
-.alert-message.error {
-    background: #e57373;
-    border: 2px solid #ef9a9a;
+/*Mensajes de error*/
+.error-message {
+    color: #e53935;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 2px;
+    text-align: center;
+    display: none;
+    padding-left: 10px;
+    box-sizing: border-box;
 }

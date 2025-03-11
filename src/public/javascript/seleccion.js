@@ -1,50 +1,29 @@
-// TODO: Analizar si el tiempo de espera afectará al tiempo de productividad
-
-// Ejecutar el script solo cuando el DOM esté completamente cargado
+// Espera a que el DOM esté completamente cargado antes de ejecutar el código
 document.addEventListener('DOMContentLoaded', () => {
-    // Selecciona todos los botones de tarea
+
+    // Selecciona todos los botones de tareas con la clase 'task-btn'
     const taskButtons = document.querySelectorAll('.task-btn');
 
-    // Añade un evento de clic a cada botón de tarea
+    // Itera sobre cada botón de tarea y le asigna un evento de clic
     taskButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Captura la tarea seleccionada usando el atributo data-task
+            // Obtiene el valor del atributo 'data-task' del botón presionado
             const selectedTask = button.getAttribute('data-task');
-
-            // Guarda la tarea seleccionada en sessionStorage
-            sessionStorage.setItem('selectedTask', selectedTask);
-
-            // Redirige a la pantalla de Esperando Escaneo
-            window.location.href = 'espera';
+            // Almacena la tarea seleccionada en sessionStorage y la convierte a minúsculas para mantener consistencia
+            sessionStorage.setItem('selectedTask', selectedTask.toLowerCase());
+            // Redirige a la pantalla de espera
+            window.location.href = '/tareas/espera';
         });
     });
 
-    // Función para cerrar sesión con mensaje animado
-    function logout() {
-        // Crea el mensaje de alerta
-        const alertMessage = document.createElement('div');
-        alertMessage.classList.add('alert-message', 'success');
-        alertMessage.textContent = 'Has cerrado sesión exitosamente';
-
-        // Agrega el mensaje al body
-        document.body.appendChild(alertMessage);
-
-        // Muestra la alerta con animación
-        setTimeout(() => {
-            alertMessage.classList.add('show');
-        }, 100);
-
-        // Espera 1.5 segundos antes de redirigir
-        setTimeout(() => {
-            alertMessage.classList.remove('show');
-            sessionStorage.clear(); // Borra la sesión
-            window.location.href = '/'; // Redirige a Login
-        }, 1500);
-    }
-
-    // Evento de clic en el botón de Cerrar Sesión
+    // Obtiene el botón de cerrar sesión por su ID
     const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', logout);
+    if (logoutBtn) { // Verifica que el botón exista en la página
+        logoutBtn.addEventListener('click', () => {
+            // Limpia la sesión del usuario eliminando todos los datos almacenados en sessionStorage
+            sessionStorage.clear();
+            // Redirige al usuario a la página de inicio de sesión
+            window.location.href = 'index.html';
+        });
     }
 });

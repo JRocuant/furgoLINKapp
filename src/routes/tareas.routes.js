@@ -7,7 +7,15 @@ const {
     renderTareas, 
     renderEditForm, 
     updateTarea, 
-    eliminarTarea 
+    eliminarTarea, 
+    seleccion,
+    espera,
+    escanearBahia,
+    esperaCargaCamion,
+    resumenCargaCamion,
+    esperaCambioBahia,
+    escanearPalletCambio,
+    esperaPallet
 } = require('../controllers/tareas.controller'); //directorio de los controladores de rutas
 
 /* - - - DEFINICIONES - - -
@@ -32,5 +40,22 @@ router.put('/tareas/edit/:id', updateTarea);
 //Eliminar Tareas
 router.delete('/tareas/delete/:id', eliminarTarea)
 
+router.get('/tareas/seleccion', seleccion)
+
+router.get('/tareas/espera', espera)
+
+router.get('/tareas/escanearBahia', escanearBahia)
+
+router.get('/tareas/esperaCargaCamion', esperaCargaCamion)
+
+router.get('/tareas/resumenCargaCamion', resumenCargaCamion)
+
+router.get('/tareas/esperaCambioBahia', esperaCambioBahia)
+
+router.get('/tareas/escanearPalletCambio', escanearPalletCambio)
+
+router.get('/tareas/esperaCambioBahia', esperaCambioBahia)
+
+router.get('/tareas/esperaPallet', esperaPallet)
 module.exports = router //exportación del Router
 

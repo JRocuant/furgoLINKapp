@@ -58,8 +58,16 @@
 
     
 
+- - - - - - - - - -TRABAJO REALIZADO (semana 03 - 10 de Marzo) - - - - - - - - - -
+- OTROS AVANCES
+    - Fusion vistas:
+        - Cargar Camion
+        - Cambio de bahia
+        - Retirar Pallet
+    - Creación de nuevos controladores
+    - Creacion de Nuevas Rutas
 
-- - - - - - - - - -TRABAJO REALIZADO (semana 01 24 de Marzo) - - - - - - - - - -
+- - - - - - - - - -TRABAJO REALIZADO (semana 02 - 3 de Marzo) - - - - - - - - - -
 - OBTENCIÓN DE DATOS 
     - Obtener Código de Ticket (idTarea) y guardarlo en la base de datos con el modelo/Schema Tarea 
     
@@ -83,7 +91,7 @@
 
 
 
-- - - - - - - - - -TRABAJO REALIZADO (semana 01 24 de Marzo) - - - - - - - - - -
+- - - - - - - - - -TRABAJO REALIZADO (semana 01 - 24 de Febrero) - - - - - - - - - -
 -RESTRUCTURACION BASE DE LA APLICACIÓN
     - Borrar templates y codigo innecesario (REALIZADO)
     - Establecer Esquemas/Modulos para MongoDB (REALIZADO)

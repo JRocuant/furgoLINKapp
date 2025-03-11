@@ -1,64 +1,19 @@
-// Verifica si el usuario ha iniciado sesión y redirige según el rol
+// Función que verifica el rol del usuario y redirige a la página correspondiente
 function checkSession() {
+    // Obtener el rol del usuario desde sessionStorage
     const userRole = sessionStorage.getItem('userRole');
+
+    /* Si el usuario es operador, redirigir a la pantalla de selección de tarea */
     if (userRole === 'operador') {
         window.location.href = 'selecciontarea.html';
-    } else if (userRole === 'admin') {
-        window.location.href = 'admin-dashboard.html';
+    }
+    /* Si el usuario es administrador, redirigir al dashboard */
+    else if (userRole === 'admin') {
+        window.location.href = 'dashboard.html';
     }
 }
 
-// Al cargar el documento, verifica la sesión
+// Ejecutar la función cuando el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', () => {
-    checkSession();
+    checkSession(); // Llamamos a la función para verificar la sesión
 });
-
-// TODO: José, Definir Usuario en MongoDB
-// Función para iniciar sesión y guardar el rol en sessionStorage
-function login(username, password) {
-    if (username === 'admin' && password === '1234') {
-        sessionStorage.setItem('userRole', 'admin');
-        alert('Bienvenido, Administrador');
-        window.location.href = 'admin-dashboard.html';
-    } else if (username === 'operador' && password === '1234') {
-        sessionStorage.setItem('userRole', 'operador');
-        alert('Bienvenido, Operador');
-        window.location.href = 'selecciontarea.html';
-    } else {
-        alert('Usuario o contraseña incorrectos');
-    }
-}
-
-// Función para cerrar sesión y borrar la sesión
-function logout() {
-    sessionStorage.clear();
-    window.location.href = 'login.html';
-}
-
-// Función para redirigir al Dashboard o Selección de Tarea según el rol
-function redirectByRole() {
-    const userRole = sessionStorage.getItem('userRole');
-    if (userRole === 'admin') {
-        window.location.href = 'admin-dashboard.html';
-    } else if (userRole === 'operador') {
-        window.location.href = 'selecciontarea.html';
-    } else {
-        window.location.href = 'login.html';
-    }
-}
-
-// Exporta funciones para usarlas en otros archivos JS
-export { login, logout, redirectByRole };
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./service-worker.js')
-        .then(registration => {
-          console.log('Service Worker registrado con éxito:', registration);
-        })
-        .catch(error => {
-          console.log('Error al registrar el Service Worker:', error);
-        });
-    });
-  }
-  

@@ -1,0 +1,41 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escanear Pallets y Bahía de Destino</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/escanear_pallets_cambio.css">
+</head>
+
+
+<!-- Contenedor principal de la pantalla -->
+<div class="container">
+    <h1>Escanear Pallets y Bahía de Destino</h1>
+    <p>Escanee todos los pallets antes de confirmar el traslado.</p>
+
+    <!-- Campo de entrada para escanear el código de un pallet -->
+    <input type="text" id="palletCode" placeholder="Escanea un pallet...">
+
+    <!-- Botón para agregar el pallet escaneado a la lista -->
+    <button id="agregarPallet">Agregar Pallet</button>
+
+    <!-- Lista donde se mostrarán los pallets escaneados -->
+    <ul id="palletList"></ul>
+
+    <h2>Escanear Bahía Destino</h2><!-- Subtítulo indicando la acción a realizar -->
+
+    <!-- Campo de entrada para escanear el código de la bahía destino -->
+    <input type="text" id="bahiaDestinoCode" placeholder="Escanea la bahía destino...">
+
+    <!-- Botón de confirmación deshabilitado inicialmente -->
+    <button id="confirmarBtn" disabled>Confirmar</button>
+
+    <!-- Mensaje de validación, confirmación o error -->
+    <p id="mensaje"></p>
+
+    <!-- Enlace para regresar a la pantalla de espera -->
+    <a href="/tareas/espera">Volver</a>
+</div>
+
+<!-- Script que maneja la lógica de escaneo de pallets y bahía -->
+<script src="/javascript/escanearPalletsCambio.js"></script>
