@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Almacena el rol del usuario en sessionStorage para mantener la sesión activa
             sessionStorage.setItem('userRole', 'operador');
             // Redirige a la página de selección de tareas
-            window.location.href = "/tareas/seleccion";
+            window.location.href = "/tareas/seleccionx";
         } else {
             // Muestra un mensaje de error si las credenciales son incorrectas
             errorMessage.textContent = "Usuario o contraseña incorrectos";

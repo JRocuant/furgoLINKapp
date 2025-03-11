@@ -66,6 +66,8 @@
         - Retirar Pallet
     - Creación de nuevos controladores
     - Creacion de Nuevas Rutas
+    - Solucion de errores Rutas estilos CSS
+    - Conexion login con base de datos
 
 - - - - - - - - - -TRABAJO REALIZADO (semana 02 - 3 de Marzo) - - - - - - - - - -
 - OBTENCIÓN DE DATOS 

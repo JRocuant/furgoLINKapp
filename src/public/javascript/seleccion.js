@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Limpia la sesión del usuario eliminando todos los datos almacenados en sessionStorage
             sessionStorage.clear();
             // Redirige al usuario a la página de inicio de sesión
-            window.location.href = 'index.html';
+            window.location.href = '/';
         });
     }
 });

@@ -35,7 +35,7 @@ usersCtrl.signup = async (req, res) => {
             const newUser = new User({name, email, password});
             newUser.password = await newUser.encriptarPassword(password)
             await newUser.save();
-            req.flash('success_msg', 'Registro exitoso');
+            //req.flash('success_msg', 'Registro exitoso');
             res.redirect('/users/signin');
         }
     }
@@ -45,15 +45,21 @@ usersCtrl.renderSigninForm = (req, res) => {
     res.render('users/signin');
 };
 
+
+
 usersCtrl.signin = passport.authenticate('local', {
     failureRedirect: '/users/signin',
-    successRedirect: '/tareass',
+    successRedirect: '/tareas/seleccion',
     failureFlash: true
 });
 
 
 usersCtrl.logout = (req, res) => {
     res.send('logout');
+}
+
+usersCtrl.olvido = (req, res) => {
+    res.render('users/olvido');
 }
 
 module.exports = usersCtrl;

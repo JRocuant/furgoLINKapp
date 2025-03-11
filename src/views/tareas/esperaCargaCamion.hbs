@@ -1,14 +1,17 @@
 <head>
-       <title>Carga de Camión</title>
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/espera_carga_camion.css">
+    <title>Carga de Camión</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/espera_carga_camion.css">
+    <link rel="stylesheet" href="/css/footer.css">
 </head>
-
 
 <!-- Contenedor principal de la interfaz -->
 <div class="container">
     <h1>Escanear Pallets para Cargar</h1>
     <p>Escanee cada pallet antes de completar la carga.</p><!-- Instrucción para el usuario -->
+
+    <!-- Contador de pallets -->
+    <p id="contadorPallets">Pallets: 0/10</p>
 
     <!-- Campo de entrada para escanear códigos de pallets -->
     <input type="text" id="palletCode" placeholder="Escanea un pallet...">
@@ -28,4 +31,3 @@
 
 <!-- Script que maneja la funcionalidad de escaneo y registro de pallets -->
 <script src="/javascript/esperaCargaCamion.js"></script>
-
