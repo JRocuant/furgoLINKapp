@@ -1,6 +1,7 @@
 const tareasCtrl = {};
 
 const Tarea = require('../models/Tarea')
+const CargarCamion = require('../models/CargarCamion');
 
 tareasCtrl.renderTareaForm = (req,res) => {
     res.render('tareas/tarea-nueva');
@@ -74,6 +75,31 @@ tareasCtrl.esperaCambioBahia = (req, res) =>{
 
 tareasCtrl.esperaPallet = (req, res) =>{
     res.render('tareas/esperaPallet');
+};
+
+
+
+tareasCtrl.guardarCargaCamion = async (req, res) => {
+    try {
+        const { codigoTarea, cargas } = req.body;
+
+        const nuevaCarga = new CargarCamion({
+            codigoTarea,
+            cargas: JSON.stringify(cargas), // Guardamos los pallets como string (o usar array si el modelo lo permite)
+            operacionInicio: new Date(),
+            operacionFin: new Date(), // Puedes calcularlo más adelante
+            turno: "Turno 1", // Reemplazar con dato real si lo tienes
+            bahiaCarga: "Bahía 1", // Reemplazar con dato real si lo tienes
+            idCamion: 123, // Reemplazar con dato real si lo tienes
+            duracion: 30 // Reemplazar con cálculo real si lo necesitas
+        });
+
+        await nuevaCarga.save();
+        res.status(200).json({ message: "Carga guardada correctamente" });
+    } catch (error) {
+        console.error("Error al guardar la carga:", error);
+        res.status(500).json({ message: "Error al guardar la carga" });
+    }
 };
 
 
