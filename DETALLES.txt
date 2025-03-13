@@ -68,6 +68,7 @@
     - Creacion de Nuevas Rutas
     - Solucion de errores Rutas estilos CSS
     - Conexion login con base de datos
+    - Revertir cambios ultimo commit para iniciar implmentación de local storage al construir tareas
 
 - - - - - - - - - -TRABAJO REALIZADO (semana 02 - 3 de Marzo) - - - - - - - - - -
 - OBTENCIÓN DE DATOS 
