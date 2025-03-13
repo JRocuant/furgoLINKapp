@@ -2,7 +2,21 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     let pallets = []; // Array para almacenar los códigos de los pallets escaneados
-    const maxPallets = 10; // Número máximo de pallets requeridos
+    const maxPallets = 5; // Número máximo de pallets requeridos
+
+    // Recuperar el array de tareas desde localStorage
+    let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
+    console.log("Tareas registradas:", tareaActual);
+
+    // Si quieres obtener solo los códigos de tarea
+    let codigos = tareaActual.map(tarea => tarea.codigoTarea);
+    console.log("Códigos de tarea:", codigos);
+
+    // Obtiene la última tarea registrada (suponiendo que es la tarea en curso)
+    let ultimaTarea = tareaActual[tareaActual.length - 1];
+
+    console.log("Última tarea registrada:", ultimaTarea);
+
 
     // Obtiene los elementos del DOM
     const palletInput = document.getElementById("palletCode"); // Campo de entrada para escanear pallet
@@ -22,6 +36,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 // Actualiza el contador en pantalla
                 contadorPallets.textContent = `Pallets: ${pallets.length}/${maxPallets}`;
+
+                // Actualiza la tarea actual con la lista de pallets cargados
+                if (ultimaTarea) {
+                    ultimaTarea.palletsCargados = pallets; // Agrega los pallets al objeto de la tarea
+                    tareaActual[tareaActual.length - 1] = ultimaTarea; // Guarda la tarea actualizada en el array
+                    localStorage.setItem("tareaActual", JSON.stringify(tareaActual)); // Guarda el array actualizado en localStorage
+                }
             }
 
             if (pallets.length >= maxPallets) {

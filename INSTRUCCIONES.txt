@@ -30,3 +30,21 @@ Por defecto deberian ser los siguientes comandos:
 - show collections
 - db.tareas.find()
 - db.tareas.find().pretty()
+
+REINICIAR PUERTO
+Desde power Shell:
+- netstat -ano | findstr :4000
+Esto te mostrará algo como:
+TCP    127.0.0.1:4000    0.0.0.0:0    LISTENING    12345
+
+El último número es el PID del proceso que está usando el puerto. 
+- Para cerrarlo, ejecuta:
+taskkill /PID 12345 /F
+(Sustituye 12345 por el PID real que aparece en tu caso).
+
+Una alternativa es usar:
+- npx kill-port 4000 (al tener nodejs se puede usar ese comando)
+
+
+
+

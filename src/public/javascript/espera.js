@@ -2,6 +2,15 @@
 document.addEventListener("DOMContentLoaded", function () {
     let redirectTimeout; // Variable para almacenar el temporizador de redirección automática
 
+    // Recuperar el array de tareas desde localStorage
+    let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
+    console.log("Tareas registradas:", tareaActual);
+
+    // Si quieres obtener solo los códigos de tarea
+    let codigos = tareaActual.map(tarea => tarea.codigoTarea);
+    console.log("Códigos de tarea:", codigos);
+
+
     // Obtiene la tarea seleccionada desde sessionStorage
     const selectedTask = sessionStorage.getItem("selectedTask");
     console.log("Tarea seleccionada desde sessionStorage:", selectedTask);
@@ -44,6 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = nextPage; // Redirige a la página correspondiente
         }
     }
+
+    
 
     // Agrega un evento de entrada (input) para detectar el escaneo de códigos
     document.addEventListener("input", escanearCodigo);

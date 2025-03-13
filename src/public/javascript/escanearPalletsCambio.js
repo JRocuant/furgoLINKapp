@@ -12,6 +12,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const confirmarBtn = document.getElementById("confirmarBtn"); // Botón para confirmar el traslado
     const mensaje = document.getElementById("mensaje"); // Elemento para mostrar mensajes al usuario
 
+    // Recuperar el array de tareas desde localStorage
+    let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
+    console.log("Tareas registradas:", tareaActual);
+
+    // Si quieres obtener solo los códigos de tarea
+    let codigos = tareaActual.map(tarea => tarea.codigoTarea);
+    console.log("Códigos de tarea:", codigos);
+
     // Función para agregar pallet a la lista
     function agregarPallet() {
         const pallet = palletInput.value.trim(); // Elimina espacios en blanco del input

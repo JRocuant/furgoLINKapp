@@ -4,6 +4,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const bahiaInput = document.getElementById("bahiaInput");
     const continuarBtn = document.getElementById("continuarBtn");
 
+    // Recuperar el array de tareas desde localStorage
+    let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
+    console.log("Tareas registradas:", tareaActual);
+
+    // Si quieres obtener solo los códigos de tarea
+    let codigos = tareaActual.map(tarea => tarea.codigoTarea);
+    console.log("Códigos de tarea:", codigos);
+
     // ESTE CAMBIO ES NUEVO
     // Evento: cuando se escanea el pallet
     palletInput.addEventListener("input", function () {

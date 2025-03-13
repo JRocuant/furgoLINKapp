@@ -6,6 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const inputBahia = document.getElementById("bahiaCode"); // Campo de entrada para el código de la bahía
     const mensaje = document.getElementById("mensaje"); // Elemento para mostrar mensajes al usuario
 
+    // Recuperar el array de tareas desde localStorage
+    let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
+    console.log("Tareas registradas:", tareaActual);
+
+    // Si quieres obtener solo los códigos de tarea
+    let codigos = tareaActual.map(tarea => tarea.codigoTarea);
+    console.log("Códigos de tarea:", codigos);
+
     // Evento que activa/desactiva el botón de confirmar según el contenido del input
     inputBahia.addEventListener("input", function () {
         confirmarBtn.disabled = inputBahia.value.trim() === ""; // Si el campo está vacío, deshabilita el botón

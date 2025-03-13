@@ -2,10 +2,18 @@ const {Schema, model} = require('mongoose');
 
 const CambioBahiaSchema = new Schema({
     //nombreTarea: { type: String, required: true },
-    codigoTarea: { type: Number, required: true, ref: 'Tarea' },
-    bahiaInicio: { type: Number, required: true },
-    bahiaFinal: { type: Number, required: true },
-    idCamion: { type: Number, required: true }
+    idTarea: { type: Number },
+    operacionInicio: { type: Date },
+    operacionFin: { type: Date },
+    turno: { type: String },
+    codigoTarea: { type: String },
+    bahiaInicio: { type: Number },
+    bahiaFinal: { type: Number },
+    idCamion: { type: Number },
+    duracion: { type: Number }
+    
+}, {
+    timestamps: true
 });
 
 module.exports = model('CambioBahia', CambioBahiaSchema);
