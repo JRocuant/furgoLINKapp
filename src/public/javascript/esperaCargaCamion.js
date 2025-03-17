@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     let pallets = []; // Array para almacenar los códigos de los pallets escaneados
-    const maxPallets = 5; // Número máximo de pallets requeridos
+    const maxPallets = 10; // Número máximo de pallets requeridos
 
     // Recuperar el array de tareas desde localStorage
     let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];

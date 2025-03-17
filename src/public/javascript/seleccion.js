@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Crea un nuevo objeto de tarea
             let nuevaTarea = {
-                codigoTarea: selectedTask
+                codigoTarea: selectedTask,
+                operacionInicio: new Date().toISOString()
             };
 
             // Agrega la nueva tarea al array

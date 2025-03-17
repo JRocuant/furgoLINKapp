@@ -83,19 +83,16 @@ tareasCtrl.esperaPallet = (req, res) =>{
 
 tareasCtrl.guardarCargaCamion = async (req, res) => {
     try {
-        const { codigoTarea, cargas, _id } = req.body;
-
-        console.log(req.body);
+        const { codigoTarea, cargas, operacionInicio, duracionSegundos } = req.body;
 
         const nuevaCarga = new CargarCamion({
-            operacionInicio: new Date(),
-            operacionFin: new Date(), // Calcularlo más adelante
+            operacionInicio: operacionInicio,
+            operacionFin: new Date().toISOString(),
             turno: "Mañana", // Reemplazar con funcion que calcula el dato real
             codigoTarea: codigoTarea,
-            bahiaCarga: "Bahía 1", // Reemplazar con dato real
-            cargas: JSON.stringify(cargas), // Guardamos los pallets como string (o usar array si el modelo lo permite)
-            idCamion: 123, // Reemplazar con dato real
-            duracion: 30 // Reemplazar con cálculo real 
+            cargas: JSON.stringify(cargas), 
+            idCamion: "AABB11", 
+            duracion: duracionSegundos 
         });
 
         await nuevaCarga.save();

@@ -28,11 +28,40 @@ document.addEventListener("DOMContentLoaded", function () {
         resumenList.innerHTML += `<li>${pallet}</li>`;
     });
 
+    function calcularDuracion(operacionInicioStr, operacionFinStr) {
+        // Convertir las fechas string a objetos Date
+        const inicio = new Date(operacionInicioStr);
+        const fin = new Date(operacionFinStr);
+    
+        // Calcular diferencia en milisegundos
+        const diferenciaMs = fin - inicio;
+    
+        // Convertir a segundos
+        const diferenciaSegundos = Math.floor(diferenciaMs / 1000);
+    
+        // También podrías convertir a minutos y segundos si deseas
+        const minutos = Math.floor(diferenciaSegundos / 60);
+        const segundos = diferenciaSegundos % 60;
+    
+        return {
+            totalSegundos: diferenciaSegundos,
+            formatoLegible: `${minutos}m ${segundos}s`
+        };
+    }
+    
+
     // Evento para confirmar la carga
     confirmarCargaBtn.addEventListener("click", async function () {
         try {
             // Deshabilita el botón para evitar múltiples clics
             confirmarCargaBtn.disabled = true;
+
+            // Fecha fin
+            const operacionFin = new Date().toISOString();
+
+            // Calcular duración
+            const duracion = calcularDuracion(ultimaTarea.operacionInicio, operacionFin);
+            console.log("Duración de la operación:", duracion.formatoLegible);
 
             // Muestra un mensaje de carga en la interfaz
             mensaje.textContent = "⏳ Guardando carga...";
@@ -43,13 +72,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     codigoTarea: ultimaTarea.codigoTarea,
-                    cargas: pallets
+                    cargas: pallets,
+                    operacionInicio: ultimaTarea.operacionInicio,
+                    operacionFin: operacionFin,
+                    duracionSegundos: duracion.formatoLegible
                 })
             });
 
             console.log({
                 codigoTarea: ultimaTarea.codigoTarea,
-                cargas: pallets
+                cargas: pallets,
+                operacionInicio: ultimaTarea.operacionInicio,
+                operacionFin: new Date().toISOString()
             });
 
             const result = await response.json();

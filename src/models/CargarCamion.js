@@ -5,10 +5,9 @@ const CargarCamionSchema = new Schema({
     operacionFin: { type: Date },
     turno: { type: String },
     codigoTarea: { type: String },
-    bahiaCarga: { type: String },
     cargas: { type: String },
-    idCamion: { type: Number },
-    duracion: { type: Number }
+    idCamion: { type: String },
+    duracion: { type: String }
 }, {
     timestamps: true
 });
