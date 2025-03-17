@@ -41,6 +41,44 @@
         </form>
     </div>
 </div>
+
+<footer class="footer">
+    <div class="dropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown()">Opciones de desarrollo</button>
+        <div class="dropdown-content" id="dropdownMenu">
+            <a href="/tareas/add">Escanear Ticket</a>
+            <a href="/tareass">Ver Tickets Escaneados</a>
+            <a href="/">volver a login Fake</a>
+            <a href="/users/signin">login Real</a>
+            <a href="/users/signup">Registrar usuario Real</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function toggleDropdown() {
+        var dropdown = document.getElementById("dropdownMenu");
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+    
+    // Cerrar el menú si se hace clic fuera de él
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown-btn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.style.display === "block") {
+                    openDropdown.style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
 <!-- Enlace al script de validación y manejo de login -->
-<!--<script src="/javascript/login.js"></script>
+<!--<script src="/javascript/login.js"></script> -->
 

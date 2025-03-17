@@ -2,6 +2,8 @@ const tareasCtrl = {};
 
 const Tarea = require('../models/Tarea')
 const CargarCamion = require('../models/CargarCamion');
+const RetirarPallet = require('../models/RetirarPallet');
+const CambioBahia = require('../models/CambioBahia');
 
 tareasCtrl.renderTareaForm = (req,res) => {
     res.render('tareas/tarea-nueva');
@@ -81,17 +83,19 @@ tareasCtrl.esperaPallet = (req, res) =>{
 
 tareasCtrl.guardarCargaCamion = async (req, res) => {
     try {
-        const { codigoTarea, cargas } = req.body;
+        const { codigoTarea, cargas, _id } = req.body;
+
+        console.log(req.body);
 
         const nuevaCarga = new CargarCamion({
-            codigoTarea,
-            cargas: JSON.stringify(cargas), // Guardamos los pallets como string (o usar array si el modelo lo permite)
             operacionInicio: new Date(),
-            operacionFin: new Date(), // Puedes calcularlo más adelante
-            turno: "Turno 1", // Reemplazar con dato real si lo tienes
-            bahiaCarga: "Bahía 1", // Reemplazar con dato real si lo tienes
-            idCamion: 123, // Reemplazar con dato real si lo tienes
-            duracion: 30 // Reemplazar con cálculo real si lo necesitas
+            operacionFin: new Date(), // Calcularlo más adelante
+            turno: "Mañana", // Reemplazar con funcion que calcula el dato real
+            codigoTarea: codigoTarea,
+            bahiaCarga: "Bahía 1", // Reemplazar con dato real
+            cargas: JSON.stringify(cargas), // Guardamos los pallets como string (o usar array si el modelo lo permite)
+            idCamion: 123, // Reemplazar con dato real
+            duracion: 30 // Reemplazar con cálculo real 
         });
 
         await nuevaCarga.save();
@@ -102,5 +106,50 @@ tareasCtrl.guardarCargaCamion = async (req, res) => {
     }
 };
 
+
+tareasCtrl.guardarCambioBahia = async (req, res) => {
+    try {
+        const { codigoTarea } = req.body;
+
+        const cargaCambiada = new CambioBahia({
+            codigoTarea,
+            cargas: JSON.stringify(cargas), // Guardamos los pallets como string (o usar array si el modelo lo permite)
+            operacionInicio: new Date(),
+            operacionFin: new Date(), //  Calcularlo más adelante
+            turno: "Mañana", // Reemplazar con funcion que calcula el dato real
+            bahiaCarga: "Bahía 1", // Reemplazar con dato real
+            idCamion: 123, // Reemplazar con dato real 
+            duracion: 30 // Reemplazar con cálculo real
+        });
+
+        await cargaCambiada.save();
+        res.status(200).json({ message: "Carga guardada correctamente" });
+    } catch (error) {
+        console.error("Error al guardar la carga:", error);
+        res.status(500).json({ message: "Error al guardar la carga" });
+    }
+};
+
+tareasCtrl.guardarPalletListo = async (req, res) => {
+    try {
+        const { codigoTarea } = req.body;
+
+        const palletListo = new RetirarPallet({
+            codigoTarea,
+            operacionInicio: new Date(),
+            operacionFin: new Date(), // Calcularlo más adelante
+            turno: "Mañana", // Reemplazar con funcion que calcula el dato real
+            bahiaCarga: "Bahía 1", // Reemplazar con dato real
+            idCamion: 123, // Reemplazar con dato real 
+            duracion: 30 // Reemplazar con cálculo real 
+        });
+
+        await palletListo.save();
+        res.status(200).json({ message: "Carga guardada correctamente" });
+    } catch (error) {
+        console.error("Error al guardar la carga:", error);
+        res.status(500).json({ message: "Error al guardar la carga" });
+    }
+};
 
 module.exports = tareasCtrl;

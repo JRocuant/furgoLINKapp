@@ -23,6 +23,8 @@ app.engine('.hbs',engine({
 app.set('view engine', '.hbs');
 
 //Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev')); //Utilizar morgan en modo desarrollo para ver las solicitudes de la app web
 app.use(express.urlencoded({extended: false})); //Utilizar express para traducir a JSON
 app.use(methodOverride('_method'));

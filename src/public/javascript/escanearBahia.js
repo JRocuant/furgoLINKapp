@@ -14,31 +14,55 @@ document.addEventListener("DOMContentLoaded", function () {
     let codigos = tareaActual.map(tarea => tarea.codigoTarea);
     console.log("Códigos de tarea:", codigos);
 
+    // Obtiene la última tarea registrada (suponiendo que es la tarea en curso)
+    let ultimaTarea = tareaActual[tareaActual.length - 1];
+
+    console.log("Última tarea registrada:", ultimaTarea);
+
     // Evento que activa/desactiva el botón de confirmar según el contenido del input
     inputBahia.addEventListener("input", function () {
         confirmarBtn.disabled = inputBahia.value.trim() === ""; // Si el campo está vacío, deshabilita el botón
     });
 
     // Evento que se ejecuta cuando el usuario hace clic en el botón "Confirmar"
-    confirmarBtn.addEventListener("click", function () {
-        // Verifica si el usuario ingresó o escaneó un código de bahía
-        if (inputBahia.value.trim() === "") {
-            alert("Debe escanear la bahía antes de confirmar."); // Muestra una alerta si no se ingresó código
-            return; // Sale de la función para evitar continuar con la ejecución
+    confirmarBtn.addEventListener("click", async function () {
+        try {
+            // Deshabilita el botón para evitar múltiples clics
+            confirmarBtn.disabled = true;
+
+            // Muestra un mensaje de carga en la interfaz
+            mensaje.textContent = "⏳ Guardando carga...";
+
+            // Enviar datos al servidor para guardar en la base de datos
+            const response = await fetch("/tareas/guardarPalletListo", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    codigoTarea: ultimaTarea.codigoTarea
+                })
+            });
+
+            const result = await response.json();
+            console.log(result.message);
+
+            if (response.ok) {
+                
+
+                console.log("Redirección en 3 segundos...");
+
+                // Redirige automáticamente a la pantalla de selección de tarea después de 3 segundos
+                setTimeout(() => {
+                    console.log("Redirigiendo a selecciontarea.html...");
+                    window.location.href = "/tareas/seleccion";
+                }, 3000);
+            } else {
+                mensaje.textContent = "❌ Error al guardar la carga.";
+                confirmarBtn.disabled = false;
+            }
+        } catch (error) {
+            console.error("Error al enviar la carga:", error);
+            mensaje.textContent = "❌ Error al conectar con el servidor.";
+            confirmarBtn.disabled = false;
         }
-
-        // Muestra un mensaje de confirmación en la pantalla
-        mensaje.textContent = `✅ Pallet dejado en Bahía ${inputBahia.value}`;
-
-        // Deshabilita el botón de confirmar para evitar múltiples clics
-        confirmarBtn.disabled = true;
-
-        console.log("Redirección en 3 segundos...");
-
-        // Redirige automáticamente a la pantalla de selección de tarea después de 3 segundos
-        setTimeout(function () {
-            console.log("Redirigiendo a selecciontarea.html...");
-            window.location.href = "/tareas/seleccion";
-        }, 3000);
     });
 });

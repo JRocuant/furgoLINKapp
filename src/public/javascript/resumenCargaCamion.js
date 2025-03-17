@@ -47,6 +47,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
             });
 
+            console.log({
+                codigoTarea: ultimaTarea.codigoTarea,
+                cargas: pallets
+            });
+
             const result = await response.json();
             console.log(result.message);
 

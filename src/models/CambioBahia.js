@@ -2,7 +2,7 @@ const {Schema, model} = require('mongoose');
 
 const CambioBahiaSchema = new Schema({
     //nombreTarea: { type: String, required: true },
-    idTarea: { type: Number },
+    codigoTarea: { type: Number },
     operacionInicio: { type: Date },
     operacionFin: { type: Date },
     turno: { type: String },

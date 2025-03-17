@@ -1,8 +1,6 @@
 const {Schema, model} = require('mongoose');
 
 const CargarCamionSchema = new Schema({
-    //nombreTarea: { type: String, required: true },
-    idTarea: { type: Number },
     operacionInicio: { type: Date },
     operacionFin: { type: Date },
     turno: { type: String },
