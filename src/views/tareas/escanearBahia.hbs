@@ -10,11 +10,12 @@
     <h1>Escanear Bahía</h1>
     <p>Por favor, escanee la bahía donde dejará el pallet.</p><!-- Mensaje con instrucciones para el usuario -->
 
-    <!-- Campo de entrada para escanear la bahía -->
-    <input type="text" id="bahiaCode" placeholder="Escanea la bahía...">
+    <!-- Campo para ingresar el código numérico -->
+    <label for="codeInput">Ingrese Código:</label>
+    <input type="number" id="codeInput" placeholder="Escanea la bahía..." />
 
     <!-- Botón para confirmar el escaneo de la bahía (inicialmente deshabilitado) -->
-    <button id="confirmarBtn" disabled>Confirmar</button>
+    <button class="submit-code-btn" id="submitCodeBtn">Confirmar Código</button>
 
     <!-- Mensaje de confirmación o error tras la acción del usuario -->
     <p id="mensaje"></p>

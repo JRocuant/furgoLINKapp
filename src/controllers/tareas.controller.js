@@ -106,19 +106,31 @@ tareasCtrl.guardarCargaCamion = async (req, res) => {
 
 tareasCtrl.guardarPalletListo = async (req, res) => {
     try {
-        const { codigoTarea, operacionInicio/*, duracionSegundos, codigoEscaneado, bahiaEscaneada*/ } = req.body;
+        const { codigoTarea, codigoBahia, operacionInicio, operacionFin, duracionSegundos, codigoEscaneado/*, duracionSegundos, codigoEscaneado, bahiaEscaneada*/ } = req.body;
 
         const palletListo = new RetirarPallet({
-            operacionInicio: new Date(),
-            operacionFin: new Date(), // Calcularlo más adelante
-            codigoTicket: codigoEscaneado = "s",
+            operacionInicio: operacionInicio,
+            operacionFin: operacionFin, // Calcularlo más adelante
+            codigoTicket: codigoEscaneado,
             turno: "Mañana", // Reemplazar con funcion que calcula el dato real
             codigoTarea: codigoTarea,
-            bahiaCarga: "Bahía 1", // Reemplazar con dato real
+            bahiaCarga: codigoBahia, // Reemplazar con dato real
             transporte: 6202160, // Reemplazar con dato real 
-            duracion: 30 // Reemplazar con cálculo real
+            duracion: duracionSegundos // Reemplazar con cálculo real
 
-           /* operacionInicio: { type: Date },
+
+
+           /* 
+           -----------------------------
+            codigoTarea: ultimaTarea.codigoTarea,
+            codigoBahia: tareaActual.codigoBahia,
+            operacionInicio: ultimaTarea.operacionInicio,
+            operacionFin: operacionFin,
+            duracionSegundos: duracion.formatoLegible,
+            codigoEscaneado: ultimaTarea.codigoEscaneado
+            -----------------------------------
+           
+           operacionInicio: { type: Date },
             operacionFin: { type: Date },
             codigoTicket: { type: Number },
             turno: { type: String },
