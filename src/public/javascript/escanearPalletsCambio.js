@@ -1,56 +1,61 @@
-// Espera a que el DOM esté completamente cargado antes de ejecutar el código
 document.addEventListener("DOMContentLoaded", function () {
+    let pallets = [];
+    const palletInput = document.getElementById("palletCode");
+    const palletList = document.getElementById("palletList");
+    const bahiaDestinoInput = document.getElementById("bahiaDestinoCode");
+    const confirmarBtn = document.getElementById("confirmarBtn");
+    const agregarPallet = document.getElementById("agregarPallet");
+    const mensaje = document.getElementById("mensaje");
 
-    console.log("Script cargado correctamente"); // Verifica si el script está activo
+    let palletEscaneado = localStorage.getItem("palletEscaneado") || ""; // Recuperar el pallet del primer formulario
 
-    let pallets = []; // Almacena los códigos de los pallets escaneados
+    // Aseguramos que el botón "Agregar Pallet" esté deshabilitado inicialmente
+    agregarPallet.disabled = true; // Deshabilita el botón al inicio
 
-    // Obtiene los elementos del DOM
-    const palletInput = document.getElementById("palletCode"); // Campo de entrada para escanear pallet
-    const palletList = document.getElementById("palletList"); // Lista donde se mostrarán los pallets agregados
-    const bahiaDestinoInput = document.getElementById("bahiaDestinoCode"); // Campo para ingresar la bahía destino
-    const confirmarBtn = document.getElementById("confirmarBtn"); // Botón para confirmar el traslado
-    const mensaje = document.getElementById("mensaje"); // Elemento para mostrar mensajes al usuario
-
-    // Recuperar el array de tareas desde localStorage
-    let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
-    console.log("Tareas registradas:", tareaActual);
-
-    // Si quieres obtener solo los códigos de tarea
-    let codigos = tareaActual.map(tarea => tarea.codigoTarea);
-    console.log("Códigos de tarea:", codigos);
-
-    // Función para agregar pallet a la lista
-    function agregarPallet() {
-        const pallet = palletInput.value.trim(); // Elimina espacios en blanco del input
-        if (pallet) {
-            pallets.push(pallet); // Agrega el pallet a la lista
-            actualizarLista(); // Actualiza la lista visualmente
-            palletInput.value = ""; // Limpia el campo de entrada después de agregar el pallet
+    // Verificamos si el pallet escaneado en el segundo input coincide con el primero.
+    palletInput.addEventListener("input", function () {
+        const palletActual = palletInput.value.trim();
+        if (palletActual !== palletEscaneado) {
+            agregarPallet.disabled = true; // Deshabilitar si no coinciden
         } else {
-            alert("Debe escanear un pallet."); // Muestra una alerta si no hay código ingresado
+            agregarPallet.disabled = false; // Habilitar si coinciden
         }
-    }
+    });
 
-    // Función para actualizar la lista de pallets en el HTML
+    // Función para actualizar la lista de pallets (aquí solo habrá uno)
     function actualizarLista() {
-        palletList.innerHTML = ""; // Limpia la lista antes de actualizarla
-        pallets.forEach((pallet, index) => {
-            const li = document.createElement("li"); // Crea un elemento de lista <li>
-            li.textContent = `📦 Pallet ${index + 1}: ${pallet}`; // Agrega el texto con el número de pallet
-            palletList.appendChild(li); // Agrega el elemento a la lista en el DOM
-        });
-        verificarConfirmacion(); // Verifica si se puede habilitar el botón de confirmar
+        palletList.innerHTML = "";
+        if (pallets.length > 0) {
+            const li = document.createElement("li");
+            li.textContent = `📦 Pallet: ${pallets[0]}`;
+            palletList.appendChild(li);
+        }
+        verificarConfirmacion();
     }
 
-    // Función para verificar si se puede habilitar el botón de confirmar
+    // Verificación para habilitar el botón de confirmación
     function verificarConfirmacion() {
         confirmarBtn.disabled = pallets.length === 0 || bahiaDestinoInput.value.trim() === "";
-        // Habilita el botón solo si hay pallets y la bahía destino está ingresada
     }
 
+    // Evento para agregar el pallet cuando el botón es presionado
+    agregarPallet.addEventListener("click", function () {
+        const pallet = palletInput.value.trim();
+        if (pallet === palletEscaneado) {
+            if (pallets.length === 0) {
+                pallets.push(pallet); // Solo agregar el primer pallet
+                actualizarLista(); // Actualizar la visualización
+                palletInput.value = ""; // Limpiar el input después de agregarlo
+            } else {
+                alert("El pallet ya ha sido agregado."); // Prevenir que se agregue más de un pallet
+            }
+        } else {
+            alert("El pallet escaneado no coincide con el primero.");
+        }
+    });
+
     // Evento para agregar pallets al hacer clic en el botón "Agregar Pallet"
-    document.getElementById("agregarPallet").addEventListener("click", agregarPallet);
+    //document.getElementById("agregarPallet").addEventListener("click", agregarPallet);
 
     // Evento para habilitar el botón de confirmar cuando se ingresa la bahía
     bahiaDestinoInput.addEventListener("input", verificarConfirmacion);
@@ -75,3 +80,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 3000);
     });
 });
+    

@@ -42,7 +42,7 @@ body {
 
 /*Estilos de los títulos h1 y h2*/
 .task-container h1 {
-    color: var(--celeste-oscuro);
+    color: var(--celeste-claro);
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 5px;
@@ -66,7 +66,7 @@ body {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     width: 80%;
     max-width: 250px;
-    margin-bottom: 10px;
+    margin-bottom: 30px; /*CAMBIO AQUÍ*/
 }
 
 .task-btn:hover {
@@ -81,7 +81,7 @@ body {
 /*Botón de cerrar sesión*/
 .logout-btn {
     background: var(--celeste-claro);
-    color: var(--celeste-oscuro);
+    color: var(--blanco); /*CAMBIO AQUÍ*/
     padding: 8px 15px;
     font-size: 14px;
     border-radius: 25px;
@@ -99,3 +99,13 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
+
+/*NUEVO*/
+.user-info {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--celeste-oscuro);
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+/*HASTA ACÁ*/

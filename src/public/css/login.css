@@ -41,9 +41,9 @@ body {
 
 /*Estilos del título h1*/
 .login-container h1 {
-    color: var(--celeste-oscuro);
+    color: var(--celeste-claro);
     margin-bottom: 30px;
-    font-size: 32px;
+    font-size: 40px; /*CAMBIO AQUÍ*/
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -66,6 +66,7 @@ body {
     outline: none;
     transition: border 0.3s ease;
     box-sizing: border-box;
+    margin-top: 20px; /*NUEVO*/
 }
 
 /*Efecto de foco en los inputs*/
@@ -75,8 +76,8 @@ body {
 }
 
 /*Botón de ingreso*/
-.login-btn {
-    background-color: var(--celeste-oscuro);
+.btn-primary{
+    background-color: var(--celeste-claro);
     color: var(--blanco);
     border: none;
     padding: 12px;
@@ -86,17 +87,17 @@ body {
     font-weight: bold;
     transition: background 0.3s ease, transform 0.2s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 100%;
+    width: 80%; /*CAMBIO AQUÍ*/
     margin-top: 20px;
 }
 
 /*Efectos Hover y Active en el Botón*/
-.login-btn:hover {
-    background-color: #004d40;
+.btn-primary:hover {
+    background-color: var(--celeste-oscuro); /*CAMBIO AQUÍ*/
     transform: scale(1.02);
 }
 
-.login-btn:active {
+.btn-primary btn-block:active {
     transform: scale(0.98);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

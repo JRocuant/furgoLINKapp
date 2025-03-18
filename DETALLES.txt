@@ -1,16 +1,9 @@
 - - - - - - - - - -TAREAS PENDIENTES ETAPA ACTUAL (backend)- - - - - - - - - -
 - REALIZAR CONEXIÓN CON BASE DE DATOS
-    - Establecer base de datos
+    - Establecer base de datos en la nube
     - Vinculación de la aplicación con la Base de datos en nube
 
-- VERIFICACIÓN DE TAREAS
-    - RETIRAR PALLET
-        - retirarPallet()
-            - Iniciar Tarea
-            - Escanear Pallet
-            --- llevar a bahia de carga ---
-            - Escanear Bahía
-            - Terminar Tarea
+- VERIFICACIÓN DE TAREAS -----------------------------------------------------
 
     - CAMBIO BAHIA
         - cambiarBahia()
@@ -22,17 +15,35 @@
             - Escanear bahía de carga final
             - Terminar Tarea
 
-    - CARGAR CAMION
-        - cargarCamion()
-            -- Iniciar Tarea
-            - Escanear Pallet
-            --- cargar camion ---
-            - Escanear pallets cargados (Loop)
-            - Terminar Tarea
-
-- OBTENCIÓN DE DATOS
+- OBTENCIÓN DE DATOS ----------------------------------------------------------
+   - PARSEAR CODIGO DE TICKET
+        - Obtener pallets
+        
     - TAREA
         - Obtener idOperador
+
+        - DATOS TAREA CAMBIO BAHIA
+            - Obtener codigoTarea
+            - Obtener bahiaInicio
+            - Obtener bahiaFinal
+            - Obtener idCamion
+
+- USUARIO ----------------------------------------------------------------------
+    - OPERADOR
+        - Desplegar nombre operador en pantalla
+        - vincular operador con tareas
+
+    - ADMINISTRADOR
+        - Gestionar usuarios
+
+
+
+- - - - - - - - - -TRABAJO REALIZADO (semana 04 - 17 de Marzo) - - - - - - - - - -
+- OBTENCIÓN DE DATOS
+    - PARSEAR CODIGO DE TICKET
+        - Obtener transporte
+
+    - TAREA
         - Obtener Tiempo inicio de Tarea 
         - Obtener Tiempo fin de Tarea
         - Obtener turno
@@ -44,19 +55,12 @@
             - Obtener codigoTicket
             - Obtener idCamion
 
-        - DATOS TAREA CAMBIO BAHIA
-            - Obtener codigoTarea
-            - Obtener bahiaInicio
-            - Obtener bahiaFinal
-            - Obtener idCamion
-
         - DATOS TAREA CARGAR CAMION
             - Obtener codigoTarea
             - Obtener bahiaCarga
             - Obtener codigoTicketCargas[]
             - Obtener idCamion
 
-    
 
 - - - - - - - - - -TRABAJO REALIZADO (semana 03 - 10 de Marzo) - - - - - - - - - -
 - OTROS AVANCES
@@ -71,6 +75,23 @@
     - Revertir cambios ultimo commit para iniciar implmentación de local storage al construir tareas
 
 - - - - - - - - - -TRABAJO REALIZADO (semana 02 - 3 de Marzo) - - - - - - - - - -
+- VERIFICACIÓN DE TAREAS
+    - RETIRAR PALLET
+        - retirarPallet()
+            - Iniciar Tarea
+            - Escanear Pallet
+            --- llevar a bahia de carga ---
+            - Escanear Bahía
+            - Terminar Tarea
+
+    - CARGAR CAMION
+        - cargarCamion()
+            -- Iniciar Tarea
+            - Escanear Pallet
+            --- cargar camion ---
+            - Escanear pallets cargados (Loop)
+            - Terminar Tarea
+
 - OBTENCIÓN DE DATOS 
     - Obtener Código de Ticket (idTarea) y guardarlo en la base de datos con el modelo/Schema Tarea 
     

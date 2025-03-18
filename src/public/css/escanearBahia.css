@@ -2,7 +2,8 @@
 .container {
     background: var(--blanco);
     padding: 20px;
-    max-width: 400px;
+    max-width: 350px; /*CAMBIO AQUÍ*/
+    width: 80%; /*NUEVO*/
     margin: auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px var(--sombra-cuadro);
@@ -22,7 +23,8 @@ p {
 
 /*Estilos del campo de entrada*/
 input {
-    width: 100%;
+    box-sizing: border-box; /* SE AGREGÓ ESTA LÍNEA */
+    width: 80%; /*CAMBIO AQUÍ*/
     padding: 10px;
     border: 1px solid var(--celeste-claro);
     border-radius: 5px;
@@ -33,14 +35,14 @@ input {
 
 /*Estilos del botón confirmar*/
 button {
-    background: var(--celeste-oscuro);
+    background: var(--celeste-claro); /*CAMBIO AQUÍ*/
     color: white;
     padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 15px;
-    width: 100%;
+    width: 80%; /*CAMBIO AQUÍ*/
 }
 
 button:hover {
@@ -66,3 +68,13 @@ a:hover {
     margin-top: 15px;
     color: green;
 }
+
+/*NUEVO*/
+.user-info {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--celeste-oscuro);
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+/*HASTA ACÁ*/

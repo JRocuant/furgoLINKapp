@@ -12,11 +12,16 @@ document.addEventListener("DOMContentLoaded", function () {
     let codigos = tareaActual.map(tarea => tarea.codigoTarea);
     console.log("Códigos de tarea:", codigos);
 
+    // Almacenar el pallet ingresado en este formulario
+    let palletEscaneado = ""; //NUEVO
+
     // ESTE CAMBIO ES NUEVO
     // Evento: cuando se escanea el pallet
     palletInput.addEventListener("input", function () {
         if (palletInput.value.trim() !== "") {
-            bahiaInput.disabled = false; // Habilita el escaneo de la bahía
+            palletEscaneado = palletInput.value.trim(); //NUEVO
+            localStorage.setItem("palletEscaneado", palletEscaneado); // Guardar el pallet en localStorage NUEVO
+            bahiaInput.disabled = false;
         } else {
             bahiaInput.disabled = true; // Deshabilita la bahía si el pallet no está escaneado
             continuarBtn.disabled = true; // También deshabilita el botón continuar

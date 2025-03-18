@@ -23,7 +23,8 @@ p {
 /*ESTO ES NUEVO*/
 /* Estilo de los inputs de escaneo */
 input {
-    width: 100%;
+    box-sizing: border-box; /* SE AGREGÓ ESTA LÍNEA */
+    width: 80%; /*CAMBIO AQUÍ*/
     padding: 10px;
     margin-top: 10px;
     border: 1px solid var(--celeste-claro);
@@ -36,17 +37,17 @@ input:disabled {
     background: #ddd;
     color: #666;
 }
-
+    
 /* Estilo del botón continuar */
 button {
-    background: var(--celeste-oscuro);
+    background: var(--celeste-oscuro); /*CAMBIO AQUÍ*/
     color: white;
     padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 15px;
-    width: 100%;
+    width: 80%; /*CAMBIO AQUÍ*/
 }
 /*HASTA ACÁ*/
 
@@ -72,3 +73,13 @@ a {
 a:hover {
     color: var(--celeste-claro);
 }
+
+/*NUEVO*/
+.user-info {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--celeste-oscuro);
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+/*HASTA ACÁ*/
