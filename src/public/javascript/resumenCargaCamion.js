@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Obtiene la lista de pallets almacenados en sessionStorage y los convierte en un array
     const pallets = JSON.parse(sessionStorage.getItem("palletsCargados")) || [];
-
+    
     // Obtiene los elementos del DOM
     const resumenList = document.getElementById("resumenList"); // Lista donde se mostrarán los pallets cargados
     const confirmarCargaBtn = document.getElementById("confirmarCarga"); // Botón para confirmar la carga
@@ -75,7 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     cargas: pallets,
                     operacionInicio: ultimaTarea.operacionInicio,
                     operacionFin: operacionFin,
-                    duracionSegundos: duracion.formatoLegible
+                    duracionSegundos: duracion.formatoLegible,
+                    codigoEscaneado: ultimaTarea.codigoEscaneado
                 })
             });
 
@@ -83,7 +84,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 codigoTarea: ultimaTarea.codigoTarea,
                 cargas: pallets,
                 operacionInicio: ultimaTarea.operacionInicio,
-                operacionFin: new Date().toISOString()
+                operacionFin: new Date().toISOString(),
+                codigoEscaneado: ultimaTarea.codigoEscaneado
             });
 
             const result = await response.json();

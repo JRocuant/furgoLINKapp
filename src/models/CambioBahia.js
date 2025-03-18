@@ -9,7 +9,7 @@ const CambioBahiaSchema = new Schema({
     codigoTarea: { type: String },
     bahiaInicio: { type: Number },
     bahiaFinal: { type: Number },
-    idCamion: { type: Number },
+    transporte: { type: Number },
     duracion: { type: Number }
     
 }, {

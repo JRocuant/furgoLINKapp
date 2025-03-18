@@ -1,16 +1,20 @@
-
 <head>
     <title>Esperando Escaneo - Coke Kronos</title>
     <link rel="stylesheet" href="/css/espera.css">
     <link rel="stylesheet" href="/css/footer.css">
 </head>
 
-
 <!-- Contenedor principal para la pantalla de espera del escaneo -->
 <div class="scan-waiting-container">
     <h1>Esperando Escaneo</h1>
 
     <p id="selectedTask">Cargando...</p> <!-- Muestra la tarea seleccionada -->
+
+    <!-- Campo para ingresar el código numérico -->
+    <label for="codeInput">Ingrese Código:</label>
+    <input type="number" id="codeInput" placeholder="Código numérico" />
+
+    <button class="submit-code-btn" id="submitCodeBtn">Confirmar Código</button>
 
     <div class="loader"></div> <!-- Indicador visual de carga -->
 
@@ -19,5 +23,3 @@
 
 <!-- Script que maneja la funcionalidad de la pantalla de espera -->
 <script src="/javascript/espera.js"></script>
-
-

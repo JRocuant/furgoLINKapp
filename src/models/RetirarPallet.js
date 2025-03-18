@@ -1,16 +1,14 @@
 const {Schema, model} = require('mongoose');
 
 const RetirarPalletSchema = new Schema({
-    //nombreTarea: { type: String, required: true },
-    idTarea: { type: Number },
     operacionInicio: { type: Date },
     operacionFin: { type: Date },
+    codigoTicket: { type: Number },
     turno: { type: String },
     codigoTarea: { type: String },
     bahiaCarga: { type: Number },
-    codigoTicket: { type: Number },
-    idCamion: { type: Number },
-    duracion: { type: Number }
+    transporte: { type: Number },
+    duracion: { type: String }
     
 }, {
     timestamps: true

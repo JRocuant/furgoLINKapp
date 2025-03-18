@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let ultimaTarea = tareaActual[tareaActual.length - 1];
 
     console.log("Última tarea registrada:", ultimaTarea);
+    
 
 
     // Obtiene los elementos del DOM
