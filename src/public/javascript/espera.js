@@ -30,13 +30,36 @@ document.addEventListener("DOMContentLoaded", function () {
     const submitCodeBtn = document.getElementById("submitCodeBtn");
     const codeInput = document.getElementById("codeInput");
 
+    function obtenerTransporteYPalet(codigo) {
+        // Expresión regular para obtener los datos del código
+        const regex = /^000(\d{7})\d{17}(\d{2})$/;
+        
+        console.log("Código a evaluar:", codigo); // Depuración: Verifica el código que se evalúa
+        const resultado = regex.exec(codigo);
+        
+        if (resultado) {
+            const transporte = resultado[1]; // Código de transporte (7 dígitos)
+            const pallet = resultado[2]; // Número del pallet (2 dígitos)
+
+            console.log("Código de transporte:", transporte);  // Depuración: Muestra el código de transporte
+            console.log("Número de pallet:", pallet);  // Depuración: Muestra el número de pallet
+
+            return { transporte, pallet };
+        } else {
+            console.log("Código inválido"); // Si no pasa la validación, lo muestra
+            return null;
+        }
+    }
+
     submitCodeBtn.addEventListener("click", function () {
         const codeValue = codeInput.value.trim();
+        const datos = obtenerTransporteYPalet(codeValue);
 
-        if (codeValue !== "") {
+        if (codeValue !== "" && datos) {
             // Agrega el código ingresado a la última tarea registrada
             if (tareaActual.length > 0) {
                 tareaActual[tareaActual.length - 1].codigoEscaneado = codeValue;
+                tareaActual[tareaActual.length - 1].transporte = datos.transporte;
             }
 
             // Guarda el array actualizado en localStorage
@@ -44,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("Código guardado:", codeValue);
             console.log("Código guardado:", tareaActual.codigoEscaneado);
             console.log("Tareas actualizadas:", tareaActual);
+            console.log("Código de transporte:", datos.transporte);
 
             // Redirige a la página correspondiente
             window.location.href = nextPage;

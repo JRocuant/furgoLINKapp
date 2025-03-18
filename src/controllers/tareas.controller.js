@@ -83,7 +83,7 @@ tareasCtrl.esperaPallet = (req, res) =>{
 
 tareasCtrl.guardarCargaCamion = async (req, res) => {
     try {
-        const { codigoTarea, cargas, operacionInicio, duracionSegundos, codigoEscaneado } = req.body;
+        const { codigoTarea, cargas, operacionInicio, duracionSegundos, codigoEscaneado, transporte } = req.body;
 
         const nuevaCarga = new CargarCamion({
             operacionInicio: operacionInicio,
@@ -92,7 +92,7 @@ tareasCtrl.guardarCargaCamion = async (req, res) => {
             turno: "Mañana", // Reemplazar con funcion que calcula el dato real
             codigoTarea: codigoTarea,
             cargas: JSON.stringify(cargas), 
-            transporte: 6202160, 
+            transporte: transporte, 
             duracion: duracionSegundos 
         });
 
@@ -106,7 +106,7 @@ tareasCtrl.guardarCargaCamion = async (req, res) => {
 
 tareasCtrl.guardarPalletListo = async (req, res) => {
     try {
-        const { codigoTarea, codigoBahia, operacionInicio, operacionFin, duracionSegundos, codigoEscaneado/*, duracionSegundos, codigoEscaneado, bahiaEscaneada*/ } = req.body;
+        const { codigoTarea, codigoBahia, operacionInicio, operacionFin, duracionSegundos, codigoEscaneado, transporte } = req.body;
 
         const palletListo = new RetirarPallet({
             operacionInicio: operacionInicio,
@@ -115,7 +115,7 @@ tareasCtrl.guardarPalletListo = async (req, res) => {
             turno: "Mañana", // Reemplazar con funcion que calcula el dato real
             codigoTarea: codigoTarea,
             bahiaCarga: codigoBahia, // Reemplazar con dato real
-            transporte: 6202160, // Reemplazar con dato real 
+            transporte: transporte, // Reemplazar con dato real 
             duracion: duracionSegundos // Reemplazar con cálculo real
 
 

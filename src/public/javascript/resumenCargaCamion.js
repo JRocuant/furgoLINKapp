@@ -76,7 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     operacionInicio: ultimaTarea.operacionInicio,
                     operacionFin: operacionFin,
                     duracionSegundos: duracion.formatoLegible,
-                    codigoEscaneado: ultimaTarea.codigoEscaneado
+                    codigoEscaneado: ultimaTarea.codigoEscaneado,
+                    transporte: ultimaTarea.transporte
                 })
             });
 

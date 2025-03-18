@@ -41,7 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     operacionInicio: ultimaTarea.operacionInicio,
                     operacionFin: new Date().toISOString(),
                     duracionSegundos: calcularDuracion(ultimaTarea.operacionInicio, new Date().toISOString()).formatoLegible,
-                    codigoEscaneado: ultimaTarea.codigoEscaneado
+                    codigoEscaneado: ultimaTarea.codigoEscaneado,
+                    transporte: ultimaTarea.transporte
                 })
             })
             .then(response => response.json())
