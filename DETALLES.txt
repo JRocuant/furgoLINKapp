@@ -6,9 +6,11 @@
 - OBTENCIÓN DE DATOS ----------------------------------------------------------
    - PARSEAR CODIGO DE TICKET
         - Obtener pallets
+    
+    - Usuario
+        - Obtener _id
         
-    - TAREA
-        - Obtener idOperador
+    
 
         
 
@@ -40,6 +42,10 @@
 - OBTENCIÓN DE DATOS----------------------------------------------------------------
     - PARSEAR CODIGO DE TICKET
         - Obtener transporte
+
+    - Usuario
+        - Obtener nombre
+        - obtener email
 
     - TAREA
         - Obtener Tiempo inicio de Tarea 

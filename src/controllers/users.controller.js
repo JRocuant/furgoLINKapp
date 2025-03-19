@@ -47,11 +47,24 @@ usersCtrl.renderSigninForm = (req, res) => {
 
 
 
-usersCtrl.signin = passport.authenticate('local', {
-    failureRedirect: '/users/signin',
-    successRedirect: '/tareas/seleccion',
-    failureFlash: true
-});
+usersCtrl.signin = (req, res, next) => {
+    passport.authenticate('local', {
+        failureRedirect: '/users/signin',
+        failureFlash: true
+    }, (err, user, info) => {
+        if (err) return next(err);
+        if (!user) return res.redirect('/users/signin');
+
+        // Autenticamos manualmente
+        req.logIn(user, (err) => {
+            if (err) return next(err);
+            // Aquí ya está autenticado
+            const { name, email } = user;
+            res.render('users/postlogin', { name, email });
+        });
+    })(req, res, next);
+};
+
 
 
 usersCtrl.logout = (req, res) => {

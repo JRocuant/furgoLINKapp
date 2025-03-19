@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Recupera el array desde localStorage o crea uno nuevo si no existe
             let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
 
+            const usuario = JSON.parse(localStorage.getItem('usuarioActual'));
+            console.log(usuario.name, usuario.email);
+
             // Crea un nuevo objeto de tarea
             let nuevaTarea = {
                 codigoTarea: selectedTask,

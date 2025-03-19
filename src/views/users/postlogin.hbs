@@ -1,0 +1,19 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirigiendo...</title>
+</head>
+
+<body>
+    <script>
+        // Guardamos en Local Storage
+        const usuarioActual = {
+            name: "{{name}}",
+            email: "{{email}}"
+        };
+        localStorage.setItem('usuarioActual', JSON.stringify(usuarioActual));
+
+        // Redirigimos a la página que desees
+        window.location.href = "/tareas/seleccion";
+    </script>
+</body>
