@@ -49,7 +49,7 @@ p {
 
 /*Estilo del botón terminar tarea*/
 button {
-    background: var(--celeste-claro); /*CAMBIO AQUÍ*/
+    background: var(--celeste-oscuro); /*CAMBIO AQUÍ*/
     color: var(--blanco);
     padding: 12px;
     border: none;

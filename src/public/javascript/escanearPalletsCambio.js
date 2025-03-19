@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         palletList.innerHTML = "";
         if (pallets.length > 0) {
             const li = document.createElement("li");
-            li.textContent = `📦 Pallet: ${pallets[0]}`;
+            li.textContent = `Pallet: ${pallets[0]}`;
             palletList.appendChild(li);
         }
         verificarConfirmacion();
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 actualizarLista(); // Actualizar la visualización
                 palletInput.value = ""; // Limpiar el input después de agregarlo
             } else {
-                alert("El pallet ya ha sido agregado."); // Prevenir que se agregue más de un pallet
+                alert("El pallet ya ha sido escaneado."); // Prevenir que se agregue más de un pallet
             }
         } else {
             alert("El pallet escaneado no coincide con el primero.");
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     confirmarBtn.addEventListener("click", function () {
         // Verifica que haya al menos un pallet y que la bahía destino esté ingresada
         if (pallets.length > 0 && bahiaDestinoInput.value.trim() !== "") {
-            mensaje.textContent = `✅ Pallets dejados en Bahía ${bahiaDestinoInput.value}`; // Mensaje de éxito
+            mensaje.textContent = `Pallet cambiado a Bahía ${bahiaDestinoInput.value}`; // Mensaje de éxito
             confirmarBtn.disabled = true; // Deshabilita el botón para evitar múltiples clics
         } else {
             alert("Debe escanear todos los pallets y la bahía destino antes de confirmar."); // Alerta de error
