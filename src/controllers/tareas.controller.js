@@ -80,14 +80,14 @@ tareasCtrl.esperaPallet = (req, res) =>{
 };
 
 
-
+//Función para almacenar información de la operación Cargar camion
 tareasCtrl.guardarCargaCamion = async (req, res) => {
     try {
-        const { codigoTarea, cargas, operacionInicio, duracionSegundos, codigoEscaneado, transporte } = req.body;
+        const { codigoTarea, cargas, operacionInicio, operacionFin, duracionSegundos, codigoEscaneado, transporte } = req.body;
 
         const nuevaCarga = new CargarCamion({
             operacionInicio: operacionInicio,
-            operacionFin: new Date().toISOString(),
+            operacionFin: operacionFin,
             codigoTicket: codigoEscaneado,
             turno: "Mañana", // Reemplazar con funcion que calcula el dato real
             codigoTarea: codigoTarea,
@@ -104,41 +104,21 @@ tareasCtrl.guardarCargaCamion = async (req, res) => {
     }
 };
 
-tareasCtrl.guardarPalletListo = async (req, res) => {
+//Función para almacenar información de la operación Retirar Pallet
+tareasCtrl.guardarPalletListo = async (req, res) => { 
     try {
         const { codigoTarea, codigoBahia, operacionInicio, operacionFin, duracionSegundos, codigoEscaneado, transporte } = req.body;
 
         const palletListo = new RetirarPallet({
             operacionInicio: operacionInicio,
-            operacionFin: operacionFin, // Calcularlo más adelante
+            operacionFin: operacionFin, 
             codigoTicket: codigoEscaneado,
             turno: "Mañana", // Reemplazar con funcion que calcula el dato real
             codigoTarea: codigoTarea,
-            bahiaCarga: codigoBahia, // Reemplazar con dato real
-            transporte: transporte, // Reemplazar con dato real 
-            duracion: duracionSegundos // Reemplazar con cálculo real
+            bahiaCarga: codigoBahia, 
+            transporte: transporte, 
+            duracion: duracionSegundos 
 
-
-
-           /* 
-           -----------------------------
-            codigoTarea: ultimaTarea.codigoTarea,
-            codigoBahia: tareaActual.codigoBahia,
-            operacionInicio: ultimaTarea.operacionInicio,
-            operacionFin: operacionFin,
-            duracionSegundos: duracion.formatoLegible,
-            codigoEscaneado: ultimaTarea.codigoEscaneado
-            -----------------------------------
-           
-           operacionInicio: { type: Date },
-            operacionFin: { type: Date },
-            codigoTicket: { type: Number },
-            turno: { type: String },
-            codigoTarea: { type: String },
-            bahiaCarga: { type: Number },
-            transporte: { type: Number },
-            duracion: { type: String }*/
-            
         });
 
         await palletListo.save();
@@ -149,19 +129,23 @@ tareasCtrl.guardarPalletListo = async (req, res) => {
     }
 };
 
+//Función para almacenar información de la operación Cambio de Bahía
 tareasCtrl.guardarCambioBahia = async (req, res) => {
     try {
-        const { codigoTarea } = req.body;
+        const { operacionInicio, operacionFin, codigoEscaneado, codigoTarea, palletConfirmado, bahiaInicial, bahiaDestino, transporte, duracionSegundos} = req.body;
 
         const cargaCambiada = new CambioBahia({
-            codigoTarea,
-            cargas: JSON.stringify(cargas), // Guardamos los pallets como string (o usar array si el modelo lo permite)
-            operacionInicio: new Date(),
-            operacionFin: new Date(), //  Calcularlo más adelante
+            operacionInicio: operacionInicio,
+            operacionFin: operacionFin,
+            codigoTicket: codigoEscaneado,
             turno: "Mañana", // Reemplazar con funcion que calcula el dato real
-            bahiaCarga: "Bahía 1", // Reemplazar con dato real
-            idCamion: 123, // Reemplazar con dato real 
-            duracion: 30 // Reemplazar con cálculo real
+            codigoTarea: codigoTarea,
+            palletCambiado: palletConfirmado,
+            bahiaInicial: bahiaInicial,
+            bahiaFinal: bahiaDestino,
+            transporte: transporte, 
+            duracion: duracionSegundos
+    
         });
 
         await cargaCambiada.save();

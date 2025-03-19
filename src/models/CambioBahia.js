@@ -1,16 +1,15 @@
 const {Schema, model} = require('mongoose');
 
 const CambioBahiaSchema = new Schema({
-    //nombreTarea: { type: String, required: true },
-    codigoTarea: { type: Number },
     operacionInicio: { type: Date },
     operacionFin: { type: Date },
     turno: { type: String },
     codigoTarea: { type: String },
-    bahiaInicio: { type: Number },
-    bahiaFinal: { type: Number },
-    transporte: { type: Number },
-    duracion: { type: Number }
+    palletCambiado: { type: String} ,
+    bahiaInicial: { type: String },
+    bahiaFinal: { type: String },
+    transporte: { type: String },
+    duracion: { type: String }
     
 }, {
     timestamps: true

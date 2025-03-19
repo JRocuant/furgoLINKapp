@@ -1,83 +1,156 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let pallets = [];
-    const palletInput = document.getElementById("palletCode");
-    const palletList = document.getElementById("palletList");
-    const bahiaDestinoInput = document.getElementById("bahiaDestinoCode");
-    const confirmarBtn = document.getElementById("confirmarBtn");
-    const agregarPallet = document.getElementById("agregarPallet");
-    const mensaje = document.getElementById("mensaje");
+// Referencias a elementos del DOM
+const confirmarBtn = document.getElementById('confirmarBtn');
+const bahiaDestinoInput = document.getElementById('bahiaDestinoCode');
+const mensaje = document.getElementById('mensaje');
+const agregarPalletBtn = document.getElementById('agregarPallet');
+const palletInput = document.getElementById('palletCode');
+const palletList = document.getElementById('palletList');
 
-    let palletEscaneado = localStorage.getItem("palletEscaneado") || ""; // Recuperar el pallet del primer formulario
+// Variables para almacenar los pallets y la tarea actual
+let pallets = [];
+let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
 
-    // Aseguramos que el botón "Agregar Pallet" esté deshabilitado inicialmente
-    agregarPallet.disabled = true; // Deshabilita el botón al inicio
+// Función para calcular duración
+function calcularDuracion(operacionInicioStr, operacionFinStr) {
+    const inicio = new Date(operacionInicioStr);
+    const fin = new Date(operacionFinStr);
+    const diferenciaMs = fin - inicio;
+    const diferenciaSegundos = Math.floor(diferenciaMs / 1000);
+    const minutos = Math.floor(diferenciaSegundos / 60);
+    const segundos = diferenciaSegundos % 60;
 
-    // Verificamos si el pallet escaneado en el segundo input coincide con el primero.
-    palletInput.addEventListener("input", function () {
-        const palletActual = palletInput.value.trim();
-        if (palletActual !== palletEscaneado) {
-            agregarPallet.disabled = true; // Deshabilitar si no coinciden
-        } else {
-            agregarPallet.disabled = false; // Habilitar si coinciden
+    return {
+        totalSegundos: diferenciaSegundos,
+        formatoLegible: `${minutos}m ${segundos}s`
+    };
+}
+
+// Evento para agregar pallet escaneado
+agregarPalletBtn.addEventListener("click", () => {
+    const palletCode = palletInput.value.trim();
+
+    if (palletCode !== "") {
+        // Verificar si el primer pallet coincide con el palletCambiado
+        const ultimaTarea = tareaActual[tareaActual.length - 1];
+        if (ultimaTarea.palletCambiado !== palletCode) {
+            mensaje.textContent = `❌ El pallet escaneado (${palletCode}) no coincide con el pallet de la tarea (${ultimaTarea.palletCambiado}).`;
+            console.warn(`El pallet escaneado no coincide. Esperado: ${ultimaTarea.palletCambiado}, Escaneado: ${palletCode}`);
+            palletInput.value = ""; // Limpiar input
+            return; // Detener ejecución
         }
-    });
 
-    // Función para actualizar la lista de pallets (aquí solo habrá uno)
-    function actualizarLista() {
-        palletList.innerHTML = "";
-        if (pallets.length > 0) {
-            const li = document.createElement("li");
-            li.textContent = `Pallet: ${pallets[0]}`;
-            palletList.appendChild(li);
+        // Si todo está bien, agregar el pallet a la lista
+        pallets.push(palletCode);
+
+        // Mostrar en la lista visual
+        const listItem = document.createElement("li");
+        listItem.textContent = palletCode;
+        palletList.appendChild(listItem);
+
+        palletInput.value = "";
+
+        // Habilitar botón si ambos campos tienen datos
+        if (bahiaDestinoInput.value.trim() !== "") {
+            confirmarBtn.disabled = false;
         }
-        verificarConfirmacion();
+    } else {
+        alert("Debes ingresar un código de pallet.");
     }
-
-    // Verificación para habilitar el botón de confirmación
-    function verificarConfirmacion() {
-        confirmarBtn.disabled = pallets.length === 0 || bahiaDestinoInput.value.trim() === "";
-    }
-
-    // Evento para agregar el pallet cuando el botón es presionado
-    agregarPallet.addEventListener("click", function () {
-        const pallet = palletInput.value.trim();
-        if (pallet === palletEscaneado) {
-            if (pallets.length === 0) {
-                pallets.push(pallet); // Solo agregar el primer pallet
-                actualizarLista(); // Actualizar la visualización
-                palletInput.value = ""; // Limpiar el input después de agregarlo
-            } else {
-                alert("El pallet ya ha sido escaneado."); // Prevenir que se agregue más de un pallet
-            }
-        } else {
-            alert("El pallet escaneado no coincide con el primero.");
-        }
-    });
-
-    // Evento para agregar pallets al hacer clic en el botón "Agregar Pallet"
-    //document.getElementById("agregarPallet").addEventListener("click", agregarPallet);
-
-    // Evento para habilitar el botón de confirmar cuando se ingresa la bahía
-    bahiaDestinoInput.addEventListener("input", verificarConfirmacion);
-
-    // Evento para confirmar el traslado de pallets
-    confirmarBtn.addEventListener("click", function () {
-        // Verifica que haya al menos un pallet y que la bahía destino esté ingresada
-        if (pallets.length > 0 && bahiaDestinoInput.value.trim() !== "") {
-            mensaje.textContent = `Pallet cambiado a Bahía ${bahiaDestinoInput.value}`; // Mensaje de éxito
-            confirmarBtn.disabled = true; // Deshabilita el botón para evitar múltiples clics
-        } else {
-            alert("Debe escanear todos los pallets y la bahía destino antes de confirmar."); // Alerta de error
-            return;
-        }
-
-        console.log("Redirección en 3 segundos...");
-
-        // Redirige automáticamente a la página de selección de tarea después de 3 segundos
-        setTimeout(function () {
-            console.log("Redirigiendo a selecciontarea.html...");
-            window.location.href = "/tareas/seleccion";
-        }, 3000);
-    });
 });
-    
+
+// Evento para habilitar el botón Confirmar al ingresar bahía
+bahiaDestinoInput.addEventListener("input", () => {
+    if (pallets.length > 0 && bahiaDestinoInput.value.trim() !== "") {
+        confirmarBtn.disabled = false;
+    } else {
+        confirmarBtn.disabled = true;
+    }
+});
+
+// Evento para confirmar el cambio
+confirmarBtn.addEventListener("click", async function () {
+    if (pallets.length > 0 && bahiaDestinoInput.value.trim() !== "") {
+        const bahiaDestino = bahiaDestinoInput.value.trim();
+
+        mensaje.textContent = `⏳ Validando...`;
+        confirmarBtn.disabled = true;
+
+        console.log("Pallet confirmado:", pallets[0]);
+        console.log("Bahía destino:", bahiaDestino);
+
+        // Actualizar tareaActual
+        if (tareaActual.length > 0) {
+            tareaActual[tareaActual.length - 1].palletConfirmado = pallets[0];
+            tareaActual[tareaActual.length - 1].bahiaDestino = bahiaDestino;
+        }
+
+        const ultimaTarea = tareaActual[tareaActual.length - 1];
+
+        // Validar que palletConfirmado y palletCambiado sean iguales
+        if (ultimaTarea.palletCambiado !== ultimaTarea.palletConfirmado) {
+            mensaje.textContent = `❌ El pallet escaneado (${ultimaTarea.palletConfirmado}) no coincide con el pallet de la tarea (${ultimaTarea.palletCambiado}).`;
+            console.warn(`El pallet escaneado no coincide. Esperado: ${ultimaTarea.palletCambiado}, Escaneado: ${ultimaTarea.palletConfirmado}`);
+            confirmarBtn.disabled = false;
+            return; // Detener ejecución
+        }
+
+        localStorage.setItem('tareaActual', JSON.stringify(tareaActual));
+        console.log("Tarea actualizada:", tareaActual);
+
+        try {
+            const operacionFin = new Date().toISOString();
+            const duracion = calcularDuracion(ultimaTarea.operacionInicio, operacionFin);
+            console.log("Duración de la operación:", duracion.formatoLegible);
+
+            const response = await fetch("/tareas/guardarCambioBahia", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    codigoTarea: ultimaTarea.codigoTarea,
+                    operacionInicio: ultimaTarea.operacionInicio,
+                    operacionFin: operacionFin,
+                    bahiaInicial: ultimaTarea.bahiaInicial,
+                    palletConfirmado: ultimaTarea.palletConfirmado,
+                    bahiaDestino: ultimaTarea.bahiaDestino,
+                    codigoEscaneado: ultimaTarea.codigoEscaneado,
+                    duracionSegundos: duracion.formatoLegible,
+                    transporte: ultimaTarea.transporte
+                })
+            });
+
+            console.log({
+                codigoTarea: ultimaTarea.codigoTarea,
+                operacionInicio: ultimaTarea.operacionInicio,
+                operacionFin: operacionFin,
+                bahiaInicial: ultimaTarea.bahiaInicial,
+                palletConfirmado: ultimaTarea.palletConfirmado,
+                bahiaDestino: ultimaTarea.bahiaDestino,
+                codigoEscaneado: ultimaTarea.codigoEscaneado,
+                duracionSegundos: duracion.formatoLegible,
+                transporte: ultimaTarea.transporte
+            });
+
+            const result = await response.json();
+            console.log(result.message);
+
+            if (response.ok) {
+                mensaje.textContent = `✅ Pallet cambiado exitosamente a Bahía ${bahiaDestino}`;
+                console.log("Redirección en 3 segundos...");
+                setTimeout(() => {
+                    console.log("Redirigiendo a selección de tarea...");
+                    window.location.href = "/tareas/seleccion";
+                }, 3000);
+            } else {
+                mensaje.textContent = "❌ Error al guardar el cambio.";
+                confirmarBtn.disabled = false;
+            }
+        } catch (error) {
+            console.error("Error al enviar la información:", error);
+            mensaje.textContent = "❌ Error al conectar con el servidor.";
+            confirmarBtn.disabled = false;
+        }
+
+    } else {
+        alert("Debe escanear el pallet y la bahía destino antes de confirmar.");
+    }
+});

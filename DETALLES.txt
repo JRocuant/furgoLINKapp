@@ -1,19 +1,7 @@
 - - - - - - - - - -TAREAS PENDIENTES ETAPA ACTUAL (backend)- - - - - - - - - -
 - REALIZAR CONEXIÓN CON BASE DE DATOS
-    - Establecer base de datos en la nube
     - Vinculación de la aplicación con la Base de datos en nube
 
-- VERIFICACIÓN DE TAREAS -----------------------------------------------------
-
-    - CAMBIO BAHIA
-        - cambiarBahia()
-            - Iniciar Tarea
-            - Escanear bahía de carga inicial
-            - Escanear Pallet
-            --- cambiar pallet de bahía de carga ---
-            - Escanear pallets cambiados (Loop)
-            - Escanear bahía de carga final
-            - Terminar Tarea
 
 - OBTENCIÓN DE DATOS ----------------------------------------------------------
    - PARSEAR CODIGO DE TICKET
@@ -22,11 +10,7 @@
     - TAREA
         - Obtener idOperador
 
-        - DATOS TAREA CAMBIO BAHIA
-            - Obtener codigoTarea
-            - Obtener bahiaInicio
-            - Obtener bahiaFinal
-            - Obtener idCamion
+        
 
 - USUARIO ----------------------------------------------------------------------
     - OPERADOR
@@ -39,7 +23,21 @@
 
 
 - - - - - - - - - -TRABAJO REALIZADO (semana 04 - 17 de Marzo) - - - - - - - - - -
-- OBTENCIÓN DE DATOS
+- REALIZAR CONEXIÓN CON BASE DE DATOS ---------------------------------------------
+    - Establecer base de datos en la nube (Cluste MongoDB ATLAS 512 mb)
+
+- VERIFICACIÓN DE TAREAS ----------------------------------------------------------
+    - CAMBIO BAHIA
+        - cambiarBahia()
+            - Iniciar Tarea
+            - Escanear bahía de carga inicial
+            - Escanear Pallet
+            --- cambiar pallet de bahía de carga ---
+            - Escanear pallets cambiados (Loop)
+            - Escanear bahía de carga final
+            - Terminar Tarea
+
+- OBTENCIÓN DE DATOS----------------------------------------------------------------
     - PARSEAR CODIGO DE TICKET
         - Obtener transporte
 
@@ -53,13 +51,16 @@
             - Obtener codigoTarea
             - Obtener bahiaCarga
             - Obtener codigoTicket
-            - Obtener idCamion
 
         - DATOS TAREA CARGAR CAMION
             - Obtener codigoTarea
             - Obtener bahiaCarga
             - Obtener codigoTicketCargas[]
-            - Obtener idCamion
+        
+        - DATOS TAREA CAMBIO BAHIA
+            - Obtener codigoTarea
+            - Obtener bahiaInicio
+            - Obtener bahiaFinal
 
 
 - - - - - - - - - -TRABAJO REALIZADO (semana 03 - 10 de Marzo) - - - - - - - - - -

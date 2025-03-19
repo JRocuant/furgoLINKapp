@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Seleccionamos los elementos del DOM
     const palletInput = document.getElementById("palletInput");
     const bahiaInput = document.getElementById("bahiaInput");
     const continuarBtn = document.getElementById("continuarBtn");
@@ -8,39 +7,46 @@ document.addEventListener("DOMContentLoaded", function () {
     let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
     console.log("Tareas registradas:", tareaActual);
 
-    // Si quieres obtener solo los códigos de tarea
-    let codigos = tareaActual.map(tarea => tarea.codigoTarea);
-    console.log("Códigos de tarea:", codigos);
+    let palletEscaneado = ""; // Para guardar el pallet escaneado
 
-    // Almacenar el pallet ingresado en este formulario
-    let palletEscaneado = ""; //NUEVO
-
-    // ESTE CAMBIO ES NUEVO
     // Evento: cuando se escanea el pallet
     palletInput.addEventListener("input", function () {
         if (palletInput.value.trim() !== "") {
-            palletEscaneado = palletInput.value.trim(); //NUEVO
-            localStorage.setItem("palletEscaneado", palletEscaneado); // Guardar el pallet en localStorage NUEVO
+            palletEscaneado = palletInput.value.trim();
             bahiaInput.disabled = false;
         } else {
-            bahiaInput.disabled = true; // Deshabilita la bahía si el pallet no está escaneado
-            continuarBtn.disabled = true; // También deshabilita el botón continuar
+            bahiaInput.disabled = true;
+            continuarBtn.disabled = true;
         }
     });
 
     // Evento: cuando se escanea la bahía
     bahiaInput.addEventListener("input", function () {
         if (bahiaInput.value.trim() !== "") {
-            continuarBtn.disabled = false; // Habilita el botón de continuar
+            continuarBtn.disabled = false;
         } else {
-            continuarBtn.disabled = true; // Si la bahía no está escaneada, deshabilita el botón
+            continuarBtn.disabled = true;
         }
     });
 
     // Evento: al presionar el botón de continuar
     continuarBtn.addEventListener("click", function () {
-        console.log("Flujo completado, redirigiendo a la siguiente pantalla...");
-        window.location.href = "/tareas/escanearPalletCambio"; // Redirige a la siguiente fase del flujo
+        const bahiaEscaneada = bahiaInput.value.trim();
+
+        console.log("Pallet escaneado:", palletEscaneado);
+        console.log("Bahía escaneada:", bahiaEscaneada);
+
+        if (tareaActual.length > 0) {
+            // Agregamos los datos a la última tarea
+            tareaActual[tareaActual.length - 1].palletCambiado = palletEscaneado;
+            tareaActual[tareaActual.length - 1].bahiaInicial = bahiaEscaneada;
+        }
+
+        // Guardamos la actualización en localStorage
+        localStorage.setItem('tareaActual', JSON.stringify(tareaActual));
+        console.log("Tarea actualizada:", tareaActual);
+
+        // Redirigir a la siguiente pantalla
+        window.location.href = "/tareas/escanearPalletCambio";
     });
 });
-//HASTA ACÁ XD
