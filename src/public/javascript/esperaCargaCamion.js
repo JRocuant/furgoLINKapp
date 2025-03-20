@@ -30,6 +30,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const pallet = palletInput.value.trim(); // Obtiene el valor ingresado y elimina espacios en blanco
 
         if (pallet) {
+            // Verificar si el pallet ya ha sido escaneado
+
+           //ESTO ES NUEVO 
+            if (pallets.includes(pallet)) {
+                alert("Este pallet ya ha sido escaneado."); // Muestra un mensaje de alerta si el pallet ya existe
+                palletInput.value = ""; // Limpia el campo de entrada
+                return; // Sale de la función si el pallet ya ha sido escaneado
+            }
+            //HASTA ACÁ
+
             if (pallets.length < maxPallets) {
                 pallets.push(pallet); // Agrega el pallet al array
                 palletList.innerHTML += `<li>${pallet}</li>`; // Agrega el pallet a la lista en el DOM

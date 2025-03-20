@@ -31,12 +31,6 @@ input {
     border-radius: 5px;
     text-align: center;
 }
-
-/* Estilo para inputs deshabilitados */
-input:disabled {
-    background: #ddd;
-    color: #666;
-}
     
 /* Estilo del botón continuar */
 button {
@@ -50,12 +44,6 @@ button {
     width: 80%; /*CAMBIO AQUÍ*/
 }
 /*HASTA ACÁ*/
-
-/* Estilo para botón deshabilitado */
-button:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-}
 
 /* Efecto hover solo si el botón está habilitado */
 button:hover:enabled {

@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         logoutBtn.addEventListener('click', () => {
             // Limpia sessionStorage y localStorage al cerrar sesión
             sessionStorage.clear();
+            localStorage.clear();
             localStorage.removeItem('tareaActual');
 
             // Redirige al usuario a la página de inicio de sesión

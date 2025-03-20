@@ -80,7 +80,7 @@ body {
 
 /*Estilo del botón cancelar*/
 .cancel-btn {
-    background: var(--celeste-claro);
+    background: var(--celeste-oscuro); /*CAMBIO AQUÍ*/
     color: var(--blanco); /*CAMBIO AQUÍ*/
     border: none;
     padding: 10px 20px;
@@ -95,7 +95,7 @@ body {
 }
 
 .cancel-btn:hover {
-    background: var(--celeste-oscuro);
+    background: var(--celeste-claro); /*CAMBIO AQUÍ*/
     color: var(--blanco);
 }
 

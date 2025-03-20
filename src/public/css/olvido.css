@@ -16,7 +16,7 @@
 
 /*Estilos del título h1 y párrafo p*/
 .olvido-container h1 {
-    color: var(--celeste-claro); /*CAMBIO AQUÍ*/
+    color: var(--celeste-oscuro); /*CAMBIO AQUÍ*/
     margin-bottom: 30px;
     font-size: 32px;
     font-weight: bold;
@@ -32,7 +32,7 @@
 
 /*Botón de contacto con mesa de ayuda*/
 .contact-btn {
-    background-color: var(--celeste-claro); /*CAMBIO AQUÍ*/
+    background-color: var(--celeste-oscuro); /*CAMBIO AQUÍ*/
     color: var(--blanco);
     border: none;
     padding: 12px;
@@ -47,7 +47,7 @@
 }
 
 .contact-btn:hover {
-    background-color: #F8DAB7; /*CAMBIO AQUÍ*/
+    background-color: var(--celeste-claro); /*CAMBIO AQUÍ*/
     transform: scale(1.02);
 }
 

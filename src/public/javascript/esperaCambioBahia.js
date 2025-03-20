@@ -7,27 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
     console.log("Tareas registradas:", tareaActual);
 
-    let palletEscaneado = ""; // Para guardar el pallet escaneado
-
-    // Evento: cuando se escanea el pallet
-    palletInput.addEventListener("input", function () {
-        if (palletInput.value.trim() !== "") {
-            palletEscaneado = palletInput.value.trim();
-            bahiaInput.disabled = false;
-        } else {
-            bahiaInput.disabled = true;
-            continuarBtn.disabled = true;
-        }
-    });
-
-    // Evento: cuando se escanea la bahía
-    bahiaInput.addEventListener("input", function () {
-        if (bahiaInput.value.trim() !== "") {
-            continuarBtn.disabled = false;
-        } else {
-            continuarBtn.disabled = true;
-        }
-    });
+    let palletEscaneado = tareaActual[tareaActual.length - 1].codigoEscaneado; // Para guardar el pallet escaneado
 
     // Evento: al presionar el botón de continuar
     continuarBtn.addEventListener("click", function () {

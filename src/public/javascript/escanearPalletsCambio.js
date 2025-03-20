@@ -2,6 +2,7 @@
 const confirmarBtn = document.getElementById('confirmarBtn');
 const bahiaDestinoInput = document.getElementById('bahiaDestinoCode');
 const mensaje = document.getElementById('mensaje');
+const mensaje2 = document.getElementById('mensaje2'); //NUEVO
 const agregarPalletBtn = document.getElementById('agregarPallet');
 const palletInput = document.getElementById('palletCode');
 const palletList = document.getElementById('palletList');
@@ -62,6 +63,8 @@ agregarPalletBtn.addEventListener("click", () => {
 
         palletInput.value = "";
 
+        mensaje2.textContent = `✅ Pallet desde Bahía de origen ${tareaActual[tareaActual.length - 1].bahiaInicial}`;
+
         // Habilitar botón si ambos campos tienen datos
         if (bahiaDestinoInput.value.trim() !== "") {
             confirmarBtn.disabled = false;
@@ -85,6 +88,14 @@ bahiaDestinoInput.addEventListener("input", () => {
 confirmarBtn.addEventListener("click", async function () {
     if (pallets.length > 0 && bahiaDestinoInput.value.trim() !== "") {
         const bahiaDestino = bahiaDestinoInput.value.trim();
+        const bahiaInicial = tareaActual[tareaActual.length - 1].bahiaInicial;
+
+        // Validar que la bahía de destino no sea la misma que la inicial
+        if (bahiaDestino === bahiaInicial) {
+            mensaje.textContent = `❌ La bahía de destino no puede ser la misma que la bahía de origen (${bahiaInicial}).`;
+            console.warn(`La bahía de destino (${bahiaDestino}) no puede ser igual a la bahía de origen (${bahiaInicial})`);
+            return; // Detener ejecución
+        }
 
         mensaje.textContent = `⏳ Validando...`;
         confirmarBtn.disabled = true;

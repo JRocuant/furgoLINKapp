@@ -78,6 +78,14 @@ a:hover {
 }
 
 /*NUEVO*/
+#mensaje2 {
+    font-size: 15px; /*CAMBIO AQUÍ*/
+    font-weight: bold;
+    margin-top: 8px;
+    color: green;
+}
+
+/*NUEVO*/
 .user-info {
     font-size: 16px;
     font-weight: bold;

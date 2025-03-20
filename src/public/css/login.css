@@ -77,7 +77,7 @@ body {
 
 /*Botón de ingreso*/
 .btn-primary{
-    background-color: var(--celeste-claro);
+    background-color: var(--celeste-oscuro); /*cambio aquí*/
     color: var(--blanco);
     border: none;
     padding: 12px;
@@ -93,7 +93,7 @@ body {
 
 /*Efectos Hover y Active en el Botón*/
 .btn-primary:hover {
-    background-color: var(--celeste-oscuro); /*CAMBIO AQUÍ*/
+    background-color: var(--celeste-claro); /*CAMBIO AQUÍ*/
     transform: scale(1.02);
 }
 
