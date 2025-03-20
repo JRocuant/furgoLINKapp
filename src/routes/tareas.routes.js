@@ -18,7 +18,8 @@ const {
     esperaPallet,
     guardarCargaCamion,
     guardarCambioBahia,
-    guardarPalletListo
+    guardarPalletListo,
+    verificarTicket
 } = require('../controllers/tareas.controller'); //directorio de los controladores de rutas
 
 /* - - - DEFINICIONES - - -
@@ -66,6 +67,9 @@ router.post('/tareas/guardarCargaCamion', guardarCargaCamion);
 router.post('/tareas/guardarCambioBahia', guardarCambioBahia);
 
 router.post('/tareas/guardarPalletListo', guardarPalletListo);
+
+router.post('/tareas/verificarTicket', verificarTicket);
+
 
 module.exports = router //exportación del Router
 

@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const confirmarCargaBtn = document.getElementById("confirmarCarga"); // Botón para confirmar la carga
     const mensaje = document.getElementById("mensaje"); // Elemento donde se mostrará el mensaje de confirmación
 
+    // Recuperar datos del usuario, incluyendo el ID
+    const usuario = JSON.parse(localStorage.getItem('usuarioActual'));
+    console.log("Usuario actual:", usuario);
+
     // Recuperar el array de tareas desde localStorage
     let tareaActual = JSON.parse(localStorage.getItem("tareaActual")) || [];
     console.log("Tareas registradas:", tareaActual);
@@ -77,7 +81,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     operacionFin: operacionFin,
                     duracionSegundos: duracion.formatoLegible,
                     codigoEscaneado: ultimaTarea.codigoEscaneado,
-                    transporte: ultimaTarea.transporte
+                    transporte: ultimaTarea.transporte,
+                    idUsuario: usuario.id
                 })
             });
 
@@ -86,7 +91,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 cargas: pallets,
                 operacionInicio: ultimaTarea.operacionInicio,
                 operacionFin: new Date().toISOString(),
-                codigoEscaneado: ultimaTarea.codigoEscaneado
+                codigoEscaneado: ultimaTarea.codigoEscaneado,
+                idUsuario: usuario.id
             });
 
             const result = await response.json();

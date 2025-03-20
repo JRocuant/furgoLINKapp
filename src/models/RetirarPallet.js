@@ -8,7 +8,8 @@ const RetirarPalletSchema = new Schema({
     codigoTarea: { type: String },
     bahiaCarga: { type: Number },
     transporte: { type: Number },
-    duracion: { type: String }
+    duracion: { type: String },
+    idUsuario: { type: String }
     
 }, {
     timestamps: true

@@ -6,6 +6,10 @@ const agregarPalletBtn = document.getElementById('agregarPallet');
 const palletInput = document.getElementById('palletCode');
 const palletList = document.getElementById('palletList');
 
+// Recuperar datos del usuario, incluyendo el ID
+const usuario = JSON.parse(localStorage.getItem('usuarioActual'));
+console.log("Usuario actual:", usuario);
+
 // Variables para almacenar los pallets y la tarea actual
 let pallets = [];
 let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
@@ -124,7 +128,8 @@ confirmarBtn.addEventListener("click", async function () {
                     bahiaDestino: ultimaTarea.bahiaDestino,
                     codigoEscaneado: ultimaTarea.codigoEscaneado,
                     duracionSegundos: duracion.formatoLegible,
-                    transporte: ultimaTarea.transporte
+                    transporte: ultimaTarea.transporte,
+                    idUsuario: usuario.id
                 })
             });
 
@@ -137,7 +142,8 @@ confirmarBtn.addEventListener("click", async function () {
                 bahiaDestino: ultimaTarea.bahiaDestino,
                 codigoEscaneado: ultimaTarea.codigoEscaneado,
                 duracionSegundos: duracion.formatoLegible,
-                transporte: ultimaTarea.transporte
+                transporte: ultimaTarea.transporte,
+                idUsuario: usuario.id
             });
 
             const result = await response.json();

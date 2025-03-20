@@ -46,6 +46,7 @@
     - Usuario
         - Obtener nombre
         - obtener email
+        - obtener id
 
     - TAREA
         - Obtener Tiempo inicio de Tarea 
@@ -67,6 +68,11 @@
             - Obtener codigoTarea
             - Obtener bahiaInicio
             - Obtener bahiaFinal
+
+- OTROS AVANCES
+    - Vinculación Usuario tarea (idOperador)
+    - Actualización modelos base de datos (Incluyendo lo del Usuario)
+    - códigos que sean únicos en ticket
 
 
 - - - - - - - - - -TRABAJO REALIZADO (semana 03 - 10 de Marzo) - - - - - - - - - -

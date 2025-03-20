@@ -15,6 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let ultimaTarea = tareaActual[tareaActual.length - 1];
     console.log("Última tarea registrada:", ultimaTarea);
 
+    // Recuperar datos del usuario, incluyendo el ID
+    const usuario = JSON.parse(localStorage.getItem('usuarioActual'));
+    console.log("Usuario actual:", usuario);
+
     // Botón para confirmar código
     submitCodeBtn.addEventListener("click", function () {
         const bahiaValue = codeInput.value.trim();
@@ -42,7 +46,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     operacionFin: new Date().toISOString(),
                     duracionSegundos: calcularDuracion(ultimaTarea.operacionInicio, new Date().toISOString()).formatoLegible,
                     codigoEscaneado: ultimaTarea.codigoEscaneado,
-                    transporte: ultimaTarea.transporte
+                    transporte: ultimaTarea.transporte,
+                    idUsuario: usuario.id
                 })
             })
             .then(response => response.json())

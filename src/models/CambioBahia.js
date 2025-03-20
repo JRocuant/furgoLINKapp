@@ -9,7 +9,8 @@ const CambioBahiaSchema = new Schema({
     bahiaInicial: { type: String },
     bahiaFinal: { type: String },
     transporte: { type: String },
-    duracion: { type: String }
+    duracion: { type: String },
+    idUsuario: { type: String }
     
 }, {
     timestamps: true

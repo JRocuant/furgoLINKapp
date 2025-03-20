@@ -83,7 +83,7 @@ tareasCtrl.esperaPallet = (req, res) =>{
 //Función para almacenar información de la operación Cargar camion
 tareasCtrl.guardarCargaCamion = async (req, res) => {
     try {
-        const { codigoTarea, cargas, operacionInicio, operacionFin, duracionSegundos, codigoEscaneado, transporte } = req.body;
+        const { codigoTarea, cargas, operacionInicio, operacionFin, duracionSegundos, codigoEscaneado, transporte, idUsuario } = req.body;
         /*
         TODO: const codigoTicket = CargarCamion.find({"codigoTicket" : "00068888600000000000000000001"});
         console.log(codigoTicket)*/
@@ -96,7 +96,8 @@ tareasCtrl.guardarCargaCamion = async (req, res) => {
             codigoTarea: codigoTarea,
             cargas: JSON.stringify(cargas), 
             transporte: transporte, 
-            duracion: duracionSegundos 
+            duracion: duracionSegundos,
+            idUsuario: idUsuario  
         });
 
         await nuevaCarga.save();
@@ -111,7 +112,7 @@ tareasCtrl.guardarCargaCamion = async (req, res) => {
 //Función para almacenar información de la operación Retirar Pallet
 tareasCtrl.guardarPalletListo = async (req, res) => { 
     try {
-        const { codigoTarea, codigoBahia, operacionInicio, operacionFin, duracionSegundos, codigoEscaneado, transporte } = req.body;
+        const { codigoTarea, codigoBahia, operacionInicio, operacionFin, duracionSegundos, codigoEscaneado, transporte, idUsuario } = req.body;
 
         const palletListo = new RetirarPallet({
             operacionInicio: operacionInicio,
@@ -121,7 +122,8 @@ tareasCtrl.guardarPalletListo = async (req, res) => {
             codigoTarea: codigoTarea,
             bahiaCarga: codigoBahia, 
             transporte: transporte, 
-            duracion: duracionSegundos 
+            duracion: duracionSegundos,
+            idUsuario: idUsuario  
 
         });
 
@@ -136,7 +138,7 @@ tareasCtrl.guardarPalletListo = async (req, res) => {
 //Función para almacenar información de la operación Cambio de Bahía
 tareasCtrl.guardarCambioBahia = async (req, res) => {
     try {
-        const { operacionInicio, operacionFin, codigoEscaneado, codigoTarea, palletConfirmado, bahiaInicial, bahiaDestino, transporte, duracionSegundos} = req.body;
+        const { operacionInicio, operacionFin, codigoEscaneado, codigoTarea, palletConfirmado, bahiaInicial, bahiaDestino, transporte, duracionSegundos, idUsuario} = req.body;
 
         const cargaCambiada = new CambioBahia({
             operacionInicio: operacionInicio,
@@ -148,7 +150,8 @@ tareasCtrl.guardarCambioBahia = async (req, res) => {
             bahiaInicial: bahiaInicial,
             bahiaFinal: bahiaDestino,
             transporte: transporte, 
-            duracion: duracionSegundos
+            duracion: duracionSegundos,
+            idUsuario: idUsuario 
     
         });
 
@@ -157,6 +160,23 @@ tareasCtrl.guardarCambioBahia = async (req, res) => {
     } catch (error) {
         console.error("Error al guardar la carga:", error);
         res.status(500).json({ message: "Error al guardar la carga" });
+    }
+};
+
+// Verificar si el código de ticket ya existe en la colección CargarCamion
+tareasCtrl.verificarTicket = async (req, res) => {
+    try {
+        const { codigoTicket } = req.body;
+        const ticketExistente = await CargarCamion.findOne({ codigoTicket: codigoTicket });
+
+        if (ticketExistente) {
+            res.status(200).json({ exists: true, message: "El código ya existe" });
+        } else {
+            res.status(200).json({ exists: false, message: "El código es válido" });
+        }
+    } catch (error) {
+        console.error("Error al verificar el ticket:", error);
+        res.status(500).json({ message: "Error en la verificación" });
     }
 };
 

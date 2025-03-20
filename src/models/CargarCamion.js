@@ -8,7 +8,8 @@ const CargarCamionSchema = new Schema({
     codigoTarea: { type: String },
     cargas: { type: String },
     transporte: { type: Number },
-    duracion: { type: String }
+    duracion: { type: String },
+    idUsuario: { type: String }
 }, {
     timestamps: true
 });
