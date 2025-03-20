@@ -47,23 +47,27 @@ usersCtrl.renderSigninForm = (req, res) => {
 
 
 
-usersCtrl.signin = (req, res, next) => {
-    passport.authenticate('local', {
-        failureRedirect: '/users/signin',
-        failureFlash: true
-    }, (err, user, info) => {
-        if (err) return next(err);
-        if (!user) return res.redirect('/users/signin');
+usersCtrl.signin = (req, res, next) => {  
+    passport.authenticate('local', {  // Usa Passport para autenticar con la estrategia 'local'.
+        failureRedirect: '/users/signin',  // Redirige si la autenticación falla.
+        failureFlash: true  // Habilita mensajes flash en caso de error.
+    }, (err, user, info) => {  // Callback después de la autenticación.
+        if (err) return next(err);  // Maneja errores.
+        if (!user) return res.redirect('/users/signin');  // Redirige si no hay usuario autenticado.
 
-        // Autenticamos manualmente
-        req.logIn(user, (err) => {
-            if (err) return next(err);
-            // Aquí ya está autenticado
-            const { name, email } = user;
-            res.render('users/postlogin', { name, email });
+        req.logIn(user, (err) => {  // Inicia sesión manualmente.
+            if (err) return next(err);  // Maneja errores al iniciar sesión.
+            const { name, email, _id } = user;  // Extrae nombre y correo del usuario.
+            res.render('users/postlogin', { name, email, id: _id });  // Muestra la vista postlogin con los datos del usuario.
         });
-    })(req, res, next);
+    })(req, res, next);  // Llama al callback de Passport.
 };
+
+/*
+- - - TESTEAR DESDE CONSOLA - - -
+const usuario = JSON.parse(localStorage.getItem('usuarioActual'));
+console.log(usuario); 
+*/
 
 
 

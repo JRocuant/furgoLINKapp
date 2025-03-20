@@ -9,6 +9,7 @@ const palletList = document.getElementById('palletList');
 // Variables para almacenar los pallets y la tarea actual
 let pallets = [];
 let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
+let palletEscaneado = localStorage.getItem("palletEscaneado") || ""; // Recuperar el pallet del primer formulario
 
 // Función para calcular duración
 function calcularDuracion(operacionInicioStr, operacionFinStr) {
@@ -30,19 +31,27 @@ agregarPalletBtn.addEventListener("click", () => {
     const palletCode = palletInput.value.trim();
 
     if (palletCode !== "") {
-        // Verificar si el primer pallet coincide con el palletCambiado
         const ultimaTarea = tareaActual[tareaActual.length - 1];
+
+        // Verificar si coincide con el pallet de la tarea
         if (ultimaTarea.palletCambiado !== palletCode) {
             mensaje.textContent = `❌ El pallet escaneado (${palletCode}) no coincide con el pallet de la tarea (${ultimaTarea.palletCambiado}).`;
             console.warn(`El pallet escaneado no coincide. Esperado: ${ultimaTarea.palletCambiado}, Escaneado: ${palletCode}`);
-            palletInput.value = ""; // Limpiar input
-            return; // Detener ejecución
+            palletInput.value = "";
+            return;
         }
 
-        // Si todo está bien, agregar el pallet a la lista
+        // Verificar si ya fue ingresado
+        if (pallets.includes(palletCode)) {
+            alert(`El pallet ${palletCode} ya fue ingresado correctamente.`);
+            palletInput.value = "";
+            return;
+        }
+
+        // Si no está, agregarlo
         pallets.push(palletCode);
 
-        // Mostrar en la lista visual
+        // Mostrar en la lista visual solo una vez
         const listItem = document.createElement("li");
         listItem.textContent = palletCode;
         palletList.appendChild(listItem);
@@ -57,6 +66,7 @@ agregarPalletBtn.addEventListener("click", () => {
         alert("Debes ingresar un código de pallet.");
     }
 });
+
 
 // Evento para habilitar el botón Confirmar al ingresar bahía
 bahiaDestinoInput.addEventListener("input", () => {

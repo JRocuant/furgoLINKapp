@@ -84,6 +84,9 @@ tareasCtrl.esperaPallet = (req, res) =>{
 tareasCtrl.guardarCargaCamion = async (req, res) => {
     try {
         const { codigoTarea, cargas, operacionInicio, operacionFin, duracionSegundos, codigoEscaneado, transporte } = req.body;
+        /*
+        TODO: const codigoTicket = CargarCamion.find({"codigoTicket" : "00068888600000000000000000001"});
+        console.log(codigoTicket)*/
 
         const nuevaCarga = new CargarCamion({
             operacionInicio: operacionInicio,
@@ -103,6 +106,7 @@ tareasCtrl.guardarCargaCamion = async (req, res) => {
         res.status(500).json({ message: "Error al guardar la carga" });
     }
 };
+
 
 //Función para almacenar información de la operación Retirar Pallet
 tareasCtrl.guardarPalletListo = async (req, res) => { 
