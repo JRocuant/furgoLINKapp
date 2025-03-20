@@ -70,27 +70,15 @@
             - Obtener bahiaFinal
 
 - OTROS AVANCES
-    - Vinculación Usuario tarea (idOperador)
+    - Vinculación Usuario tarea
     - Actualización modelos base de datos (Incluyendo lo del Usuario)
     - códigos que sean únicos en ticket
 
 - DANIELA AVANCES (push indirecto)
-    - Bug pallet repetido con el mismo código en la interfaz, vista escanearPalletCambio (ARREGLADO)
-    - Códigos diferentes carga camión
-    - Texto indicando Bahía de origen, bajo confirmar pallet, antes de bahía destino
-    - Cambio en esperaCambioBahia.hbs
-    - Se agregó una línea en escanearPalletCambio.hbs
-    - Se agrego en escanear_pallets_cambio.css
-    - Cambio en una línea en login.css
-    - Cambio en olvido.css
-    - Cambio en espera.css
-    - Cambio en esperaCambioBahia.css
-    - Cambio en esperaCambioBahia.js
-    - Cambios en escanearPalletsCambio.js
-    - Cambios en seleccion.js
-    - Cambios en main.hbs
-    - Cambios en esperaCargaCamion.js
-    - Se agregó usuario.hbs en carpeta partials
+    - Error pallet repetido con el mismo código en la interfaz, vista escanearPalletCambio (ARREGLADO)
+    - Error códigos diferentes carga camión
+    - Texto indicando Bahía de origen, bajo confirmar pallet, antes de bahía destino vista escanearPalletCambio
+    - Nombre de usuario en la interfaz
 
 
 

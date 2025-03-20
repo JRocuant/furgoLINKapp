@@ -1,3 +1,28 @@
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+        #usuarioActual {
+
+            font-size: 20px; /*CAMBIO AQUÍ*/
+
+            color: var(--celeste-oscuro);
+
+            position: fixed;
+
+            top: 80px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            text-align: center;
+
+        }
+</style>
+</head>
+ 
 <script>
   // Se agrega un "event listener" para esperar a que el contenido del DOM se haya cargado completamente
   document.addEventListener('DOMContentLoaded', function() {
@@ -14,5 +39,5 @@
 
 <body>
   <!-- Se define un elemento h1 con un id 'usuarioActual' que inicialmente muestra "Cargando..." -->
-  <h1 id="usuarioActual"></h1>
+  <p id="usuarioActual"></p>
 </body>
