@@ -2,6 +2,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Selecciona todos los botones de tareas con la clase 'task-btn'
     const taskButtons = document.querySelectorAll('.task-btn');
+    
+    
 
     taskButtons.forEach(button => {
         button.addEventListener('click', () => {

@@ -52,7 +52,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     submitCodeBtn.addEventListener("click", function () {
-        const codeValue = codeInput.value.trim();
+        // Eliminar todos los espacios del input
+        const codeValueRaw = codeInput.value.trim();
+        const codeValue = codeValueRaw.replace(/\s+/g, ''); // <--- Elimina todos los espacios
+
         const datos = obtenerTransporteYPalet(codeValue);
     
         if (codeValue !== "" && datos) {

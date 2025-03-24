@@ -33,7 +33,11 @@ function calcularDuracion(operacionInicioStr, operacionFinStr) {
 
 // Evento para agregar pallet escaneado
 agregarPalletBtn.addEventListener("click", () => {
-    const palletCode = palletInput.value.trim();
+    //const palletCode = palletInput.value.trim();
+
+    // Eliminar todos los espacios del input
+    const palletValueRaw = palletInput.value.trim();
+    const palletCode = palletValueRaw.replace(/\s+/g, ''); // <--- Elimina todos los espacios
 
     if (palletCode !== "") {
         const ultimaTarea = tareaActual[tareaActual.length - 1];

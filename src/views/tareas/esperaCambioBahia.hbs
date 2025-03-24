@@ -5,8 +5,28 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/espera_cambio_bahia.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <!-- Estilo en línea para modificar el p con id 'usuarioActual' -->
+    <style>
+      #usuarioActual {
+        font-size: 1.5em; /* Aumenta el tamaño del texto */
+        font-weight: bold; /* Pone el texto en negrita */
+      }
+    </style>
 </head>
 
+<script>
+  // Se agrega un "event listener" para esperar a que el contenido del DOM se haya cargado completamente
+  document.addEventListener('DOMContentLoaded', function() {
+      // Se obtiene el objeto 'usuarioActual' del localStorage y se parsea desde JSON a un objeto JavaScript
+      const usuario = JSON.parse(localStorage.getItem('usuarioActual'));
+      
+      // Si el objeto 'usuario' existe en el localStorage (es decir, no es null ni undefined)
+      if (usuario) {
+        // Se actualiza el contenido del elemento con el id 'usuarioActual' con el nombre del usuario
+        document.getElementById('usuarioActual').textContent = usuario.name;
+      }
+  });
+</script>
 
 <!-- Contenedor principal de la pantalla de espera de acción -->
 <div class="container">
@@ -18,6 +38,10 @@
 
     <!-- Botón para continuar, inicialmente deshabilitado -->
     <button id="continuarBtn">Continuar</button>
+
+    <!-- Se define un elemento p con un id 'usuarioActual' -->
+    <p id="usuarioActual"></p>
+
     <!-- Hasta acá -->
 
 

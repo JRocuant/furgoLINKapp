@@ -57,6 +57,7 @@ usersCtrl.signin = (req, res, next) => {
 
         req.logIn(user, (err) => {  // Inicia sesión manualmente.
             if (err) return next(err);  // Maneja errores al iniciar sesión.
+            console.log(user);
             const { name, email, _id } = user;  // Extrae nombre y correo del usuario.
             res.render('users/postlogin', { name, email, id: _id });  // Muestra la vista postlogin con los datos del usuario.
         });
