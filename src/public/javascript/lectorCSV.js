@@ -5,7 +5,7 @@ const csv = require('csv-parser');
 const transportes = {};  // Objeto para almacenar los códigos de transporte y sus pallets
 const palletMaximo = {}; // Objeto para almacenar el código de transporte y el pallet máximo
 
-fs.createReadStream(path.join(__dirname, 'RP2.csv'))
+fs.createReadStream(path.resolve(__dirname, '..', 'datos', 'RP2.csv'))
   .pipe(csv({ separator: ',' })) // Cambia el separador si es necesario
   .on('data', (data) => {
     // Obtener el código de transporte y el nº de pallet
