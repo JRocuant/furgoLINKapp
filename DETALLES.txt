@@ -7,21 +7,33 @@
    - PARSEAR CODIGO DE TICKET
         - Obtener pallets
     
-    - Usuario
-        - Obtener _id
-        
+    - USUARIO
+        - id stingingfy en user schema
+    
+    - TAREAS
+        - Calcular turno a partir de la fecha inicial
+    
+    - LEER ARCHIVO
+        - Parsear Transporte y pallets
+        - Aplicarlo en función cargarCamion
     
 
         
 
 - USUARIO ----------------------------------------------------------------------
     - OPERADOR
-        - Desplegar nombre operador en pantalla
-        - vincular operador con tareas
+        - idOperador atributo en Modelo/Schema user
+ 
 
     - ADMINISTRADOR
         - Gestionar usuarios
 
+
+ - - - - - - - - -TRABAJO REALIZADO (semana 05 - 24 de Marzo) - - - - - - - - - -
+ - TESTEOS EN TERRENO
+
+- LEER ARCHIVO
+        - Leer .csv
 
 
 - - - - - - - - - -TRABAJO REALIZADO (semana 04 - 17 de Marzo) - - - - - - - - - -
@@ -43,10 +55,13 @@
     - PARSEAR CODIGO DE TICKET
         - Obtener transporte
 
-    - Usuario
+    - USUARIO
         - Obtener nombre
         - obtener email
         - obtener id
+
+        - OPERADOR
+            - Mostrar nombre de usuario en pantalla
 
     - TAREA
         - Obtener Tiempo inicio de Tarea 

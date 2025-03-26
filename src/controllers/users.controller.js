@@ -79,5 +79,4 @@ usersCtrl.logout = (req, res) => {
 usersCtrl.olvido = (req, res) => {
     res.render('users/olvido');
 }
-
 module.exports = usersCtrl;
