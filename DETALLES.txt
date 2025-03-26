@@ -6,6 +6,7 @@
 - OBTENCIÓN DE DATOS ----------------------------------------------------------
    - PARSEAR CODIGO DE TICKET
         - Obtener pallets
+        - Codigo Ticket Unico debe revisarse por colección de manera independiente
     
     - USUARIO
         - id stingingfy en user schema
@@ -14,7 +15,6 @@
         - Calcular turno a partir de la fecha inicial
     
     - LEER ARCHIVO
-        - Parsear Transporte y pallets
         - Aplicarlo en función cargarCamion
     
 
@@ -34,6 +34,7 @@
 
 - LEER ARCHIVO
         - Leer .csv
+        - Parsear Transporte y pallets
 
 
 - - - - - - - - - -TRABAJO REALIZADO (semana 04 - 17 de Marzo) - - - - - - - - - -
