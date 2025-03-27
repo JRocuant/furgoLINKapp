@@ -68,7 +68,7 @@ usersCtrl.signin = (req, res, next) => {
             const palletMaximo = {};
             let headers = [];
 
-            fs.createReadStream(path.resolve(__dirname,  'RP2.csv'))
+            fs.createReadStream(path.resolve(__dirname, '..', 'public', 'datos', 'RP2.csv'))
                 .pipe(csv({ separator: ',' }))
                 .on('headers', (headerRow) => {
                     headers = headerRow;
