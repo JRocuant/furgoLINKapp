@@ -14,7 +14,14 @@
         };
         localStorage.setItem('usuarioActual', JSON.stringify(usuarioActual));
 
-        // Redirigimos a la página que desees
+        // Guardamos transportes y palletMaximo en Local Storage
+        const transportes = {{{transportes}}}; // Se usa triple mustache para parsear JSON correctamente
+        const palletMaximo = {{{palletMaximo}}};
+
+        localStorage.setItem('transportes', JSON.stringify(transportes));
+        localStorage.setItem('palletMaximo', JSON.stringify(palletMaximo));
+
+        // Redirigimos
         window.location.href = "/tareas/seleccion";
     </script>
 </body>

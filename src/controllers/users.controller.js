@@ -6,6 +6,10 @@ const passport = require('passport');
 
 const User =require('../models/User')
 
+const fs = require('fs');
+const path = require('path');
+const csv = require('csv-parser');
+
 usersCtrl.renderSignUpForm = (req, res) => {
     res.render('users/signup');
 };
@@ -48,21 +52,65 @@ usersCtrl.renderSigninForm = (req, res) => {
 
 
 usersCtrl.signin = (req, res, next) => {  
-    passport.authenticate('local', {  // Usa Passport para autenticar con la estrategia 'local'.
-        failureRedirect: '/users/signin',  // Redirige si la autenticación falla.
-        failureFlash: true  // Habilita mensajes flash en caso de error.
-    }, (err, user, info) => {  // Callback después de la autenticación.
-        if (err) return next(err);  // Maneja errores.
-        if (!user) return res.redirect('/users/signin');  // Redirige si no hay usuario autenticado.
+    passport.authenticate('local', {  
+        failureRedirect: '/users/signin',
+        failureFlash: true  
+    }, (err, user, info) => {  
+        if (err) return next(err);
+        if (!user) return res.redirect('/users/signin');
 
-        req.logIn(user, (err) => {  // Inicia sesión manualmente.
-            if (err) return next(err);  // Maneja errores al iniciar sesión.
+        req.logIn(user, (err) => {  
+            if (err) return next(err);
             console.log(user);
-            const { name, email, _id } = user;  // Extrae nombre y correo del usuario.
-            res.render('users/postlogin', { name, email, id: _id });  // Muestra la vista postlogin con los datos del usuario.
+
+            const { name, email, _id } = user;  
+            const transportes = {};
+            const palletMaximo = {};
+            let headers = [];
+
+            fs.createReadStream(path.resolve(__dirname,  'RP2.csv'))
+                .pipe(csv({ separator: ',' }))
+                .on('headers', (headerRow) => {
+                    headers = headerRow;
+                })
+                .on('data', (data) => {
+                    const transporte = data[headers[0]];
+                    const pallet = parseInt(data[headers[1]], 10);
+
+                    if (isNaN(pallet)) {
+                        console.warn(`Valor de pallet no válido: ${data[headers[1]]}`);
+                        return;
+                    }
+
+                    if (!transportes[transporte]) {
+                        transportes[transporte] = new Set();
+                    }
+
+                    transportes[transporte].add(pallet);
+                })
+                .on('end', () => {
+                    for (const transporte in transportes) {
+                        transportes[transporte] = Array.from(transportes[transporte]);
+                        palletMaximo[transporte] = Math.max(...transportes[transporte]);
+                    }
+
+                    // Asegurarse de que los datos han sido procesados antes de renderizar
+                    res.render('users/postlogin', { 
+                        name, 
+                        email, 
+                        id: _id, 
+                        transportes: JSON.stringify(transportes),
+                        palletMaximo: JSON.stringify(palletMaximo) 
+                    });
+                })
+                .on('error', (err) => {
+                    console.error('Error al procesar el archivo CSV:', err.message);
+                    res.status(500).send('Error al procesar el archivo CSV');
+                });
         });
-    })(req, res, next);  // Llama al callback de Passport.
+    })(req, res, next);
 };
+
 
 /*
 - - - TESTEAR DESDE CONSOLA - - -

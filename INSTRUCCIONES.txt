@@ -47,4 +47,32 @@ Una alternativa es usar:
 
 
 
+-------------------------------------
+COMANDO PARA EXTRAER ATRIBUTOS DE LA TAREA ACRTUAL -------------------------------------------------------------
+let tareaActual = JSON.parse(localStorage.getItem("tareaActual")) || [];
+
+console.log("Tareas almacenadas:", tareaActual);
+
+if (Array.isArray(tareaActual) && tareaActual.length > 0) {
+    let ultimaTarea = tareaActual[tareaActual.length - 1];
+    console.log("Última tarea registrada:", ultimaTarea);
+} else {
+    console.log("No hay tareas registradas en localStorage.");
+}
+
+COMANDO PARA VISUALIZAR TRANSPORTES ---------------------------------------------------------------------------
+
+let transportes = JSON.parse(localStorage.getItem("transportes")) || {};
+
+console.log("Transportes almacenados:", transportes);
+
+// Convertir el objeto en un array de valores (arrays de pallets)
+let transportesArray = Object.values(transportes);
+
+if (transportesArray.length > 0) {
+    let ultimoTransporte = transportesArray[transportesArray.length - 1]; // Último array de pallets
+    console.log("Último transporte registrado:", ultimoTransporte);
+} else {
+    console.log("No hay transportes registrados en localStorage.");
+}
 
