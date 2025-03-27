@@ -1,11 +1,46 @@
 // Espera a que el DOM esté completamente cargado antes de ejecutar el código
 document.addEventListener("DOMContentLoaded", function () {
 
+
+    // Recuperar los palletMaximo almacenados en localStorage
+    let palletMaximo = JSON.parse(localStorage.getItem("palletMaximo")) || {};
+
+    // Recuperar la tarea actual
+    let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
+
+    // Variable para almacenar el valor del pallet máximo
+    let maxPalletValue = null;  // Inicializamos la variable como null
+
+    // Verificar si hay una tarea registrada
+    if (tareaActual.length > 0) {
+        let ultimaTarea = tareaActual[tareaActual.length - 1]; 
+        let transporteID = ultimaTarea.transporte; // Obtiene el ID del transporte
+
+        console.log("Última tarea:", ultimaTarea);
+        console.log("Buscando palletMaximo para el transporte ID:", transporteID);
+
+        // Verificar si existe el transporteID en palletMaximo
+        if (palletMaximo.hasOwnProperty(transporteID)) {
+            maxPalletValue = palletMaximo[transporteID];  // Asignamos el valor del pallet máximo
+            console.log("Pallet máximo encontrado para este transporte:", maxPalletValue);
+        } else {
+            console.log("No se encontró pallet máximo para este transporte.");
+        }
+    } else {
+        console.log("No hay tareas registradas.");
+    }
+
+    // Ahora maxPalletValue contiene el valor del pallet máximo (si se encontró)
+    console.log("Valor del pallet máximo:", maxPalletValue);
+
+
+    
+
     let pallets = []; // Array para almacenar los códigos de los pallets escaneados
-    const maxPallets = 5; // Número máximo de pallets requeridos
+    const maxPallets = maxPalletValue; // Número máximo de pallets requeridos
 
     // Recuperar el array de tareas desde localStorage
-    let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
+    //let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
     console.log("Tareas registradas:", tareaActual);
 
     // Si quieres obtener solo los códigos de tarea
