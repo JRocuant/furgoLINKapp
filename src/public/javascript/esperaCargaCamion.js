@@ -1,7 +1,6 @@
 // Espera a que el DOM esté completamente cargado antes de ejecutar el código
 document.addEventListener("DOMContentLoaded", function () {
 
-
     // Recuperar los palletMaximo almacenados en localStorage
     let palletMaximo = JSON.parse(localStorage.getItem("palletMaximo")) || {};
 
@@ -33,14 +32,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // Ahora maxPalletValue contiene el valor del pallet máximo (si se encontró)
     console.log("Valor del pallet máximo:", maxPalletValue);
 
-
-    
+    // Actualizamos el contenido del <span> con el valor de maxPalletValue
+    if (maxPalletValue !== null) {
+        document.getElementById('maxPalletValueDisplay').textContent = maxPalletValue;
+    } else {
+        document.getElementById('maxPalletValueDisplay').textContent = 'No definido'; // Si no hay valor
+    }
 
     let pallets = []; // Array para almacenar los códigos de los pallets escaneados
     const maxPallets = maxPalletValue; // Número máximo de pallets requeridos
 
     // Recuperar el array de tareas desde localStorage
-    //let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
     console.log("Tareas registradas:", tareaActual);
 
     // Si quieres obtener solo los códigos de tarea
@@ -51,8 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let ultimaTarea = tareaActual[tareaActual.length - 1];
 
     console.log("Última tarea registrada:", ultimaTarea);
-    
-
 
     // Obtiene los elementos del DOM
     const palletInput = document.getElementById("palletCode"); // Campo de entrada para escanear pallet
@@ -66,20 +66,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (pallet) {
             // Verificar si el pallet ya ha sido escaneado
-
-           //ESTO ES NUEVO 
             if (pallets.includes(pallet)) {
                 alert("Este pallet ya ha sido escaneado."); // Muestra un mensaje de alerta si el pallet ya existe
                 palletInput.value = ""; // Limpia el campo de entrada
                 return; // Sale de la función si el pallet ya ha sido escaneado
             }
-            //HASTA ACÁ
 
             if (pallets.length < maxPallets) {
                 pallets.push(pallet); // Agrega el pallet al array
                 palletList.innerHTML += `<li>${pallet}</li>`; // Agrega el pallet a la lista en el DOM
                 palletInput.value = ""; // Limpia el campo de entrada después de agregar el pallet
-                
+
                 // Actualiza el contador en pantalla
                 contadorPallets.textContent = `Pallets: ${pallets.length}/${maxPallets}`;
 

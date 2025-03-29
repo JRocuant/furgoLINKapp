@@ -4,18 +4,22 @@
 
 
 - OBTENCIÓN DE DATOS ----------------------------------------------------------
-    
+    (COMPLETADo)
     
 - LEER REPORTE PICKING --------------------------------------------------------
-	- Aplicarlo al hbs de manera inicial
+	(COMPLETADO)
     
-- USUARIOS ---------------------------------------------------------------------
+- USUARIOS --------------------------------------------------------------------
     - OPERADOR
-        - idOperador atributo en Modelo/Schema user
+        (COMPLETADO)
 
     - ADMINISTRADOR
         - Gestionar usuarios
 
+- INTERFAZ --------------------------------------------------------------------
+    - alert para no agregar más pallets en carga camión, existe la restricción falta el alert
+    - Transformar todos los alerts a pop-ups internos con formato propio de la aplicacion (Bootstrap de referencia)
+    - Iniciar interfaz admin
 
  - - - - - - - - -TRABAJO REALIZADO (semana 05 - 24 de Marzo) - - - - - - - - - -
  - TESTEOS EN TERRENO
@@ -27,6 +31,7 @@
         - Leer .csv
         - Parsear Transporte y pallets
         - Aplicarlo en función cargarCamion
+        - Aplicar valor de "pallet Maximo" al hbs antes del evento del boton
 
 - TAREAS
     - Calcular hora y aplicar zona horaria de Chile
