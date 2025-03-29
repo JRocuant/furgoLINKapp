@@ -4,8 +4,7 @@
 
 
 - OBTENCIÓN DE DATOS ----------------------------------------------------------
-    - USUARIO
-        - id stingingfy en user schema
+    
     
 - LEER REPORTE PICKING --------------------------------------------------------
 	- Aplicarlo al hbs de manera inicial
@@ -21,6 +20,9 @@
  - - - - - - - - -TRABAJO REALIZADO (semana 05 - 24 de Marzo) - - - - - - - - - -
  - TESTEOS EN TERRENO
 
+- USUARIO
+        - id stingingfy en user schema
+        
 - LEER REPORTE PICKING
         - Leer .csv
         - Parsear Transporte y pallets
