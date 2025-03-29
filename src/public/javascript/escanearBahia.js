@@ -19,6 +19,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const usuario = JSON.parse(localStorage.getItem('usuarioActual'));
     console.log("Usuario actual:", usuario);
 
+    // Función para obtener la hora de Chile en formato ISO
+    function obtenerFechaHoraChile() {
+        const fechaUTC = new Date();
+        const opciones = { timeZone: "America/Santiago", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false };
+        const formatoChile = new Intl.DateTimeFormat("es-CL", opciones).formatToParts(fechaUTC);
+        
+        let fechaChileISO = `${formatoChile[4].value}-${formatoChile[2].value}-${formatoChile[0].value}T${formatoChile[6].value}:${formatoChile[8].value}:${formatoChile[10].value}Z`;
+        return fechaChileISO;
+    }
+
     // Botón para confirmar código
     submitCodeBtn.addEventListener("click", function () {
         const bahiaValue = codeInput.value.trim();
@@ -35,6 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
             // Redirige a la página correspondiente
             const nextPage = '/tareas/seleccion';
 
+            // Obtener fecha y hora de Chile como operacionFin
+            const operacionFin = obtenerFechaHoraChile();
+
             // Realiza la llamada al servidor para guardar el pallet listo
             fetch("/tareas/guardarPalletListo", {
                 method: "POST",
@@ -43,10 +56,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     codigoTarea: ultimaTarea.codigoTarea,
                     codigoBahia: bahiaValue,
                     operacionInicio: ultimaTarea.operacionInicio,
-                    operacionFin: new Date().toISOString(),
-                    duracionSegundos: calcularDuracion(ultimaTarea.operacionInicio, new Date().toISOString()).formatoLegible,
+                    operacionFin: operacionFin,
+                    duracionSegundos: calcularDuracion(ultimaTarea.operacionInicio, operacionFin).formatoLegible,
                     codigoEscaneado: ultimaTarea.codigoEscaneado,
                     transporte: ultimaTarea.transporte,
+                    turno: ultimaTarea.turno,
                     idUsuario: usuario.id
                 })
             })

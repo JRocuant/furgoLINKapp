@@ -11,8 +11,6 @@ const RetirarPalletSchema = new Schema({
     duracion: { type: String },
     idUsuario: { type: String }
     
-}, {
-    timestamps: true
 });
 
 module.exports = model('RetirarPallet', RetirarPalletSchema);

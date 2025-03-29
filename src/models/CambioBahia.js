@@ -12,8 +12,6 @@ const CambioBahiaSchema = new Schema({
     duracion: { type: String },
     idUsuario: { type: String }
     
-}, {
-    timestamps: true
 });
 
 module.exports = model('CambioBahia', CambioBahiaSchema);

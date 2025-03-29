@@ -10,8 +10,6 @@ const CargarCamionSchema = new Schema({
     transporte: { type: Number },
     duracion: { type: String },
     idUsuario: { type: String }
-}, {
-    timestamps: true
 });
 
 module.exports = model('CargarCamion', CargarCamionSchema);

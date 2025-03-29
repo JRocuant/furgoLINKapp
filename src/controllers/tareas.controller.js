@@ -83,7 +83,7 @@ tareasCtrl.esperaPallet = (req, res) =>{
 //Función para almacenar información de la operación Cargar camion
 tareasCtrl.guardarCargaCamion = async (req, res) => {
     try {
-        const { codigoTarea, cargas, operacionInicio, operacionFin, duracionSegundos, codigoEscaneado, transporte, idUsuario } = req.body;
+        const { codigoTarea, cargas, operacionInicio, operacionFin, duracionSegundos, codigoEscaneado, transporte, turno, idUsuario } = req.body;
         /*
         TODO: const codigoTicket = CargarCamion.find({"codigoTicket" : "00068888600000000000000000001"});
         console.log(codigoTicket)*/
@@ -92,7 +92,7 @@ tareasCtrl.guardarCargaCamion = async (req, res) => {
             operacionInicio: operacionInicio,
             operacionFin: operacionFin,
             codigoTicket: codigoEscaneado,
-            turno: "Mañana", // Reemplazar con funcion que calcula el dato real
+            turno: turno,
             codigoTarea: codigoTarea,
             cargas: JSON.stringify(cargas), 
             transporte: transporte, 
@@ -112,13 +112,13 @@ tareasCtrl.guardarCargaCamion = async (req, res) => {
 //Función para almacenar información de la operación Retirar Pallet
 tareasCtrl.guardarPalletListo = async (req, res) => { 
     try {
-        const { codigoTarea, codigoBahia, operacionInicio, operacionFin, duracionSegundos, codigoEscaneado, transporte, idUsuario } = req.body;
+        const { codigoTarea, codigoBahia, operacionInicio, operacionFin, duracionSegundos, codigoEscaneado, transporte, turno, idUsuario } = req.body;
 
         const palletListo = new RetirarPallet({
             operacionInicio: operacionInicio,
             operacionFin: operacionFin, 
             codigoTicket: codigoEscaneado,
-            turno: "Mañana", // Reemplazar con funcion que calcula el dato real
+            turno: turno, 
             codigoTarea: codigoTarea,
             bahiaCarga: codigoBahia, 
             transporte: transporte, 
@@ -138,13 +138,13 @@ tareasCtrl.guardarPalletListo = async (req, res) => {
 //Función para almacenar información de la operación Cambio de Bahía
 tareasCtrl.guardarCambioBahia = async (req, res) => {
     try {
-        const { operacionInicio, operacionFin, codigoEscaneado, codigoTarea, palletConfirmado, bahiaInicial, bahiaDestino, transporte, duracionSegundos, idUsuario} = req.body;
+        const { operacionInicio, operacionFin, codigoEscaneado, codigoTarea, palletConfirmado, bahiaInicial, bahiaDestino, transporte, turno, duracionSegundos, idUsuario} = req.body;
 
         const cargaCambiada = new CambioBahia({
             operacionInicio: operacionInicio,
             operacionFin: operacionFin,
             codigoTicket: codigoEscaneado,
-            turno: "Mañana", // Reemplazar con funcion que calcula el dato real
+            turno: turno,
             codigoTarea: codigoTarea,
             palletCambiado: palletConfirmado,
             bahiaInicial: bahiaInicial,

@@ -31,6 +31,16 @@ function calcularDuracion(operacionInicioStr, operacionFinStr) {
     };
 }
 
+// Función para obtener la hora de Chile en formato ISO
+function obtenerFechaHoraChile() {
+    const fechaUTC = new Date();
+    const opciones = { timeZone: "America/Santiago", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false };
+    const formatoChile = new Intl.DateTimeFormat("es-CL", opciones).formatToParts(fechaUTC);
+    
+    let fechaChileISO = `${formatoChile[4].value}-${formatoChile[2].value}-${formatoChile[0].value}T${formatoChile[6].value}:${formatoChile[8].value}:${formatoChile[10].value}Z`;
+    return fechaChileISO;
+}
+
 // Evento para agregar pallet escaneado
 agregarPalletBtn.addEventListener("click", () => {
     //const palletCode = palletInput.value.trim();
@@ -77,7 +87,6 @@ agregarPalletBtn.addEventListener("click", () => {
         alert("Debes ingresar un código de pallet.");
     }
 });
-
 
 // Evento para habilitar el botón Confirmar al ingresar bahía
 bahiaDestinoInput.addEventListener("input", () => {
@@ -127,7 +136,9 @@ confirmarBtn.addEventListener("click", async function () {
         console.log("Tarea actualizada:", tareaActual);
 
         try {
-            const operacionFin = new Date().toISOString();
+            // Obtener fecha y hora de Chile como operacionFin
+            const operacionFin = obtenerFechaHoraChile();
+
             const duracion = calcularDuracion(ultimaTarea.operacionInicio, operacionFin);
             console.log("Duración de la operación:", duracion.formatoLegible);
 
@@ -144,6 +155,7 @@ confirmarBtn.addEventListener("click", async function () {
                     codigoEscaneado: ultimaTarea.codigoEscaneado,
                     duracionSegundos: duracion.formatoLegible,
                     transporte: ultimaTarea.transporte,
+                    turno: ultimaTarea.turno,
                     idUsuario: usuario.id
                 })
             });
@@ -158,6 +170,7 @@ confirmarBtn.addEventListener("click", async function () {
                 codigoEscaneado: ultimaTarea.codigoEscaneado,
                 duracionSegundos: duracion.formatoLegible,
                 transporte: ultimaTarea.transporte,
+                turno: ultimaTarea.turno,
                 idUsuario: usuario.id
             });
 

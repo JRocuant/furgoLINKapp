@@ -59,34 +59,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const datos = obtenerTransporteYPalet(codeValue);
     
         if (codeValue !== "" && datos) {
-            // Validar contra la base de datos
-            fetch("/tareas/verificarTicket", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ codigoTicket: codeValue })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.exists) {
-                    alert("Este código ya ha sido registrado, ingrese otro código.");
-                } else {
-                    // Código válido, continuar
-                    if (tareaActual.length > 0) {
-                        tareaActual[tareaActual.length - 1].codigoEscaneado = codeValue;
-                        tareaActual[tareaActual.length - 1].transporte = datos.transporte;
-                    }
-    
-                    localStorage.setItem('tareaActual', JSON.stringify(tareaActual));
-                    console.log("Código guardado:", codeValue);
-                    window.location.href = nextPage;
-                }
-            })
-            .catch(error => {
-                console.error("Error al verificar el ticket:", error);
-                alert("Error en la verificación, intente nuevamente.");
-            });
+            // Aquí se elimina la validación con la base de datos y se sigue adelante sin verificar en la base de datos
+            if (tareaActual.length > 0) {
+                tareaActual[tareaActual.length - 1].codigoEscaneado = codeValue;
+                tareaActual[tareaActual.length - 1].transporte = datos.transporte;
+            }
+
+            localStorage.setItem('tareaActual', JSON.stringify(tareaActual));
+            console.log("Código guardado:", codeValue);
+            window.location.href = nextPage;
         } else {
             alert("Por favor, ingrese un código válido.");
         }

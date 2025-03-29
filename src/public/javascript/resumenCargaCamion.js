@@ -52,7 +52,16 @@ document.addEventListener("DOMContentLoaded", function () {
             formatoLegible: `${minutos}m ${segundos}s`
         };
     }
-    
+
+    // Función para obtener la hora de Chile en formato ISO
+    function obtenerFechaHoraChile() {
+        const fechaUTC = new Date();
+        const opciones = { timeZone: "America/Santiago", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false };
+        const formatoChile = new Intl.DateTimeFormat("es-CL", opciones).formatToParts(fechaUTC);
+        
+        let fechaChileISO = `${formatoChile[4].value}-${formatoChile[2].value}-${formatoChile[0].value}T${formatoChile[6].value}:${formatoChile[8].value}:${formatoChile[10].value}Z`;
+        return fechaChileISO;
+    }
 
     // Evento para confirmar la carga
     confirmarCargaBtn.addEventListener("click", async function () {
@@ -60,8 +69,8 @@ document.addEventListener("DOMContentLoaded", function () {
             // Deshabilita el botón para evitar múltiples clics
             confirmarCargaBtn.disabled = true;
 
-            // Fecha fin
-            const operacionFin = new Date().toISOString();
+            // Obtener fecha y hora de Chile como operacionFin
+            const operacionFin = obtenerFechaHoraChile();
 
             // Calcular duración
             const duracion = calcularDuracion(ultimaTarea.operacionInicio, operacionFin);
@@ -82,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     duracionSegundos: duracion.formatoLegible,
                     codigoEscaneado: ultimaTarea.codigoEscaneado,
                     transporte: ultimaTarea.transporte,
+                    turno: ultimaTarea.turno,
                     idUsuario: usuario.id
                 })
             });
@@ -90,8 +100,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 codigoTarea: ultimaTarea.codigoTarea,
                 cargas: pallets,
                 operacionInicio: ultimaTarea.operacionInicio,
-                operacionFin: new Date().toISOString(),
+                operacionFin: operacionFin,
                 codigoEscaneado: ultimaTarea.codigoEscaneado,
+                turno: ultimaTarea.turno,
                 idUsuario: usuario.id
             });
 

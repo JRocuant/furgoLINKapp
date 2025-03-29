@@ -1,29 +1,18 @@
 - - - - - - - - - -TAREAS PENDIENTES ETAPA ACTUAL (backend)- - - - - - - - - -
-- REALIZAR CONEXIÓN CON BASE DE DATOS
+- REALIZAR CONEXIÓN CON BASE DE DATOS-----------------------------------------
     - Vinculación de la aplicación con la Base de datos en nube
 
 
 - OBTENCIÓN DE DATOS ----------------------------------------------------------
-   - PARSEAR CODIGO DE TICKET
-        - Obtener pallets
-        - Codigo Ticket Unico debe revisarse por colección de manera independiente
-    
     - USUARIO
         - id stingingfy en user schema
     
-    - TAREAS
-        - Calcular turno a partir de la fecha inicial
+- LEER REPORTE PICKING --------------------------------------------------------
+	- Aplicarlo al hbs de manera inicial
     
-    - LEER ARCHIVO
-        - Aplicarlo en función cargarCamion
-    
-
-        
-
-- USUARIO ----------------------------------------------------------------------
+- USUARIOS ---------------------------------------------------------------------
     - OPERADOR
         - idOperador atributo en Modelo/Schema user
- 
 
     - ADMINISTRADOR
         - Gestionar usuarios
@@ -32,9 +21,18 @@
  - - - - - - - - -TRABAJO REALIZADO (semana 05 - 24 de Marzo) - - - - - - - - - -
  - TESTEOS EN TERRENO
 
-- LEER ARCHIVO
+- LEER REPORTE PICKING
         - Leer .csv
         - Parsear Transporte y pallets
+        - Aplicarlo en función cargarCamion
+
+- TAREAS
+    - Calcular hora y aplicar zona horaria de Chile
+    - Calcular turno a partir de la fecha inicial 
+    - Ajustes en modelos/schemas, fetch y controladores
+
+- OTROS AVANCES
+    - Quitar restricción código ticket único
 
 
 - - - - - - - - - -TRABAJO REALIZADO (semana 04 - 17 de Marzo) - - - - - - - - - -

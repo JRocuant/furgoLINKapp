@@ -3,7 +3,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // Selecciona todos los botones de tareas con la clase 'task-btn'
     const taskButtons = document.querySelectorAll('.task-btn');
     
-    
+    function determinarTurno(fechaISO) {
+        const fecha = new Date(fechaISO);
+        const hora = fecha.getHours();
+        const minutos = fecha.getMinutes();
+
+        if ((hora === 7 && minutos >= 0) || (hora > 7 && hora < 14) || (hora === 14 && minutos < 30)) {
+            return "Mañana";
+        } else if ((hora === 14 && minutos >= 30) || (hora > 14 && hora < 23) || (hora === 23 && minutos === 0)) {
+            return "Tarde";
+        } else {
+            return "Noche";
+        }
+    }
+
+    function obtenerFechaHoraChile() {
+        const fechaUTC = new Date();
+        const opciones = { timeZone: "America/Santiago", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false };
+        const formatoChile = new Intl.DateTimeFormat("es-CL", opciones).formatToParts(fechaUTC);
+        
+        let fechaChileISO = `${formatoChile[4].value}-${formatoChile[2].value}-${formatoChile[0].value}T${formatoChile[6].value}:${formatoChile[8].value}:${formatoChile[10].value}Z`;
+        return fechaChileISO;
+    }
 
     taskButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -19,11 +40,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const usuario = JSON.parse(localStorage.getItem('usuarioActual'));
             console.log(usuario.name, usuario.email);
 
-            // Crea un nuevo objeto de tarea
+            // Genera la fecha actual en formato ISO considerando la hora de Chile
+            const fechaChileISO = obtenerFechaHoraChile();
+            
+            // Crea un nuevo objeto de tarea con el turno calculado
             let nuevaTarea = {
                 codigoTarea: selectedTask,
-                operacionInicio: new Date().toISOString()
+                operacionInicio: fechaChileISO,
+                fecha: fechaChileISO,
+                turno: determinarTurno(fechaChileISO)
             };
+
+            console.log("Nueva tarea guardada:", nuevaTarea);
 
             // Agrega la nueva tarea al array
             tareaActual.push(nuevaTarea);
