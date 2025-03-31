@@ -6,9 +6,9 @@ const CambioBahiaSchema = new Schema({
     turno: { type: String },
     codigoTarea: { type: String },
     palletCambiado: { type: String} ,
-    bahiaInicial: { type: String },
-    bahiaFinal: { type: String },
-    transporte: { type: String },
+    bahiaInicial: { type: Number },
+    bahiaFinal: { type: Number },
+    transporte: { type: Number },
     duracion: { type: String },
     idUsuario: { type: String }
     

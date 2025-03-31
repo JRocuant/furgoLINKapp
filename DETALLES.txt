@@ -2,9 +2,8 @@
 - REALIZAR CONEXIÓN CON BASE DE DATOS-----------------------------------------
     - Vinculación de la aplicación con la Base de datos en nube
 
-
 - OBTENCIÓN DE DATOS ----------------------------------------------------------
-    (COMPLETADo)
+    (COMPLETADO)
     
 - LEER REPORTE PICKING --------------------------------------------------------
 	(COMPLETADO)
@@ -21,7 +20,14 @@
     - Transformar todos los alerts a pop-ups internos con formato propio de la aplicacion (Bootstrap de referencia)
     - Iniciar interfaz admin
 
- - - - - - - - - -TRABAJO REALIZADO (semana 05 - 24 de Marzo) - - - - - - - - - -
+
+
+ - - - - - - - - -TRABAJO REALIZADO (semana 06 --- 31 de Marzo) - - - - - - - - - -
+- Corrección Tipo de dato debe ser numérico transporte cambio de bahía base de datos
+- Corrección calculo de turnos
+
+
+ - - - - - - - - -TRABAJO REALIZADO (semana 05 --- 24 de Marzo) - - - - - - - - - -
  - TESTEOS EN TERRENO
 
 - USUARIO
@@ -42,7 +48,7 @@
     - Quitar restricción código ticket único
 
 
-- - - - - - - - - -TRABAJO REALIZADO (semana 04 - 17 de Marzo) - - - - - - - - - -
+- - - - - - - - - -TRABAJO REALIZADO (semana 04 --- 17 de Marzo) - - - - - - - - - -
 - REALIZAR CONEXIÓN CON BASE DE DATOS ---------------------------------------------
     - Establecer base de datos en la nube (Cluste MongoDB ATLAS 512 mb)
 
@@ -103,7 +109,7 @@
 
 
 
-- - - - - - - - - -TRABAJO REALIZADO (semana 03 - 10 de Marzo) - - - - - - - - - -
+- - - - - - - - - -TRABAJO REALIZADO (semana 03 --- 10 de Marzo) - - - - - - - - - -
 - OTROS AVANCES
     - Fusion vistas:
         - Cargar Camion
@@ -156,7 +162,7 @@
 
 
 
-- - - - - - - - - -TRABAJO REALIZADO (semana 01 - 24 de Febrero) - - - - - - - - - -
+- - - - - - - - - -TRABAJO REALIZADO (semana 01 --- 24 de Febrero) - - - - - - - - - -
 -RESTRUCTURACION BASE DE LA APLICACIÓN
     - Borrar templates y codigo innecesario (REALIZADO)
     - Establecer Esquemas/Modulos para MongoDB (REALIZADO)

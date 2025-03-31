@@ -8,9 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const hora = fecha.getHours();
         const minutos = fecha.getMinutes();
 
+        console.log(hora);
+        console.log(minutos);
+
         if ((hora === 7 && minutos >= 0) || (hora > 7 && hora < 14) || (hora === 14 && minutos < 30)) {
             return "Mañana";
-        } else if ((hora === 14 && minutos >= 30) || (hora > 14 && hora < 23) || (hora === 23 && minutos === 0)) {
+        } else if ((hora === 14 && minutos >= 30) || (hora > 14 && hora < 23)) {
             return "Tarde";
         } else {
             return "Noche";
@@ -19,10 +22,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function obtenerFechaHoraChile() {
         const fechaUTC = new Date();
-        const opciones = { timeZone: "America/Santiago", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false };
-        const formatoChile = new Intl.DateTimeFormat("es-CL", opciones).formatToParts(fechaUTC);
+        const opciones = { timeZone: "America/Santiago", hour12: false };
         
-        let fechaChileISO = `${formatoChile[4].value}-${formatoChile[2].value}-${formatoChile[0].value}T${formatoChile[6].value}:${formatoChile[8].value}:${formatoChile[10].value}Z`;
+        // Obtener la fecha y hora en la zona horaria de Chile
+        const fechaChile = new Intl.DateTimeFormat("es-CL", {
+            ...opciones,
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        }).format(fechaUTC);
+
+        // Extraer los valores de la fecha usando expresión regular
+        const [dia, mes, año, hora, minutos, segundos] = fechaChile.match(/\d+/g);
+        const fechaChileISO = `${año}-${mes}-${dia}T${hora}:${minutos}:${segundos}`;
+
+        console.log("Fecha en Chile (ISO):", fechaChileISO);
         return fechaChileISO;
     }
 
@@ -42,6 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Genera la fecha actual en formato ISO considerando la hora de Chile
             const fechaChileISO = obtenerFechaHoraChile();
+
+            console.log(fechaChileISO);
             
             // Crea un nuevo objeto de tarea con el turno calculado
             let nuevaTarea = {
