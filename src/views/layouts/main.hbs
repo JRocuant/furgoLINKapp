@@ -23,20 +23,10 @@
     {{>messages}}
     {{>errors}}
     {{{body}}}
+    {{>footer}}
 </body>
 
-<footer class="footer">
-    <div class="dropdown">
-        <button class="dropdown-btn" onclick="toggleDropdown()">Opciones de desarrollo</button>
-        <div class="dropdown-content" id="dropdownMenu">
-            <a href="/tareas/add">Escanear Ticket</a>
-            <a href="/tareass">Ver Tickets Escaneados</a>
-            <a href="/">volver a login Fake</a>
-            <a href="/users/signin">login Real</a>
-            <a href="/users/signup">Registrar usuario Real</a>
-        </div>
-    </div>
-</footer>
+
 
 <script>
     function toggleDropdown() {

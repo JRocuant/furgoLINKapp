@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const UserSchema = new Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
+    rol: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     id: { type: String }  // Agregar un campo id como string
 }, {

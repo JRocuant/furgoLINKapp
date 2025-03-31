@@ -17,7 +17,7 @@ usersCtrl.renderSignUpForm = (req, res) => {
 usersCtrl.signup = async (req, res) => {
     console.log(req.body)
     const errors = [];
-    const {name, email, password, confirm_password} = req.body;
+    const {name, email, password, confirm_password, rol} = req.body;
     if (password != confirm_password) {
         errors.push({text: 'Las Contraseñas no coinciden'});//alerta falsh error confirm_password
     }
@@ -36,7 +36,7 @@ usersCtrl.signup = async (req, res) => {
             req.flash('error_msg', 'Este correo electronico ya se encuentra en uso.');
             res.redirect('/users/signup');
         } else {
-            const newUser = new User({name, email, password});
+            const newUser = new User({name, email, password, rol});
             newUser.password = await newUser.encriptarPassword(password)
             await newUser.save();
             //req.flash('success_msg', 'Registro exitoso');
