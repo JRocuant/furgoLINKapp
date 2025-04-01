@@ -40,7 +40,7 @@ usersCtrl.signup = async (req, res) => {
             newUser.password = await newUser.encriptarPassword(password)
             await newUser.save();
             //req.flash('success_msg', 'Registro exitoso');
-            res.redirect('/users/signin');
+            res.redirect('/');
         }
     }
 };
@@ -51,19 +51,19 @@ usersCtrl.renderSigninForm = (req, res) => {
 
 
 
-usersCtrl.signin = (req, res, next) => {  
-    passport.authenticate('local', {  
-        failureRedirect: '/users/signin',
-        failureFlash: true  
-    }, (err, user, info) => {  
+usersCtrl.signin = (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
         if (err) return next(err);
-        if (!user) return res.redirect('/users/signin');
+        if (!user) {
+            req.flash('error_msg', info.message);
+            return res.redirect('/');
+        }
 
-        req.logIn(user, (err) => {  
+        req.logIn(user, (err) => {
             if (err) return next(err);
             console.log(user);
 
-            const { name, email, _id } = user;  
+            const { name, email, _id } = user;
             const transportes = {};
             const palletMaximo = {};
             let headers = [];
@@ -94,7 +94,6 @@ usersCtrl.signin = (req, res, next) => {
                         palletMaximo[transporte] = Math.max(...transportes[transporte]);
                     }
 
-                    // Asegurarse de que los datos han sido procesados antes de renderizar
                     res.render('users/postlogin', { 
                         name, 
                         email, 
@@ -110,6 +109,7 @@ usersCtrl.signin = (req, res, next) => {
         });
     })(req, res, next);
 };
+
 
 
 /*
