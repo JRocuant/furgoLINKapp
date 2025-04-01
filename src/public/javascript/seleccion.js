@@ -5,8 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function determinarTurno(fechaISO) {
         const fecha = new Date(fechaISO);
-        const hora = fecha.getHours();
-        const minutos = fecha.getMinutes();
+        fecha.setMinutes(fecha.getMinutes() + fecha.getTimezoneOffset()); // Ajustar a UTC
+        const opciones = { timeZone: "America/Santiago", hour: "2-digit", minute: "2-digit", hour12: false };
+        const formatoChile = new Intl.DateTimeFormat("es-CL", opciones).formatToParts(fecha);
+        
+        const hora = parseInt(formatoChile[0].value, 10);
+        const minutos = parseInt(formatoChile[2].value, 10);
 
         console.log(hora);
         console.log(minutos);
@@ -22,24 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function obtenerFechaHoraChile() {
         const fechaUTC = new Date();
-        const opciones = { timeZone: "America/Santiago", hour12: false };
+        const opciones = { timeZone: "America/Santiago", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false };
+        const formatoChile = new Intl.DateTimeFormat("es-CL", opciones).formatToParts(fechaUTC);
         
-        // Obtener la fecha y hora en la zona horaria de Chile
-        const fechaChile = new Intl.DateTimeFormat("es-CL", {
-            ...opciones,
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit"
-        }).format(fechaUTC);
-
-        // Extraer los valores de la fecha usando expresión regular
-        const [dia, mes, año, hora, minutos, segundos] = fechaChile.match(/\d+/g);
-        const fechaChileISO = `${año}-${mes}-${dia}T${hora}:${minutos}:${segundos}`;
-
-        console.log("Fecha en Chile (ISO):", fechaChileISO);
+        let fechaChileISO = `${formatoChile[4].value}-${formatoChile[2].value}-${formatoChile[0].value}T${formatoChile[6].value}:${formatoChile[8].value}:${formatoChile[10].value}Z`;
         return fechaChileISO;
     }
 
