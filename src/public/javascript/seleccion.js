@@ -3,18 +3,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Selecciona todos los botones de tareas con la clase 'task-btn'
     const taskButtons = document.querySelectorAll('.task-btn');
     
-    function determinarTurno(fechaISO) {
+    function determinarTurno(fechaISO) { //Funcion para determinar hora Chile
         const fecha = new Date(fechaISO);
         fecha.setMinutes(fecha.getMinutes() + fecha.getTimezoneOffset()); // Ajustar a UTC
         const opciones = { timeZone: "America/Santiago", hour: "2-digit", minute: "2-digit", hour12: false };
         const formatoChile = new Intl.DateTimeFormat("es-CL", opciones).formatToParts(fecha);
         
-        const hora = parseInt(formatoChile[0].value, 10);
+        //Parse de Horas y minutos actual para calculo de turno
+        const hora = parseInt(formatoChile[0].value, 10); 
         const minutos = parseInt(formatoChile[2].value, 10);
 
         console.log(hora);
         console.log(minutos);
 
+        //Condicionales calculo de turno
         if ((hora === 7 && minutos >= 0) || (hora > 7 && hora < 14) || (hora === 14 && minutos < 30)) {
             return "Mañana";
         } else if ((hora === 14 && minutos >= 30) || (hora > 14 && hora < 23)) {

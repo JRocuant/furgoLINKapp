@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Coke Kronos</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/espera.css">
+    <link rel="stylesheet" href="/css/footer.css">
+
+    <style>
+        * /* Definición de variables CSS */
+:root {
+    --fondo-celeste: #e0f7fa;
+    --celeste-oscuro: #00796b;
+    --celeste-claro: #b2dfdb;
+    --blanco: #ffffff;
+    --gris-claro: #ddd;
+    --gris-medio: #bbb;
+    --negro: #000;
+    --sombra-cuadro: rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos generales */
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+    }
+
+    body {
+        display: flex;
+        height: 100vh;
+        background: var(--fondo-celeste);
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Sidebar */
+
+    .sidebar {
+        width: 220px;
+        background: var(--celeste-oscuro); /* Ahora es un fondo oscuro */
+        padding: 20px;
+        border-right: 2px solid var(--negro);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px var(--sombra-cuadro);
+    }
+
+    /* Ajustar color de los botones para que contrasten con el fondo oscuro */
+    
+
+    .sidebar h2 {
+        text-align: center;
+        margin-bottom: 15px;
+        color: var(--celeste-oscuro);
+        font-size: 22px;
+    }
+
+    .menu-button {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        background: var(--blanco); /* Fondo claro para destacar */
+        border: 2px solid var(--blanco);
+        text-align: center;
+        text-decoration: none;
+        color: var(--celeste-oscuro); /* Texto oscuro para contraste */
+        font-weight: bold;
+        border-radius: 8px;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .menu-button:hover {
+        background: var(--celeste-claro);
+        transform: scale(1.05);
+    }
+
+    /* Contenido principal */
+    .content {
+        flex-grow: 1;
+        padding: 20px;
+        background: var(--blanco);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px var(--sombra-cuadro);
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--negro);
+        padding-bottom: 10px;
+        color: var(--celeste-oscuro);
+        font-size: 18px;
+    }
+
+    /* Tabla de tareas */
+    .tasks-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    .tasks-table th, .tasks-table td {
+        border: 1px solid var(--negro);
+        padding: 10px;
+        text-align: left;
+    }
+
+    .tasks-table th {
+        background: var(--gris-claro);
+        color: var(--negro);
+    }
+
+    /* Mensajes importantes */
+    .important-messages {
+        background: var(--celeste-claro);
+        padding: 12px;
+        margin-top: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px var(--sombra-cuadro);
+    }
+
+    /* Tips */
+    .tip {
+        margin-top: 20px;
+        padding: 12px;
+        background: var(--gris-claro);
+        width: 220px;
+        text-align: center;
+        border-radius: 12px;
+        font-weight: bold;
+        color: var(--celeste-oscuro);
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Menú</h2>
+        <a href="#" class="menu-button">Usuarios</a>
+        <a href="#" class="menu-button">Transportes</a>
+        <a href="#" class="menu-button">Cargar Camión</a>
+        <a href="#" class="menu-button">Retirar Pallet</a>
+        <a href="#" class="menu-button">Cambio entre Bahías</a>
+        <a href="#" class="menu-button">Cerrar Sesión</a>
+    </div>
+    <div class="content">
+        <div class="header">
+            <h1>¡Bienvenido!</h1>
+            <div><strong>Miércoles 2 de abril de 2025</strong><br>16:00 hrs</div>
+        </div>
+        <h2>Últimas tareas</h2>
+        <table class="tasks-table">
+            <tr>
+                <th>Usuario</th>
+                <th>Tarea</th>
+                <th>Tiempo de Ejecución</th>
+                <th>Pallet</th>
+            </tr>
+            <tr>
+                <td>• Juan Saldoval</td>
+                <td>• Cargar Camión</td>
+                <td>• 00:04:34</td>
+                <td>• 00056530002</td>
+            </tr>
+            <tr>
+                <td>• Andrés Romero</td>
+                <td>• Cambio entre bahías</td>
+                <td>• 00:01:22</td>
+                <td>• 00021310001</td>
+            </tr>
+        </table>
+        <h2>Mensajes importantes</h2>
+        <div class="important-messages">
+            • Bahía de carga 21 cerrada temporalmente
+        </div>
+        <div class="tip">
+            <strong>Tip del día</strong><br>
+            ¡Revisa que los códigos estén bien impresos!
+        </div>
+    </div>
+</body>
+</html>

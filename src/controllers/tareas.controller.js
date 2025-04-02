@@ -20,8 +20,8 @@ tareasCtrl.crearTarea = async (req,res) => {
 };
 
 tareasCtrl.renderTareas = async(req,res) => {
-    const tareas = await Tarea.find().lean();
-    res.render('tareas/all-tareas', { tareas });
+    const cargarcamions = await CargarCamion.find().lean();
+    res.render('tareas/all-tareas', { cargarcamions });
 };
 
 tareasCtrl.renderEditForm = async(req,res) => {

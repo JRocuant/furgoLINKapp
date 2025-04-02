@@ -63,7 +63,7 @@ usersCtrl.signin = (req, res, next) => {
             if (err) return next(err);
             console.log(user);
 
-            const { name, email, _id } = user;
+            const { name, email, _id, rol } = user;
             const transportes = {};
             const palletMaximo = {};
             let headers = [];
@@ -94,6 +94,14 @@ usersCtrl.signin = (req, res, next) => {
                         palletMaximo[transporte] = Math.max(...transportes[transporte]);
                     }
 
+                    // Determinar a qué ruta redirigir según el rol del usuario
+                    if (rol === 'administrador' || rol === 'jefeDeTurno') {
+                        return res.redirect('/admin/inicio'); // Ruta para administrador o jefe de turno
+                    } else if (rol === 'operador') {
+                        return res.redirect('/tareas/seleccion'); // Ruta para operador
+                    }
+
+                    // Si el rol es desconocido, renderizar la vista post-login
                     res.render('users/postlogin', { 
                         name, 
                         email, 
@@ -109,6 +117,7 @@ usersCtrl.signin = (req, res, next) => {
         });
     })(req, res, next);
 };
+
 
 
 
