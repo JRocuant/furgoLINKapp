@@ -95,17 +95,32 @@ usersCtrl.signin = (req, res, next) => {
                     }
 
                     // Determinar a qué ruta redirigir según el rol del usuario
-                    if (rol === 'administrador' || rol === 'jefeDeTurno') {
-                        return res.redirect('/admin/inicio'); // Ruta para administrador o jefe de turno
+                    /*if (rol === 'administrador' || rol === 'jefeDeTurno') {
+                        return res.render('users/postloginAdmin', { // Ruta para administrador o jefe de turno
+                            name, 
+                            email, 
+                            id: _id,
+                            rol, 
+                            transportes: JSON.stringify(transportes),
+                            palletMaximo: JSON.stringify(palletMaximo) 
+                        }); 
                     } else if (rol === 'operador') {
-                        return res.redirect('/tareas/seleccion'); // Ruta para operador
-                    }
+                        return res.render('users/postlogin', { 
+                            name, 
+                            email, 
+                            id: _id,
+                            rol, 
+                            transportes: JSON.stringify(transportes),
+                            palletMaximo: JSON.stringify(palletMaximo) 
+                        }); // Ruta para operador
+                    }*/
 
                     // Si el rol es desconocido, renderizar la vista post-login
                     res.render('users/postlogin', { 
                         name, 
                         email, 
-                        id: _id, 
+                        id: _id,
+                        rol, 
                         transportes: JSON.stringify(transportes),
                         palletMaximo: JSON.stringify(palletMaximo) 
                     });

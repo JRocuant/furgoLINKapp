@@ -10,7 +10,9 @@
         const usuarioActual = {
             name: "{{name}}",
             email: "{{email}}",
-            id: "{{id}}" // Aquí agregamos el ObjectId
+            id: "{{id}}", // Aquí agregamos el ObjectId
+            rol: "{{rol}}"
+            
         };
         localStorage.setItem('usuarioActual', JSON.stringify(usuarioActual));
 
@@ -21,7 +23,17 @@
         localStorage.setItem('transportes', JSON.stringify(transportes));
         localStorage.setItem('palletMaximo', JSON.stringify(palletMaximo));
 
+        const rol = usuarioActual.rol;
+
+        if (rol === "administrador" || rol === "jefeDeTurno") {
+            window.location.href = "/admin/inicio";
+        } else if (rol === "operador") {
+            window.location.href = "/tareas/seleccion";
+        } else {
+            window.location.href = "/"; 
+        }
+
         // Redirigimos
-        window.location.href = "/tareas/seleccion";
+        //window.location.href = "/tareas/seleccion";
     </script>
 </body>
