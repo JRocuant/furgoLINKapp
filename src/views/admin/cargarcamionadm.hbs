@@ -37,16 +37,25 @@
         <th>Cargas</th>
         <th>Código Ticket</th>
       </tr>
+      {{#each registros}}
       <tr>
-        <td>• Juan Balmaceda</td>
-        <td>• Cargar Camión<br></td>
-        <td>• 07:30:23</td>
-        <td>• Mañana</td>
-        <td>• 2025-04-01</td>
-        <td>• 6183828</td>
-        <td>• 1, 2, 3, 4</td>
-        <td>• 000777777000000000000001</td>
-      </tr>
+        <td>{{nombreUsuario}}</td>
+        <td>{{codigoTarea}}</td>
+        <td>{{duracion}}</td>
+        <td>{{turno}}</td>
+        <td>{{formatDate operacionInicio}}</td>
+        <td>{{transporte}}</td>
+        <td>
+          <select >
+            {{#each listaCargas}}
+              <option>{{this}}</option>
+            {{/each}}
+          </select>
+        </td>
+        <td>{{codigoTicket}}</td>
+        </tr>
+      {{/each}}
+
     </table>
 
     <br>

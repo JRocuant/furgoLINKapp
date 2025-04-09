@@ -18,7 +18,13 @@ app.engine('.hbs',engine({
     defaultLayout: 'main', //Layout Preddeterminado es main.hbs
     layoutsDir: path.join(app.get('views'), 'layouts'), //Carpeta para los layouts
     partialsDir: path.join(app.get('views'), 'partials'), //Carpeta para los partials (modulos de html)
-    extname: '.hbs'
+    extname: '.hbs',
+    helpers: {
+        formatDate: function(date) {
+            if (!date) return '';
+            return new Date(date).toISOString().split('T')[0];
+        }
+    }
 }));
 app.set('view engine', '.hbs');
 
