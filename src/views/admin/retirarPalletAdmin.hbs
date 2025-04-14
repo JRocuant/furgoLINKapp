@@ -33,21 +33,24 @@
         <th>Tiempo ejecución</th>
         <th>Turno</th>
         <th>Fecha</th>
-        <th>Patente</th>
+        <th>Transporte</th>
         <th>Bahía de Carga</th>
-        <th>Código Ticket</th>
+        <th>Código Ticket del Pallet</th>
       </tr>
+      {{#each registros}}
       <tr>
-        <td>• Juan Balmaceda</td>
-        <td>• Cargar Camión<br></td>
-        <td>• 07:30:23</td>
-        <td>• Mañana</td>
-        <td>• 2025-04-01</td>
-        <td>• 6183828</td>
-        <td>• 22</td>
-        <td>• 000777777000000000000001</td>
+        <td>{{nombreUsuario}}</td>
+        <td>{{codigoTarea}}</td>
+        <td>{{duracion}}</td>
+        <td>{{turno}}</td>
+        <td>{{formatDate operacionInicio}}</td>
+        <td>{{transporte}}</td>
+        <td>{{bahiaCarga}}</td>
+        <td>{{codigoTicket}}</td>
       </tr>
+      {{/each}}
     </table>
+
 
     <br>
 

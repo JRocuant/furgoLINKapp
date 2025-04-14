@@ -3,6 +3,7 @@ const adminCtrl = {}; // Objeto controlador para funciones del panel de administ
 // Modelos requeridos para acceder a la base de datos
 const CargarCamion = require('../models/CargarCamion'); 
 const CambioBahia = require('../models/CambioBahia');
+const RetirarPallet = require('../models/RetirarPallet');
 const User = require('../models/User');
 
 // Renderiza la vista principal del panel de administración
@@ -68,8 +69,31 @@ adminCtrl.renderCargarCamionAdmin = async (req, res) => {
 };
 
 // Renderiza la vista de administración de retiro de pallets
-adminCtrl.renderRetirarPalletAdmin = (req,res) => {
-    res.render('admin/retirarpalletadm');
+adminCtrl.renderRetirarPalletAdmin = async (req, res) => {
+    try {
+        // Obtener todos los registros de retiro de pallets
+        const registros = await RetirarPallet.find().lean();
+
+        // Obtener usuarios (id y nombre)
+        const usuarios = await User.find({}, 'id name').lean();
+        const mapaUsuarios = {};
+        usuarios.forEach(usuario => {
+            mapaUsuarios[usuario.id] = usuario.name;
+        });
+
+        // Agregar el nombre del usuario a cada registro
+        const registrosConNombre = registros.map(registro => ({
+            ...registro,
+            nombreUsuario: mapaUsuarios[registro.idUsuario] || 'Desconocido'
+        }));
+
+        // Renderizar la vista con los datos
+        res.render('admin/retirarPalletAdmin', { registros: registrosConNombre });
+
+    } catch (error) {
+        console.error('Error cargando registros de retiro de pallets:', error);
+        res.status(500).send('Error al cargar los datos');
+    }
 };
 
 // Renderiza la vista de administración de cambios entre bahías con datos procesados
