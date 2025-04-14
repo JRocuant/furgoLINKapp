@@ -23,7 +23,7 @@ adminCtrl.renderTransportes = (req,res) => {
 };
 
 // Renderiza la vista de administración de carga de camiones con datos procesados
-adminCtrl.renderCargarcamionadm = async (req, res) => {
+adminCtrl.renderCargarCamionAdmin = async (req, res) => {
     try {
         // Obtiene todos los registros de carga de camiones desde la base de datos
         const registros = await CargarCamion.find().lean();
@@ -58,7 +58,7 @@ adminCtrl.renderCargarcamionadm = async (req, res) => {
         });
 
         // Renderiza la vista con los registros procesados
-        res.render('admin/cargarcamionadm', { registros: registrosConNombre });
+        res.render('admin/cargarCamionAdmin', { registros: registrosConNombre });
 
     } catch (error) {
         // Captura y muestra errores
@@ -68,12 +68,12 @@ adminCtrl.renderCargarcamionadm = async (req, res) => {
 };
 
 // Renderiza la vista de administración de retiro de pallets
-adminCtrl.renderRetirarpalletadm = (req,res) => {
+adminCtrl.renderRetirarPalletAdmin = (req,res) => {
     res.render('admin/retirarpalletadm');
 };
 
 // Renderiza la vista de administración de cambios entre bahías con datos procesados
-adminCtrl.renderCambioentrebahiasadm = async (req, res) => {
+adminCtrl.renderCambioEntreBahiasAdmin = async (req, res) => {
     try {
         // Obtiene todos los registros de cambios entre bahías
         const registros = await CambioBahia.find().lean();
@@ -92,7 +92,7 @@ adminCtrl.renderCambioentrebahiasadm = async (req, res) => {
         }));
 
         // Renderiza la vista con los registros procesados
-        res.render('admin/cambioentrebahiasadm', { registros: registrosConNombre });
+        res.render('admin/cambioEntreBahiasAdmin', { registros: registrosConNombre });
 
     } catch (error) {
         // Captura y muestra errores

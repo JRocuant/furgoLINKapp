@@ -2,7 +2,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard - Coke Kronos</title>
-  <link rel="stylesheet" href="/css/adminhome.css" />
+  <link rel="stylesheet" href="/css/retirarpalletadm.css" />
   <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
     <button onclick="window.location.href='/admin/usuarios'">Usuarios</button>
     <button onclick="window.location.href='/admin/transportes'">Transportes</button>
     <button onclick="window.location.href='/admin/cargarCamionAdmin'">Cargar Camión</button>
-    <button onclick="window.location.href='/admin/retirarPalletAdmin'">Retiro de Pallet</button>
+    <button onclick="window.location.href='/admin/inicio'">Inicio</button>
     <button onclick="window.location.href='/admin/cambioEntreBahiasAdmin'">Cambio entre Bahías</button>
     <button onclick="window.location.href='/admin/tiempos'">Tiempos</button>
     <button class="logout-btn" id="logoutBtn">Cerrar Sesión</button>
@@ -19,45 +19,38 @@
 
   <div class="content">
     <div class="header">
-      <h1>¡Bienvenido!</h1>
+      <h1>Lista de Pallets Listos Retirados</h1>
       <div class="fecha">
         <strong>Miércoles 2 de abril de 2025</strong><br />
         16:00 hrs
       </div>
     </div>
 
-    <h2 class="titulo-central">Últimas tareas</h2>
     <table class="tasks-table">
       <tr>
         <th>Usuario</th>
         <th>Tarea</th>
-        <th>Tiempo de Ejecución</th>
-        <th>Pallet</th>
+        <th>Tiempo ejecución</th>
+        <th>Turno</th>
+        <th>Fecha</th>
+        <th>Patente</th>
+        <th>Bahía de Carga</th>
+        <th>Código Ticket</th>
       </tr>
       <tr>
-        <td>• Juan Saldoval</td>
-        <td>• Cargar Camión</td>
-        <td>• 00:04:34</td>
-        <td>• 00056530002</td>
-      </tr>
-      <tr>
-        <td>• Andrés Romero</td>
-        <td>• Cambio entre bahías</td>
-        <td>• 00:01:22</td>
-        <td>• 00021310001</td>
+        <td>• Juan Balmaceda</td>
+        <td>• Cargar Camión<br></td>
+        <td>• 07:30:23</td>
+        <td>• Mañana</td>
+        <td>• 2025-04-01</td>
+        <td>• 6183828</td>
+        <td>• 22</td>
+        <td>• 000777777000000000000001</td>
       </tr>
     </table>
 
-    <h2 class="titulo-central">Mensajes importantes</h2>
-    <div class="important-messages">
-      • Bahía de carga 21 cerrada temporalmente
-    </div>
+    <br>
 
-    <div class="tip">
-        <p class="tip-title">💡 <strong>Tip del día</strong></p>
-        <p class="tip-text">¡Revisa que los códigos estén bien impresos!</p>
-      </div>      
-  </div>
 
 <script>
   const logoutBtn = document.getElementById('logoutBtn');
