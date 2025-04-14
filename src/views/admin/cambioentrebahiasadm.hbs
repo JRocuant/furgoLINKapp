@@ -37,35 +37,31 @@
         <th>Bahía Final</th>
         <th>Código Ticket del Pallet Cambiado</th>
       </tr>
+      {{#each registros}}
       <tr>
-        <td>• Juan Balmaceda</td>
-        <td>• Cargar Camión<br></td>
-        <td>• 07:30:23</td>
-        <td>• Mañana</td>
-        <td>• 2025-04-01</td>
-        <td>• 22</td>
-        <td>• 23</td>
-        <td>• 000777777000000000000001</td>
+        <td>{{nombreUsuario}}</td>
+        <td>{{codigoTarea}}</td>
+        <td>{{duracion}}</td>
+        <td>{{turno}}</td>
+        <td>{{formatDate operacionInicio}}</td>
+        <td>{{bahiaInicial}}</td>
+        <td>{{bahiaFinal}}</td>
+        <td>{{palletCambiado}}</td>
       </tr>
+      {{/each}}
     </table>
-
     <br>
-
 
 <script>
   const logoutBtn = document.getElementById('logoutBtn');
   if (logoutBtn) {
       logoutBtn.addEventListener('click', () => {
-          // Limpia sessionStorage y localStorage al cerrar sesión
           sessionStorage.clear();
           localStorage.clear();
           localStorage.removeItem('tareaActual');
-
-          // Redirige al usuario a la página de inicio de sesión
           window.location.href = '/';
-      }); // <-- ESTA ES LA LLAVE QUE FALTABA
+      });
   }
 </script>
 
 </body>
-</html>
