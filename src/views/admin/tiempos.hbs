@@ -9,11 +9,11 @@
   <div class="sidebar">
     <h2><strong>Dashboard</strong></h2>
     <button onclick="window.location.href='/admin/usuarios'">Usuarios</button>
-    <button onclick="window.location.href='/admin/transportes'">Transportes</button>
+    <!-- <button onclick="window.location.href='/admin/transportes'">Transportes</button> -->
     <button onclick="window.location.href='/admin/cargarCamionAdmin'">Cargar Camión</button>
     <button onclick="window.location.href='/admin/retirarPalletAdmin'">Retirar Pallet</button>
     <button onclick="window.location.href='/admin/cambioEntreBahiasAdmin'">Cambio entre Bahías</button>
-    <button onclick="window.location.href='/admin/tiempos'">Tiempos</button>
+    <button onclick="window.location.href='/admin/inicio'">Inicio</button>
     <button class="logout-btn" id="logoutBtn">Cerrar Sesión</button>
   </div>
 
@@ -26,14 +26,14 @@
       </div>
     </div>
 
-    <!-- Resumen general -->
+    <!-- Resumen Mensual -->
     <div class="section">
-      <h2>Resumen general</h2>
+      <h2>Resumen Mensual</h2>
       <table class="summary-table">
         <tr>
-          <th>Actividades con mayor tiempo</th>
-          <th>Tiempo total de las actividades realizadas</th>
-          <th>Turno</th>
+          <th>Operaciones</th>
+          <th>Tiempo total </th>
+          <th>Turnos</th>
         </tr>
         <tr>
           <td>
@@ -55,14 +55,14 @@
       </table>
     </div>
 
-    <!-- Resumen diario -->
+    <!-- Resumen Semanal -->
     <div class="section">
-      <h2>Resumen diario</h2>
+      <h2>Resumen Semanal</h2>
       <table class="summary-table">
         <tr>
-          <th>Tiempo total de actividades hoy</th>
-          <th>Actividad más frecuente</th>
-          <th>Turno más productivo</th>
+          <th>Operaciones</th>
+          <th>Tiempo total</th>
+          <th>Turnos</th>
         </tr>
         <tr>
           <td>• 20:32:45</td>
@@ -72,31 +72,51 @@
       </table>
     </div>
 
-    <!-- Resumen por usuario -->
+    <!-- Cantidad de operaciones totales -->
     <div class="section">
-      <h2>Resumen por usuario</h2>
+      <h2>Operaciones Totales</h2>
       <table class="tasks-table">
         <tr>
-          <th>Usuario</th>
-          <th>Turno</th>
-          <th>Total tareas</th>
-          <th>Tiempo total</th>
-          <th>Fecha</th>
-          <th>Tiempo promedio por tarea</th>
-          <th>Actividad más frecuente</th>
+          <th>Cambios de Bahía</th>
+          <th>Pallets Retirados de Picking</th>
+          <th>Pallets Cargados</th>
+          <th>Camiones Cargados</th>
         </tr>
         <tr>
-          <td>• Juan Sandoval</td>
+          <td>• 55</td>
+          <td>• 360</td> <!-- Lueog se deben fusonar algunos cuando son más de 10 -->
+          <td>• 345</td>
+          <td>• 110</td>
+        </tr>
+      </table>
+    </div>
+    <!-- Cantidad de operaciones totales -->
+    <div class="section">
+      <h2>Rendimiento General</h2>
+      <table class="tasks-table">
+        <tr>
+          <th>Turno más rapido</th> <!-- Tiempo medio por tareas menor -->
+          <th>Actividad más Frecuente</th> <!-- Más veces realizada -->
+          <th>Actividad más demandante</th> <!-- Mayor tiempo -->
+          <th>Turno más lento</th> <!-- Tiempo medio por tareas mayor -->
+        </tr>
+        <tr>
+          <td>• Tarde</td>
+          <td>• Retirar Pallet</td> <!-- Luego se deben fusonar algunos cuando son más de 10 -->
+          <td>• Cargar Camion</td>
           <td>• Mañana</td>
-          <td>• 30</td>
-          <td>• 03:24:27</td>
-          <td>• 2025-04-01</td>
-          <td>• 00:02:27</td>
-          <td>• Retirar Pallet</td>
+        </tr>
+        <tr>
+          <td>• 6 min</td>
+          <td>• 360 veces</td> <!-- Luego se deben fusonar algunos cuando son más de 10 -->
+          <td>• 8 min</td>
+          <td>• 10 min</td>
         </tr>
       </table>
     </div>
   </div>
+
+  
 
   <script>
     const logoutBtn = document.getElementById('logoutBtn');

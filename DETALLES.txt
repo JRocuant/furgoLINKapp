@@ -1,30 +1,32 @@
-- - - - - - - - - -TAREAS PENDIENTES ETAPA ACTUAL (backend)- - - - - - - - - -
-- REALIZAR CONEXIÓN CON BASE DE DATOS-----------------------------------------
-    - Vinculación de la aplicación con la Base de datos en nube
+Este archivo documenta el progreso semana a semana del desarrollo de la aplicación web coke-KRONOS
+Las tareas aqui descritas fueron realizadas por José Rocuant Rodríguez estudiante en practica de la 
+Universidad de O'Higgins encargado del desarrollo en backend, conexión con la base de datos y pruebas en terreno.
 
-- OBTENCIÓN DE DATOS ----------------------------------------------------------
-    (COMPLETADO)
-    
-- LEER REPORTE PICKING --------------------------------------------------------
-	(COMPLETADO)
-    
-- USUARIOS --------------------------------------------------------------------
-    - OPERADOR
-        (COMPLETADO)
+(Se contemplan los avances desde el lunes 24 de febrero hasta el viernes 11 de abril, 
+aunque el proyecto sigue en desarrollo y la practica laboral ha sido extendida hasta el 5 de mayo)
 
-    - ADMINISTRADOR
-        - Gestionar usuarios
+- - - - - - - - -TRABAJO REALIZADO (semana 07 --- 07 de Abril) - - - - - - - - - -
+ MÓDULO ADMINISTRACIÓN
+- Conexión con Vistas con base de datos
 
-- INTERFAZ --------------------------------------------------------------------
-    - alert para no agregar más pallets en carga camión, existe la restricción falta el alert
-    - Transformar todos los alerts a pop-ups internos con formato propio de la aplicacion (Bootstrap de referencia)
-    - Iniciar interfaz admin
-
+USUARIO
+- Redireccionamiento según Rol de usuario implementado
 
 
  - - - - - - - - -TRABAJO REALIZADO (semana 06 --- 31 de Marzo) - - - - - - - - - -
-- Corrección Tipo de dato debe ser numérico transporte cambio de bahía base de datos
-- Corrección calculo de turnos
+ MÓDULO ADMINISTRACIÓN
+- Establecer Rutas modulo Administración
+- Establecer Controladores modulo Administración
+- Establecer Vistas modulo Administración
+- Funcionalidad de redireccion según rol usando passport
+
+USUARIO
+- Corrección error login vista de signin en index, no validaba correctamente
+
+TAREAS
+- Corrección error almacenamiento hora en operacionInicio
+- Corrección calculo de turno segun horario.
+- Corrección Tipo de dato atributo transporte Schema cambioBahía base de datos.
 
 
  - - - - - - - - -TRABAJO REALIZADO (semana 05 --- 24 de Marzo) - - - - - - - - - -
@@ -34,8 +36,8 @@
         - id stingingfy en user schema
         
 - LEER REPORTE PICKING
-        - Leer .csv
-        - Parsear Transporte y pallets
+        - Leer archivo en formatoCSV
+        - Parsear Transporte y pallets desde código de Ticket
         - Aplicarlo en función cargarCamion
         - Aplicar valor de "pallet Maximo" al hbs antes del evento del boton
 
@@ -49,21 +51,21 @@
 
 
 - - - - - - - - - -TRABAJO REALIZADO (semana 04 --- 17 de Marzo) - - - - - - - - - -
-- REALIZAR CONEXIÓN CON BASE DE DATOS ---------------------------------------------
-    - Establecer base de datos en la nube (Cluste MongoDB ATLAS 512 mb)
+- REALIZAR CONEXIÓN CON BASE DE DATOS 
+    - Establecer base de datos en la nube (Cluste MongoDB ATLAS 512 mb) para futuro despliegue
 
-- VERIFICACIÓN DE TAREAS ----------------------------------------------------------
+- VERIFICACIÓN DE TAREAS 
     - CAMBIO BAHIA
         - cambiarBahia()
             - Iniciar Tarea
             - Escanear bahía de carga inicial
             - Escanear Pallet
             --- cambiar pallet de bahía de carga ---
-            - Escanear pallets cambiados (Loop)
+            - Escanear pallet cambiado
             - Escanear bahía de carga final
             - Terminar Tarea
 
-- OBTENCIÓN DE DATOS----------------------------------------------------------------
+- OBTENCIÓN DE DATOS
     - PARSEAR CODIGO DE TICKET
         - Obtener transporte
 
@@ -73,7 +75,7 @@
         - obtener id
 
         - OPERADOR
-            - Mostrar nombre de usuario en pantalla
+            - Mostrar nombre de usuario en la interfaz
 
     - TAREA
         - Obtener Tiempo inicio de Tarea 
@@ -88,7 +90,7 @@
 
         - DATOS TAREA CARGAR CAMION
             - Obtener codigoTarea
-            - Obtener bahiaCarga
+            - Obtener codigoTicket
             - Obtener codigoTicketCargas[]
         
         - DATOS TAREA CAMBIO BAHIA
@@ -98,28 +100,21 @@
 
 - OTROS AVANCES
     - Vinculación Usuario tarea
-    - Actualización modelos base de datos (Incluyendo lo del Usuario)
+    - Actualización modelos base de datos (Incluyendo ID del Usuario)
     - códigos que sean únicos en ticket
-
-- DANIELA AVANCES (push indirecto)
-    - Error pallet repetido con el mismo código en la interfaz, vista escanearPalletCambio (ARREGLADO)
-    - Error códigos diferentes carga camión
-    - Texto indicando Bahía de origen, bajo confirmar pallet, antes de bahía destino vista escanearPalletCambio
-    - Nombre de usuario en la interfaz
-
 
 
 - - - - - - - - - -TRABAJO REALIZADO (semana 03 --- 10 de Marzo) - - - - - - - - - -
 - OTROS AVANCES
-    - Fusion vistas:
-        - Cargar Camion
-        - Cambio de bahia
-        - Retirar Pallet
+    - Conexión vistas:
+        - Operación Cargar Camion
+        - Operación Cambio de bahia
+        - Operación Retirar Pallet
     - Creación de nuevos controladores
     - Creacion de Nuevas Rutas
     - Solucion de errores Rutas estilos CSS
     - Conexion login con base de datos
-    - Revertir cambios ultimo commit para iniciar implmentación de local storage al construir tareas
+    - Implmentación de local storage al construir tareas
 
 - - - - - - - - - -TRABAJO REALIZADO (semana 02 - 3 de Marzo) - - - - - - - - - -
 - VERIFICACIÓN DE TAREAS
@@ -140,7 +135,8 @@
             - Terminar Tarea
 
 - OBTENCIÓN DE DATOS 
-    - Obtener Código de Ticket (idTarea) y guardarlo en la base de datos con el modelo/Schema Tarea 
+    - Obtener Código de Ticket (idTarea) y guardarlo en la base de datos con el modelo/Schema 
+    de la Tarea seleccionada
     
     - USUARIO
         - Obtener id
@@ -149,17 +145,15 @@
         - Obtener password
 
 - MANEJO DE TAREAS
-    - Eliminar tareas guardadas en la base de datos
-    - Editar tareas guardadas en la base de datos
+    - Función para eliminar tareas guardadas en la base de datos
+    - Función para Editar tareas guardadas en la base de datos
 
 - OTROS AVANCES
     - Establecer rutas de las interconexiones al realizar una tarea
     - Establecer Controladores de las rutas
-    - Editar Schemas/Modelos ajustandolo a la realidad de ejecución
+    - Editar Schemas/Modelos
     - Establecer bases para rutas y controladores para registro de usuario e inicio de sesión
     - Establecer bases interfaz para registro de usuario e inicio de sesión
-
-
 
 
 - - - - - - - - - -TRABAJO REALIZADO (semana 01 --- 24 de Febrero) - - - - - - - - - -
@@ -167,10 +161,12 @@
     - Borrar templates y codigo innecesario (REALIZADO)
     - Establecer Esquemas/Modulos para MongoDB (REALIZADO)
     - Establecer base para HTML (Manejado con Handlebars .hbs) modular (REALIZADO)
+
 - REALIZAR FUSIÓN FRONTEND & BACKEND
     - Pull desde FRONTEND (REALIZADO)
     - Modularizar usando Handelbars (.hbs) (REALIZADO)
     - Corregir y ajustar (REALIZADO)
+    
 - REARMAR ESTRUCTURA DE LA APLICACIÓN
     - Redefinir basado en el proyecto los siguientes aspectos:(REALIZADO)
         - Funciones (REALIZADO)
