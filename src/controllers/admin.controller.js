@@ -6,6 +6,30 @@ const CambioBahia = require('../models/CambioBahia');
 const RetirarPallet = require('../models/RetirarPallet');
 const User = require('../models/User');
 
+// Función para parsear la duración tipo "0m 3s" a segundos
+function parseDuration(durationStr) {
+    let minutes = 0, seconds = 0;
+
+    if (!durationStr) return 0;
+
+    const minMatch = durationStr.match(/(\d+)m/);
+    const secMatch = durationStr.match(/(\d+)s/);
+
+    if (minMatch) minutes = parseInt(minMatch[1]);
+    if (secMatch) seconds = parseInt(secMatch[1]);
+
+    return (minutes * 60) + seconds;
+}
+
+// Función para formatear segundos a "HH:MM:SS"
+function formatSecondsToHHMMSS(totalSeconds) {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    return `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+}
+
 // Renderiza la vista principal del panel de administración
 adminCtrl.renderInicio = (req,res) => {
     res.render('admin/inicio');
@@ -13,81 +37,123 @@ adminCtrl.renderInicio = (req,res) => {
 
 // NUEVAS FUNCIONES
 
-// Renderiza la vista de administración de usuarios
-adminCtrl.renderUsuarios = (req,res) => {
-    res.render('admin/usuarios');
+// Renderiza la vista de administración de usuarios con datos reales
+adminCtrl.renderUsuarios = async (req, res) => {
+    try {
+        // Obtener todos los usuarios
+        const usuarios = await User.find().lean();
+
+        // Obtener todas las actividades
+        const cargarCamion = await CargarCamion.find().lean();
+        const cambioBahia = await CambioBahia.find().lean();
+        const retirarPallet = await RetirarPallet.find().lean();
+
+        // Crear un objeto para acumular las actividades por usuario
+        const usuariosConActividades = usuarios.map(usuario => {
+            // Filtrar actividades por usuario
+            const actividadesCargar = cargarCamion.filter(reg => reg.idUsuario === usuario.id);
+            const actividadesCambio = cambioBahia.filter(reg => reg.idUsuario === usuario.id);
+            const actividadesRetirar = retirarPallet.filter(reg => reg.idUsuario === usuario.id);
+
+            // Calcular cantidad de actividades
+            const cantidadCargar = actividadesCargar.length;
+            const cantidadCambio = actividadesCambio.length;
+            const cantidadRetirar = actividadesRetirar.length;
+
+            // Calcular tiempo total sumando duraciones
+            const sumarTiempos = (tareas) => {
+                let totalSegundos = 0;
+                tareas.forEach(tarea => {
+                    totalSegundos += parseDuration(tarea.duracion);
+                });
+                return totalSegundos;
+            };
+
+            const totalSegundos = sumarTiempos([
+                ...actividadesCargar,
+                ...actividadesCambio,
+                ...actividadesRetirar
+            ]);
+
+            const tiempoTotal = formatSecondsToHHMMSS(totalSegundos);
+
+            return {
+                nombre: usuario.name,
+                turno: actividadesCargar[0]?.turno || actividadesCambio[0]?.turno || actividadesRetirar[0]?.turno || 'Sin turno',
+                actividades: {
+                    cargarCamion: cantidadCargar,
+                    cambioBahia: cantidadCambio,
+                    retirarPallet: cantidadRetirar
+                },
+                tiempoTotal,
+                fechaUltimaActividad: actividadesCargar[0]?.operacionInicio?.toISOString().split('T')[0] ||
+                                      actividadesCambio[0]?.operacionInicio?.toISOString().split('T')[0] ||
+                                      actividadesRetirar[0]?.operacionInicio?.toISOString().split('T')[0] ||
+                                      'Sin fecha',
+                estado: 'Conectado' // (lo puedes cambiar si después quieres hacerlo dinámico)
+            };
+        });
+
+        res.render('admin/usuarios', { usuariosConActividades });
+
+    } catch (error) {
+        console.error('Error cargando usuarios:', error);
+        res.status(500).send('Error cargando datos');
+    }
 };
 
-// Renderiza la vista de administración de transportes
+// Renderiza otras vistas
+
 adminCtrl.renderTransportes = (req,res) => {
     res.render('admin/transportes');
 };
 
-// Renderiza la vista de administración de carga de camiones con datos procesados
 adminCtrl.renderCargarCamionAdmin = async (req, res) => {
     try {
-        // Obtiene todos los registros de carga de camiones desde la base de datos
         const registros = await CargarCamion.find().lean();
-
-        // Obtiene todos los usuarios, solo con su id y nombre
         const usuarios = await User.find({}, 'id name').lean();
 
-        // Crea un mapa con los IDs de usuario como clave y los nombres como valor
         const mapaUsuarios = {};
         usuarios.forEach(usuario => {
             mapaUsuarios[usuario.id] = usuario.name;
         });
 
-        // Procesa cada registro para reemplazar el idUsuario por el nombre
-        // y parsea la propiedad "cargas" para mostrarla como una lista
         const registrosConNombre = registros.map(registro => {
             let listaCargas = [];
-        
             try {
-                // Intenta parsear como JSON
                 listaCargas = JSON.parse(registro.cargas);
             } catch (e) {
-                // Si falla el parseo, divide el string por comas
                 listaCargas = registro.cargas.split(',').map(c => c.trim());
             }
-        
             return {
                 ...registro,
-                nombreUsuario: mapaUsuarios[registro.idUsuario] || 'Desconocido', // Asigna nombre o "Desconocido" si no se encuentra
+                nombreUsuario: mapaUsuarios[registro.idUsuario] || 'Desconocido',
                 listaCargas
             };
         });
 
-        // Renderiza la vista con los registros procesados
         res.render('admin/cargarCamionAdmin', { registros: registrosConNombre });
 
     } catch (error) {
-        // Captura y muestra errores
         console.error('Error cargando registros:', error);
         res.status(500).send('Error cargando datos');
     }
 };
 
-// Renderiza la vista de administración de retiro de pallets
 adminCtrl.renderRetirarPalletAdmin = async (req, res) => {
     try {
-        // Obtener todos los registros de retiro de pallets
         const registros = await RetirarPallet.find().lean();
-
-        // Obtener usuarios (id y nombre)
         const usuarios = await User.find({}, 'id name').lean();
         const mapaUsuarios = {};
         usuarios.forEach(usuario => {
             mapaUsuarios[usuario.id] = usuario.name;
         });
 
-        // Agregar el nombre del usuario a cada registro
         const registrosConNombre = registros.map(registro => ({
             ...registro,
             nombreUsuario: mapaUsuarios[registro.idUsuario] || 'Desconocido'
         }));
 
-        // Renderizar la vista con los datos
         res.render('admin/retirarPalletAdmin', { registros: registrosConNombre });
 
     } catch (error) {
@@ -96,39 +162,30 @@ adminCtrl.renderRetirarPalletAdmin = async (req, res) => {
     }
 };
 
-// Renderiza la vista de administración de cambios entre bahías con datos procesados
 adminCtrl.renderCambioEntreBahiasAdmin = async (req, res) => {
     try {
-        // Obtiene todos los registros de cambios entre bahías
         const registros = await CambioBahia.find().lean();
-
-        // Obtiene los usuarios con sus IDs y nombres
         const usuarios = await User.find({}, 'id name').lean();
         const mapaUsuarios = {};
         usuarios.forEach(usuario => {
             mapaUsuarios[usuario.id] = usuario.name;
         });
 
-        // Reemplaza el idUsuario por el nombre correspondiente
         const registrosConNombre = registros.map(registro => ({
             ...registro,
             nombreUsuario: mapaUsuarios[registro.idUsuario] || 'Desconocido'
         }));
 
-        // Renderiza la vista con los registros procesados
         res.render('admin/cambioEntreBahiasAdmin', { registros: registrosConNombre });
 
     } catch (error) {
-        // Captura y muestra errores
         console.error('Error cargando registros de cambio entre bahías:', error);
         res.status(500).send('Error cargando datos');
     }
 };
 
-// Renderiza la vista de tiempos (posiblemente para métricas o KPIs)
 adminCtrl.renderTiempos = (req,res) => {
     res.render('admin/tiempos');
 };
 
-// Exporta el controlador para ser utilizado en las rutas
 module.exports = adminCtrl;

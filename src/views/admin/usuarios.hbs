@@ -10,7 +10,6 @@
   <div class="sidebar">
     <h2>Dashboard</h2>
     <button onclick="window.location.href='/admin/inicio'">Inicio</button>
-    <!-- <button onclick="window.location.href='/admin/transportes'">Transportes</button> -->
     <button onclick="window.location.href='/admin/cargarCamionAdmin'">Cargar Camión</button>
     <button onclick="window.location.href='/admin/retirarPalletAdmin'">Retiro de Pallet</button>
     <button onclick="window.location.href='/admin/cambioEntreBahiasAdmin'">Cambio entre Bahías</button>
@@ -22,11 +21,11 @@
     <div class="header">
       <h1>Lista de Usuarios</h1>
       <div class="fecha">
-        <strong>Miércoles 2 de abril de 2025</strong><br />
-        16:00 hrs
+        {{!-- Puedes hacer dinámico luego si quieres --}}
+        <strong>{{fechaActual}}</strong><br />
+        {{horaActual}}
       </div>
     </div>
-
 
     <table class="tasks-table">
       <tr>
@@ -35,20 +34,20 @@
         <th>Turno</th>
         <th>Tiempo total de las actividades realizadas</th>
         <th>Fecha</th>
-        <th>Estado</th>
       </tr>
+      {{#each usuariosConActividades}}
       <tr>
-        <td>• Juan Sandoval</td>
+        <td>• {{nombre}}</td>
         <td>
-          • Cargar Camión (10)<br>
-          • Cambio entre bahías (5)<br>
-          • Retirar Pallet (10)
+          • Cargar Camión ({{actividades.cargarCamion}})<br>
+          • Cambio entre bahías ({{actividades.cambioBahia}})<br>
+          • Retirar Pallet ({{actividades.retirarPallet}})
         </td>
-        <td>• Mañana</td>
-        <td>• 07:30:23</td>
-        <td>• 2025-04-01</td>
-        <td>• Conectado</td>
+        <td>• {{turno}}</td>
+        <td>• {{tiempoTotal}}</td>
+        <td>• {{fechaUltimaActividad}}</td>
       </tr>
+      {{/each}}
     </table>
 
     <br>
@@ -60,38 +59,19 @@
       <option>Retirar Pallet</option>
     </select>
 
-    <table class="tasks-table">
-      <tr>
-        <th>Usuario</th>
-        <th>Actividad</th>
-        <th>Turno</th>
-        <th>Tiempo total</th>
-        <th>Fecha</th>
-        <th>Estado</th>
-      </tr>
-      <tr>
-        <td>• Juan Sandoval</td>
-        <td>• Cargar Camión</td>
-        <td>• Mañana</td>
-        <td>• 03:24:27</td>
-        <td>• 2025-04-01</td>
-        <td>• Conectado</td>
-      </tr>
-    </table>
+    {{!-- Segunda tabla: podrías llenarla si quieres por tipo de tarea seleccionada dinámicamente con JS (por ahora la dejamos estática) --}}
+
   </div>
 
 <script>
   const logoutBtn = document.getElementById('logoutBtn');
   if (logoutBtn) {
       logoutBtn.addEventListener('click', () => {
-          // Limpia sessionStorage y localStorage al cerrar sesión
           sessionStorage.clear();
           localStorage.clear();
           localStorage.removeItem('tareaActual');
-
-          // Redirige al usuario a la página de inicio de sesión
           window.location.href = '/';
-      }); // <-- ESTA ES LA LLAVE QUE FALTABA
+      });
   }
 </script>
 
