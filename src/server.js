@@ -23,6 +23,9 @@ app.engine('.hbs',engine({
         formatDate: function(date) {
             if (!date) return '';
             return new Date(date).toISOString().split('T')[0];
+        },
+        json: function(context) {
+          return JSON.stringify(context);
         }
     }
 }));

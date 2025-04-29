@@ -40,34 +40,27 @@ adminCtrl.renderInicio = (req,res) => {
 // Renderiza la vista de administración de usuarios con datos reales
 adminCtrl.renderUsuarios = async (req, res) => {
     try {
-        // Obtener todos los usuarios
         const usuarios = await User.find().lean();
+        const cargarCamionRaw = await CargarCamion.find().lean();
+        const cambioBahiaRaw = await CambioBahia.find().lean();
+        const retirarPalletRaw = await RetirarPallet.find().lean();
 
-        // Obtener todas las actividades
-        const cargarCamion = await CargarCamion.find().lean();
-        const cambioBahia = await CambioBahia.find().lean();
-        const retirarPallet = await RetirarPallet.find().lean();
+        // Mapeo de ID a nombre
+        const mapaUsuarios = {};
+        usuarios.forEach(u => mapaUsuarios[u.id] = u.name);
 
-        // Crear un objeto para acumular las actividades por usuario
+        // Estructura por usuario
         const usuariosConActividades = usuarios.map(usuario => {
-            // Filtrar actividades por usuario
-            const actividadesCargar = cargarCamion.filter(reg => reg.idUsuario === usuario.id);
-            const actividadesCambio = cambioBahia.filter(reg => reg.idUsuario === usuario.id);
-            const actividadesRetirar = retirarPallet.filter(reg => reg.idUsuario === usuario.id);
+            const actividadesCargar = cargarCamionRaw.filter(r => r.idUsuario === usuario.id);
+            const actividadesCambio = cambioBahiaRaw.filter(r => r.idUsuario === usuario.id);
+            const actividadesRetirar = retirarPalletRaw.filter(r => r.idUsuario === usuario.id);
 
-            // Calcular cantidad de actividades
             const cantidadCargar = actividadesCargar.length;
             const cantidadCambio = actividadesCambio.length;
             const cantidadRetirar = actividadesRetirar.length;
 
-            // Calcular tiempo total sumando duraciones
-            const sumarTiempos = (tareas) => {
-                let totalSegundos = 0;
-                tareas.forEach(tarea => {
-                    totalSegundos += parseDuration(tarea.duracion);
-                });
-                return totalSegundos;
-            };
+            const sumarTiempos = (tareas) =>
+                tareas.reduce((acc, t) => acc + parseDuration(t.duracion), 0);
 
             const totalSegundos = sumarTiempos([
                 ...actividadesCargar,
@@ -76,6 +69,12 @@ adminCtrl.renderUsuarios = async (req, res) => {
             ]);
 
             const tiempoTotal = formatSecondsToHHMMSS(totalSegundos);
+
+            const fechaUltimaActividad =
+                actividadesCargar[0]?.operacionInicio?.toISOString().split('T')[0] ||
+                actividadesCambio[0]?.operacionInicio?.toISOString().split('T')[0] ||
+                actividadesRetirar[0]?.operacionInicio?.toISOString().split('T')[0] ||
+                'Sin fecha';
 
             return {
                 nombre: usuario.name,
@@ -86,21 +85,42 @@ adminCtrl.renderUsuarios = async (req, res) => {
                     retirarPallet: cantidadRetirar
                 },
                 tiempoTotal,
-                fechaUltimaActividad: actividadesCargar[0]?.operacionInicio?.toISOString().split('T')[0] ||
-                                      actividadesCambio[0]?.operacionInicio?.toISOString().split('T')[0] ||
-                                      actividadesRetirar[0]?.operacionInicio?.toISOString().split('T')[0] ||
-                                      'Sin fecha',
-                estado: 'Conectado' // (lo puedes cambiar si después quieres hacerlo dinámico)
+                fechaUltimaActividad,
+                estado: 'Conectado'
             };
         });
 
-        res.render('admin/usuarios', { usuariosConActividades });
+        // Preparar datos para la segunda tabla (por tarea)
+        const mapActividad = (actividad) => ({
+            nombreUsuario: mapaUsuarios[actividad.idUsuario] || 'Desconocido',
+            duracion: formatSecondsToHHMMSS(parseDuration(actividad.duracion)),
+            fecha: actividad.operacionInicio?.toISOString().split('T')[0] || 'Sin fecha',
+            turno: actividad.turno || 'Sin turno'
+        });
+
+        const tareas = {
+            cargarCamion: cargarCamionRaw.map(mapActividad),
+            cambioBahia: cambioBahiaRaw.map(mapActividad),
+            retirarPallet: retirarPalletRaw.map(mapActividad)
+        };
+
+        const ahora = new Date();
+        const fechaActual = ahora.toLocaleDateString('es-CL');
+        const horaActual = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
+
+        res.render('admin/usuarios', {
+            usuariosConActividades,
+            tareas,
+            fechaActual,
+            horaActual
+        });
 
     } catch (error) {
         console.error('Error cargando usuarios:', error);
         res.status(500).send('Error cargando datos');
     }
 };
+
 
 // Renderiza otras vistas
 
