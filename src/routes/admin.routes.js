@@ -8,7 +8,7 @@ const {
     renderCargarCamionAdmin, //NUEVO
     renderRetirarPalletAdmin, //NUEVO
     renderCambioEntreBahiasAdmin, //NUEVO
-    renderTiempos
+    renderTiempoReal
 } = require('../controllers/admin.controller');
 
 router.get('/admin/inicio', renderInicio);
@@ -18,6 +18,6 @@ router.get('/admin/transportes', renderTransportes); // <- Nueva ruta
 router.get('/admin/cargarCamionAdmin', renderCargarCamionAdmin); // <- Nueva ruta
 router.get('/admin/retirarPalletAdmin', renderRetirarPalletAdmin); // <- Nueva ruta
 router.get('/admin/cambioEntreBahiasAdmin', renderCambioEntreBahiasAdmin); // <- Nueva ruta
-router.get('/admin/tiempos', renderTiempos); // <- Nueva ruta
+router.get('/admin/tiempos', renderTiempoReal); // <- Nueva ruta
 
 module.exports = router;

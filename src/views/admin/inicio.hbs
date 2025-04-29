@@ -2,77 +2,132 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard - Coke Kronos</title>
-  <link rel="stylesheet" href="/css/adminhome.css" />
-  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/tiempos.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
 </head>
 <body>
   <div class="sidebar">
-    <h2>Dashboard</h2>
+    <h2><strong>Dashboard</strong></h2>
     <button onclick="window.location.href='/admin/usuarios'">Usuarios</button>
     <!-- <button onclick="window.location.href='/admin/transportes'">Transportes</button> -->
     <button onclick="window.location.href='/admin/cargarCamionAdmin'">Cargar Camión</button>
-    <button onclick="window.location.href='/admin/retirarPalletAdmin'">Retiro de Pallet</button>
+    <button onclick="window.location.href='/admin/retirarPalletAdmin'">Retirar Pallet</button>
     <button onclick="window.location.href='/admin/cambioEntreBahiasAdmin'">Cambio entre Bahías</button>
-    <button onclick="window.location.href='/admin/tiempos'">Tiempos</button>
+    <!-- <button onclick="window.location.href='/admin/tiempos'">Tiempo Real</button> -->
     <button class="logout-btn" id="logoutBtn">Cerrar Sesión</button>
   </div>
 
   <div class="content">
     <div class="header">
-      <h1>¡Bienvenido!</h1>
+      <h1>Resumen de Tiempos</h1>
       <div class="fecha">
         <strong>Miércoles 2 de abril de 2025</strong><br />
         16:00 hrs
       </div>
     </div>
 
-    <h2 class="titulo-central">Últimas tareas</h2>
-    <table class="tasks-table">
-      <tr>
-        <th>Usuario</th>
-        <th>Tarea</th>
-        <th>Tiempo de Ejecución</th>
-        <th>Pallet</th>
-      </tr>
-      <tr>
-        <td>• Juan Saldoval</td>
-        <td>• Cargar Camión</td>
-        <td>• 00:04:34</td>
-        <td>• 00056530002</td>
-      </tr>
-      <tr>
-        <td>• Andrés Romero</td>
-        <td>• Cambio entre bahías</td>
-        <td>• 00:01:22</td>
-        <td>• 00021310001</td>
-      </tr>
-    </table>
-
-    <h2 class="titulo-central">Mensajes importantes</h2>
-    <div class="important-messages">
-      • Bahía de carga 21 cerrada temporalmente
+    <!-- Resumen Mensual -->
+    <div class="section">
+      <h2>Resumen Mensual</h2>
+      <table class="summary-table">
+        <tr>
+          <th>Operaciones</th>
+          <th>Tiempo total </th>
+          <th>Turnos</th>
+        </tr>
+        <tr>
+          <td>
+            • Cargar Camión<br />
+            • Cambio entre bahías<br />
+            • Retirar Pallet
+          </td>
+          <td>
+            • 33:09:23<br />
+            • 24:10:02<br />
+            • 20:32:04
+          </td>
+          <td>
+            • Tarde<br />
+            • Tarde<br />
+            • Noche
+          </td>
+        </tr>
+      </table>
     </div>
 
-    <div class="tip">
-        <p class="tip-title">💡 <strong>Tip del día</strong></p>
-        <p class="tip-text">¡Revisa que los códigos estén bien impresos!</p>
-      </div>      
+    <!-- Resumen Semanal -->
+    <div class="section">
+      <h2>Resumen Semanal</h2>
+      <table class="summary-table">
+        <tr>
+          <th>Operaciones</th>
+          <th>Tiempo total</th>
+          <th>Turnos</th>
+        </tr>
+        <tr>
+          <td>• 20:32:45</td>
+          <td>• Cargar Camión</td>
+          <td>• Mañana</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Cantidad de operaciones totales -->
+    <div class="section">
+      <h2>Operaciones Totales</h2>
+      <table class="tasks-table">
+        <tr>
+          <th>Cambios de Bahía</th>
+          <th>Pallets Retirados de Picking</th>
+          <th>Pallets Cargados</th>
+          <th>Camiones Cargados</th>
+        </tr>
+        <tr>
+          <td>• 55</td>
+          <td>• 360</td> <!-- Lueog se deben fusonar algunos cuando son más de 10 -->
+          <td>• 345</td>
+          <td>• 110</td>
+        </tr>
+      </table>
+    </div>
+    <!-- Cantidad de operaciones totales -->
+    <div class="section">
+      <h2>Rendimiento General</h2>
+      <table class="tasks-table">
+        <tr>
+          <th>Turno más rapido</th> <!-- Tiempo medio por tareas menor -->
+          <th>Actividad más Frecuente</th> <!-- Más veces realizada -->
+          <th>Actividad más demandante</th> <!-- Mayor tiempo -->
+          <th>Turno más lento</th> <!-- Tiempo medio por tareas mayor -->
+        </tr>
+        <tr>
+          <td>• Tarde</td>
+          <td>• Retirar Pallet</td> <!-- Luego se deben fusonar algunos cuando son más de 10 -->
+          <td>• Cargar Camion</td>
+          <td>• Mañana</td>
+        </tr>
+        <tr>
+          <td>• 6 min</td>
+          <td>• 360 veces</td> <!-- Luego se deben fusonar algunos cuando son más de 10 -->
+          <td>• 8 min</td>
+          <td>• 10 min</td>
+        </tr>
+      </table>
+    </div>
   </div>
 
-<script>
-  const logoutBtn = document.getElementById('logoutBtn');
-  if (logoutBtn) {
+  
+
+  <script>
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
       logoutBtn.addEventListener('click', () => {
-          // Limpia sessionStorage y localStorage al cerrar sesión
-          sessionStorage.clear();
-          localStorage.clear();
-          localStorage.removeItem('tareaActual');
-
-          // Redirige al usuario a la página de inicio de sesión
-          window.location.href = '/';
-      }); // <-- ESTA ES LA LLAVE QUE FALTABA
-  }
-</script>
-
+        sessionStorage.clear();
+        localStorage.clear();
+        localStorage.removeItem('tareaActual');
+        window.location.href = '/';
+      });
+    }
+  </script>
 </body>
 </html>

@@ -204,8 +204,8 @@ adminCtrl.renderCambioEntreBahiasAdmin = async (req, res) => {
     }
 };
 
-adminCtrl.renderTiempos = (req,res) => {
-    res.render('admin/tiempos');
+adminCtrl.renderTiempoReal = (req,res) => {
+    res.render('admin/tiempoReal');
 };
 
 module.exports = adminCtrl;
