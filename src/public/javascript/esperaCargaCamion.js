@@ -104,6 +104,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Expone la función `agregarPallet` al objeto global `window`
+    // Expone la función agregarPallet al objeto global window
     window.agregarPallet = agregarPallet;
 });

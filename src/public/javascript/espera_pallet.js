@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let tareaActual = JSON.parse(localStorage.getItem('tareaActual')) || [];
     console.log("Tareas registradas:", tareaActual);
 
-    // Si quieres obtener solo los códigos de tarea
+    // Obtener solo los códigos de tarea
     let codigos = tareaActual.map(tarea => tarea.codigoTarea);
     console.log("Códigos de tarea:", codigos);
 
