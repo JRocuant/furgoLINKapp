@@ -31,8 +31,118 @@ function formatSecondsToHHMMSS(totalSeconds) {
 }
 
 // Renderiza la vista principal del panel de administración
-adminCtrl.renderInicio = (req,res) => {
-    res.render('admin/inicio');
+adminCtrl.renderInicio = async (req, res) => {
+    try {
+        const cargar = await CargarCamion.find().lean();
+        const cambiar = await CambioBahia.find().lean();
+        const retirar = await RetirarPallet.find().lean();
+
+        // Agrupaciones
+        const totalOperaciones = {
+            cargar: cargar.length,
+            cambiar: cambiar.length,
+            retirar: retirar.length,
+        };
+
+        // Tiempo total por operación
+        const totalDuraciones = {
+            cargar: cargar.reduce((acc, r) => acc + parseDuration(r.duracion), 0),
+            cambiar: cambiar.reduce((acc, r) => acc + parseDuration(r.duracion), 0),
+            retirar: retirar.reduce((acc, r) => acc + parseDuration(r.duracion), 0),
+        };
+
+        const turnos = {
+            cargar: cargar.map(r => r.turno),
+            cambiar: cambiar.map(r => r.turno),
+            retirar: retirar.map(r => r.turno),
+        };
+
+        // Obtener turnos más frecuentes por actividad
+        const turnoMasFrecuente = (arr) => {
+            const contador = {};
+            arr.forEach(t => {
+                if (!contador[t]) contador[t] = 0;
+                contador[t]++;
+            });
+            return Object.entries(contador).sort((a, b) => b[1] - a[1])[0]?.[0] || 'Sin turno';
+        };
+
+        // Datos para rendimiento general
+        const todasActividades = [...cargar, ...cambiar, ...retirar];
+        const tiemposPorTurno = {};
+        const actividadesFrecuencia = { cargar: 0, cambiar: 0, retirar: 0 };
+        const tiemposPorActividad = { cargar: 0, cambiar: 0, retirar: 0 };
+
+        todasActividades.forEach(a => {
+            const dur = parseDuration(a.duracion);
+            const t = a.turno || 'Sin turno';
+            if (!tiemposPorTurno[t]) tiemposPorTurno[t] = [];
+            tiemposPorTurno[t].push(dur);
+        });
+
+        // Turno más rápido / más lento
+        const turnosPromedios = Object.entries(tiemposPorTurno).map(([turno, tiempos]) => ({
+            turno,
+            promedio: tiempos.reduce((a, b) => a + b, 0) / tiempos.length
+        }));
+
+        const turnoRapidoRaw = turnosPromedios.sort((a, b) => a.promedio - b.promedio)[0];
+        const turnoLentoRaw = turnosPromedios.sort((a, b) => b.promedio - a.promedio)[0];
+
+        const turnoRapido = {
+            turno: turnoRapidoRaw.turno,
+            promedio: formatSecondsToHHMMSS(Math.round(turnoRapidoRaw.promedio))
+        };
+
+        const turnoLento = {
+            turno: turnoLentoRaw.turno,
+            promedio: formatSecondsToHHMMSS(Math.round(turnoLentoRaw.promedio))
+        };
+
+        // Actividad más frecuente
+        actividadesFrecuencia.cargar = totalOperaciones.cargar;
+        actividadesFrecuencia.cambiar = totalOperaciones.cambiar;
+        actividadesFrecuencia.retirar = totalOperaciones.retirar;
+
+        const actividadFrecuente = Object.entries(actividadesFrecuencia).sort((a, b) => b[1] - a[1])[0];
+
+        // Actividad más demandante (tiempo)
+        tiemposPorActividad.cargar = totalDuraciones.cargar;
+        tiemposPorActividad.cambiar = totalDuraciones.cambiar;
+        tiemposPorActividad.retirar = totalDuraciones.retirar;
+
+        const actividadDemandante = Object.entries(tiemposPorActividad).sort((a, b) => b[1] - a[1])[0];
+
+        const ahora = new Date();
+        const fechaActual = ahora.toLocaleDateString('es-CL', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        const horaActual = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
+
+        res.render('admin/inicio', {
+            totalOperaciones,
+            totalDuraciones: {
+                cargar: formatSecondsToHHMMSS(totalDuraciones.cargar),
+                cambiar: formatSecondsToHHMMSS(totalDuraciones.cambiar),
+                retirar: formatSecondsToHHMMSS(totalDuraciones.retirar),
+            },
+            turnos: {
+                cargar: turnoMasFrecuente(turnos.cargar),
+                cambiar: turnoMasFrecuente(turnos.cambiar),
+                retirar: turnoMasFrecuente(turnos.retirar),
+            },
+            rendimiento: {
+                turnoRapido,
+                turnoLento,
+                actividadFrecuente,
+                actividadDemandante
+            },
+            fechaActual,
+            horaActual
+        });
+
+    } catch (error) {
+        console.error('Error cargando dashboard:', error);
+        res.status(500).send('Error cargando datos');
+    }
 };
 
 // NUEVAS FUNCIONES

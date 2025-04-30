@@ -26,6 +26,9 @@ app.engine('.hbs',engine({
         },
         json: function(context) {
           return JSON.stringify(context);
+        },
+        get: function(arr, index) {
+            return Array.isArray(arr) && arr.length > index ? arr[index] : '';
         }
     }
 }));
