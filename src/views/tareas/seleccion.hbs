@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/selecciontarea.css">
     <link rel="stylesheet" href="/css/footer.css">
 
-    <!-- Estilo en línea para modificar el p con id 'usuarioActual' -->
+    <!-- Estilo en línea para modificar el p con id usuarioActual -->
     <style>
       #usuarioActual {
         font-size: 1.5em; /* Aumenta el tamaño del texto */
@@ -27,9 +27,9 @@
       // Se obtiene el objeto 'usuarioActual' del localStorage y se parsea desde JSON a un objeto JavaScript
       const usuario = JSON.parse(localStorage.getItem('usuarioActual'));
       
-      // Si el objeto 'usuario' existe en el localStorage (es decir, no es null ni undefined)
+      // Si el objeto usuario existe en el localStorage (es decir, no es null ni undefined)
       if (usuario) {
-        // Se actualiza el contenido del elemento con el id 'usuarioActual' con el nombre del usuario
+        // Se actualiza el contenido del elemento con el id usuarioActual con el nombre del usuario
         document.getElementById('usuarioActual').textContent = usuario.name;
       }
   });
@@ -45,7 +45,7 @@
     <button class="task-btn" data-task="retirar-pallet">Retirar Pallet a Bahía de Carga</button>
     <button class="task-btn" data-task="cambio-entre-bahías">Cambio entre Bahías de Carga</button>
     
-    <!-- Se define un elemento p con un id 'usuarioActual' -->
+    <!-- Se define un elemento p con un id usuarioActual -->
     <p id="usuarioActual"></p>
 
     <!-- Botón para cerrar sesión -->
