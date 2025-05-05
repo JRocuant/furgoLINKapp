@@ -1,73 +1,37 @@
 <head>
+    <!-- Se enlazan las hojas de estilo CSS personalizadas para la página -->
     <link rel="stylesheet" href="/css/espera.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/users.css">
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Usuario</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            width: 100%;
-            max-width: 400px;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .btn {
-            width: 100%;
-            padding: 10px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background: #0056b3;
-        }
-        .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background: white;
-        }
 
-    </style>
+    <!-- Se establece la configuración para que el diseño sea responsive en dispositivos móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título que se mostrará en la pestaña del navegador -->
+    <title>Registrar Usuario</title>
 </head>
+
 <body>
+    <!-- Contenedor principal del formulario de registro -->
     <div class="container">
         <h2>Registrar Usuario</h2>
+
+        <!-- Formulario que envía los datos al servidor -->
         <form action="/users/signup" method="post">
+
+            <!-- Campo de texto para el nombre del usuario -->
             <div class="form-group">
                 <input type="text" name="name" placeholder="Nombre" value="{{name}}" required>
             </div>
+
+            <!-- Campo de texto para el correo electrónico -->
             <div class="form-group">
                 <input type="email" name="email" placeholder="Email" value="{{email}}" required>
             </div>
+
+            <!-- Menú desplegable para seleccionar el rol del usuario -->
             <div class="form-group">
                 <select name="rol" required>
                     <option value="" disabled selected>Selecciona un rol</option>
@@ -77,12 +41,17 @@
                 </select>
             </div>
 
+            <!-- Campo para ingresar la contraseña -->
             <div class="form-group">
                 <input type="password" name="password" placeholder="Contraseña" required>
             </div>
+
+            <!-- Campo para confirmar la contraseña -->
             <div class="form-group">
                 <input type="password" name="confirm_password" placeholder="Confirmar Contraseña" required>
             </div>
+
+            <!-- Botón para enviar el formulario -->
             <button class="btn" type="submit-btn">Registrarse</button>
         </form>
     </div>

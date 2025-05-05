@@ -1,22 +1,36 @@
 <head>
+    <!-- Se enlazan las hojas de estilo CSS para la página -->
     <link rel="stylesheet" href="/css/espera.css">
     <link rel="stylesheet" href="/css/footer.css">
-
 </head>
+
+<!-- Comienzo del layout -->
 <div class="row">
+    <!-- Columna centrada horizontalmente con un ancho de 4 columnas -->
     <div class="col-md-4 mx-auto">
+        <!-- Tarjeta que encapsula el formulario de inicio de sesión -->
         <div class="card">
+            <!-- Encabezado de la tarjeta con el título del formulario -->
             <div class="card-header">
                 Inicio de Sesión
             </div>
+
+            <!-- Cuerpo de la tarjeta que contiene el formulario -->
             <div class="card-body">
-                <form action="/users/signin" method="POST">                    
+                <!-- Formulario que envía los datos -->
+                <form action="/users/signin" method="POST">   
+
+                    <!-- Campo para ingresar el email -->
                     <div class="form-group">
                         <input type="email" class="form-control" name="email" placeholder="Email">
                     </div>
+
+                    <!-- Campo para ingresar la contraseña -->
                     <div class="form-group">
                         <input type="password" class="form-control" name="password" placeholder="Contraseña">
                     </div>
+
+                    <!-- Botón para enviar el formulario -->
                     <button class="btn btn-primary btn-block">
                         Iniciar Sesión                       
                     </button>
