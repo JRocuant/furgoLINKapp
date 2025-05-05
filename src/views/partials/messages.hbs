@@ -1,21 +1,24 @@
+<!-- Verifica si existe una variable success_msg para mostrar un mensaje de error único -->
 {{#if success_msg}}
     <div class="alert">
-        {{success_msg}}
+        {{success_msg}} <!-- Muestra el mensaje de exito -->
         <button class="close-btn" onclick="this.parentElement.style.display='none'">&times;</button>
     </div>
 {{/if}}
 
-{{#if error_msg}}
+<!-- Verifica si existe una variable error_msg para mostrar un mensaje de error único -->
+{{#if error_msg}} 
     <div class="alert">
-        {{error_msg}}
+        {{error_msg}} <!-- Muestra el mensaje de error -->
         <button class="close-btn" onclick="this.parentElement.style.display='none'">&times;</button>
     </div>
 {{/if}}
 
 <style>
+    /* Estilos para la alerta visual */
     .alert {
         background-color: #d4edda;
-        color: #155724;
+        color: #2658bd;
         padding: 15px;
         margin: 10px 0;
         border: 1px solid #c3e6cb;
@@ -23,6 +26,7 @@
         position: relative;
     }
 
+    /* Estilos para el botón de cierre (X) */
     .close-btn {
         background: none;
         border: none;

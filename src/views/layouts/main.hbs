@@ -19,18 +19,21 @@
 
 
 </head>
+<!--Carga de partials-->
 <body>
-    {{>messages}}
-    {{>errors}}
-    {{{body}}}
-    {{>footer}}
+    {{>messages}} <!--Partial para las alertas-->
+    {{>errors}}<!--Partial para las alertas-->
+    {{{body}}}<!--Contenido de las vistas-->
+    {{>footer}}<!--Partial para el footer-->
 </body>
 
 
 
+<!-- Script para manejar menú desplegable -->
 <script>
     function toggleDropdown() {
         var dropdown = document.getElementById("dropdownMenu");
+        // Alternar visibilidad del menú desplegable
         if (dropdown.style.display === "block") {
             dropdown.style.display = "none";
         } else {
@@ -40,10 +43,12 @@
     
     // Cerrar el menú si se hace clic fuera de él
     window.onclick = function(event) {
+        // Verificar si el clic fue fuera del botón del dropdown
         if (!event.target.matches('.dropdown-btn')) {
             var dropdowns = document.getElementsByClassName("dropdown-content");
             for (var i = 0; i < dropdowns.length; i++) {
                 var openDropdown = dropdowns[i];
+                // Ocultar el menú si está visible
                 if (openDropdown.style.display === "block") {
                     openDropdown.style.display = "none";
                 }

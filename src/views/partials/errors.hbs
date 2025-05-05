@@ -1,37 +1,41 @@
+<!-- Verifica si existe una variable error para mostrar un mensaje de error único -->
 {{#if error}}
      <div class="alert">
-        {{error}}
-        <button class="close-btn" onclick="this.parentElement.style.display='none'">&times;</button>
+        {{error}}  <!-- Muestra el mensaje de error -->
+        <button class="close-btn" onclick="this.parentElement.style.display='none'">&times;</button> <!-- Botón para cerrar la alerta -->
     </div>
 {{/if}}
 
+<!-- Itera sobre un arreglo de errores, mostrando cada uno como una alerta separada -->
 {{#each errors}}
      <div class="alert">
-        {{text}}
-        <button class="close-btn" onclick="this.parentElement.style.display='none'">&times;</button>
+        {{text}}  <!-- Muestra el texto del error -->
+        <button class="close-btn" onclick="this.parentElement.style.display='none'">&times;</button> <!-- Botón para cerrar la alerta -->
     </div>
 {{/each}}
 
 <style>
+    /* Estilos para la alerta visual */
     .alert {
-        background-color: #c5537b;
+        background-color: #c5537b; 
         color: #f5c0cb;
         padding: 15px;
-        margin: 10px 0;
-        border: 1px solid #c5537b;
-        border-radius: 5px;
+        margin: 10px 0;                   
+        border: 1px solid #c5537b;      
+        border-radius: 5px;      
         position: relative;
     }
 
+    /* Estilos para el botón de cierre (X) */
     .close-btn {
-        background: none;
-        border: none;
-        font-size: 18px;
-        font-weight: bold;
-        color: #f5c0cb;
-        cursor: pointer;
-        position: absolute;
-        top: 5px;
-        right: 10px;
+        background: none; 
+        border: none; 
+        font-size: 18px; 
+        font-weight: bold; 
+        color: #f5c0cb;       
+        cursor: pointer;         
+        position: absolute;      
+        top: 5px;               
+        right: 10px;     
     }
 </style>
