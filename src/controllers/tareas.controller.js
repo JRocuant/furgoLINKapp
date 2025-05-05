@@ -6,49 +6,6 @@ const CargarCamion = require('../models/CargarCamion'); // Modelo para operacion
 const RetirarPallet = require('../models/RetirarPallet'); // Modelo para operaciones de retiro de pallets
 const CambioBahia = require('../models/CambioBahia'); // Modelo para operaciones de cambio de bahía
 
-// Renderiza el formulario para crear una nueva tarea
-tareasCtrl.renderTareaForm = (req, res) => {
-    res.render('tareas/tarea-nueva'); // Renderiza la vista 'tarea-nueva'
-};
-
-// Crea una nueva tarea y la guarda en la base de datos
-tareasCtrl.crearTarea = async (req, res) => {
-    console.log(req.body); // Muestra el cuerpo de la solicitud en consola (debug)
-    const { idTarea: idTarea } = req.body; // Extrae el campo idTarea del cuerpo
-    const newTarea = new Tarea({ idTarea }); // Crea una nueva instancia del modelo Tarea
-    console.table(newTarea); // Muestra la nueva tarea en formato tabla (debug)
-    await newTarea.save(); // Guarda la tarea en la base de datos
-    req.flash('success_msg', 'Tarea registrada correctamente'); // Notifica éxito al usuario
-    res.redirect('/tareass'); // Redirige a la vista general de tareas
-};
-
-// Renderiza la vista que muestra todas las tareas (de tipo CargarCamion)
-tareasCtrl.renderTareas = async (req, res) => {
-    const cargarcamions = await CargarCamion.find().lean(); // Obtiene todos los documentos de CargarCamion
-    res.render('tareas/all-tareas', { cargarcamions }); // Renderiza la vista con los datos obtenidos
-};
-
-// Renderiza el formulario de edición de una tarea específica
-tareasCtrl.renderEditForm = async (req, res) => {
-    const tarea = await Tarea.findById(req.params.id).lean(); // Busca la tarea por ID
-    console.log(tarea); // Muestra la tarea en consola (debug)
-    res.render('tareas/edit-tarea', { tarea }); // Renderiza la vista de edición con los datos de la tarea
-};
-
-// Actualiza los datos de una tarea existente
-tareasCtrl.updateTarea = async (req, res) => {
-    console.log(req.body); // Muestra el cuerpo de la solicitud (debug)
-    const { idTarea } = req.body; // Extrae el nuevo idTarea del cuerpo
-    await Tarea.findByIdAndUpdate(req.params.id, { idTarea }); // Actualiza la tarea en la base de datos
-    req.flash('success_msg', 'Tarea actualizada correctamente'); // Notifica éxito
-    res.redirect('/tareass'); // Redirige a la lista de tareas
-};
-
-// Elimina una tarea existente
-tareasCtrl.eliminarTarea = async (req, res) => {
-    await Tarea.findByIdAndDelete(req.params.id); // Elimina la tarea por ID
-    res.redirect('/tareass'); // Redirige a la lista de tareas
-};
 
 // Renderiza vista de selección de tarea
 tareasCtrl.seleccion = (req, res) => {
@@ -172,7 +129,7 @@ tareasCtrl.guardarCambioBahia = async (req, res) => {
     }
 };
 
-// Verifica si un ticket ya fue registrado previamente
+// Verifica si un ticket ya fue registrado previamente (Restricción que ya no aplica)
 tareasCtrl.verificarTicket = async (req, res) => {
     try {
         const { codigoTicket } = req.body;
