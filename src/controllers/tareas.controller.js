@@ -1,7 +1,7 @@
 const tareasCtrl = {}; // Objeto que almacenará todas las funciones controladoras relacionadas a tareas
 
 // Importación de modelos utilizados en las operaciones
-const Tarea = require('../models/Tarea'); // Modelo de Tarea general
+//const Tarea = require('../models/Tarea'); // Modelo de Tarea general
 const CargarCamion = require('../models/CargarCamion'); // Modelo para operaciones de carga de camiones
 const RetirarPallet = require('../models/RetirarPallet'); // Modelo para operaciones de retiro de pallets
 const CambioBahia = require('../models/CambioBahia'); // Modelo para operaciones de cambio de bahía

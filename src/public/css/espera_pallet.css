@@ -49,7 +49,7 @@ p {
 
 /*Estilo del botón terminar tarea*/
 button {
-    background: var(--celeste-oscuro); /*CAMBIO AQUÍ*/
+    background: var(--celeste-oscuro);
     color: var(--blanco);
     padding: 12px;
     border: none;
@@ -111,7 +111,7 @@ a:hover {
     }
 }
 
-/*NUEVO*/
+
 .user-info {
     font-size: 16px;
     font-weight: bold;
@@ -120,4 +120,3 @@ a:hover {
     margin-top: 20px;
     display: block;
 }
-/*HASTA ACÁ*/

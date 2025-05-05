@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (email) {
             // Muestra una alerta indicando que se enviaron instrucciones al correo
             alert("Instrucciones enviadas a " + email);
-            // Redirige al usuario a la página principal (index.html)
+            // Redirige al usuario a la página principal
             window.location.href = "index.html";
         } else {
             // Muestra una alerta indicando que el correo no es válido

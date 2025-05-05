@@ -20,10 +20,10 @@ p {
     color: var(--celeste-oscuro);
 }
 
-/*ESTO ES NUEVO*/
+
 /* Estilo de los inputs de escaneo */
 input {
-    box-sizing: border-box; /* SE AGREGÓ ESTA LÍNEA */
+    box-sizing: border-box; 
     width: 80%; /*CAMBIO AQUÍ*/
     padding: 10px;
     margin-top: 10px;
@@ -34,16 +34,15 @@ input {
     
 /* Estilo del botón continuar */
 button {
-    background: var(--celeste-oscuro); /*CAMBIO AQUÍ*/
+    background: var(--celeste-oscuro);
     color: white;
     padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 15px;
-    width: 80%; /*CAMBIO AQUÍ*/
+    width: 80%;
 }
-/*HASTA ACÁ*/
 
 /* Efecto hover solo si el botón está habilitado */
 button:hover:enabled {
@@ -62,7 +61,7 @@ a:hover {
     color: var(--celeste-claro);
 }
 
-/*NUEVO*/
+
 .user-info {
     font-size: 16px;
     font-weight: bold;
@@ -70,4 +69,3 @@ a:hover {
     margin-bottom: 10px;
     margin-top: 20px;
 }
-/*HASTA ACÁ*/

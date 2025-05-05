@@ -12,23 +12,23 @@
 /*Estilos del título h1 y el texto p*/
 h1 {
     color: var(--celeste-oscuro);
-    font-size: 22px; /*CAMBIO AQUÍ*/
+    font-size: 22px;
 }
 
 p {
-    font-size: 14px; /*CAMBIO AQUÍ*/
+    font-size: 14px;
     color: var(--celeste-oscuro);
 }
 
 /*Estilos del campo de entrada*/
 input {
-    box-sizing: border-box; /* SE AGREGÓ ESTA LÍNEA */
-    width: 80%; /*CAMBIO AQUÍ*/
-    padding: 8px; /*CAMBIO AQUÍ*/
+    box-sizing: border-box;
+    width: 80%;
+    padding: 8px;
     border: 1px solid var(--celeste-claro);
     border-radius: 5px;
     margin-top: 10px;
-    font-size: 14px; /*CAMBIO AQUÍ*/
+    font-size: 14px;
     text-align: center;
 }
 
@@ -36,13 +36,13 @@ input {
 button {
     background: var(--celeste-oscuro);
     color: white;
-    padding: 8px; /* CAMBIO AQUÍ  */
-    font-size: 14px; /* SE AGREGÓ ESTA LÍNEA */
+    padding: 8px;
+    font-size: 14px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 15px;
-    width: 80%; /*CAMBIO AQUÍ*/
+    width: 80%;
 }
 
 button:hover {
@@ -66,7 +66,6 @@ a:hover {
     color: var(--celeste-claro);
 }
 
-/*NUEVO*/
 .user-info {
     font-size: 16px;
     font-weight: bold;
@@ -74,4 +73,3 @@ a:hover {
     margin-bottom: 10px;
     margin-top: 20px;
 }
-/*HASTA ACÁ*/

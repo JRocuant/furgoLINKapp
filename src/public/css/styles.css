@@ -66,7 +66,7 @@ body {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     width: 80%;
     max-width: 250px;
-    margin-bottom: 30px; /*CAMBIO AQUÍ*/
+    margin-bottom: 30px;
 }
 
 .task-btn:hover {
@@ -81,7 +81,7 @@ body {
 /*Botón de cerrar sesión*/
 .logout-btn {
     background: var(--celeste-claro);
-    color: var(--blanco); /*CAMBIO AQUÍ*/
+    color: var(--blanco);
     padding: 8px 15px;
     font-size: 14px;
     border-radius: 25px;
@@ -100,7 +100,6 @@ body {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/*NUEVO*/
 .user-info {
     font-size: 16px;
     font-weight: bold;
@@ -108,4 +107,3 @@ body {
     margin-bottom: 10px;
     margin-top: 20px;
 }
-/*HASTA ACÁ*/

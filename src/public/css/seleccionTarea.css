@@ -7,7 +7,7 @@
     --sombra-cuadro: rgba(0, 0, 0, 0.1);
 }
 
-/* ===== Fondo General ===== */
+/* Fondo General */
 body {
     background: var(--fondo-celeste);
     color: var(--celeste-oscuro);
@@ -21,7 +21,7 @@ body {
     overflow: hidden;
 }
 
-/* ===== Contenedor Principal de Selección de Tarea ===== */
+/* Contenedor Principal de Selección de Tarea */
 .task-container {
     background: var(--blanco);
     border-radius: 20px;
@@ -38,7 +38,7 @@ body {
     transform: translateY(-10px);
 }
 
-/* ===== Títulos ===== */
+/* Títulos */
 .task-container h1 {
     color: var(--celeste-oscuro);
     margin-bottom: 20px;
@@ -52,7 +52,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* ===== Botones de Tareas ===== */
+/* Botones de Tareas */
 .task-btn {
     background: var(--celeste-oscuro);
     color: var(--blanco);
@@ -76,7 +76,7 @@ body {
     
 }
 
-/* ===== Botón de Cerrar Sesión ===== */
+/* Botón de Cerrar Sesión */
 .logout-btn {
     background: var(--celeste-claro);
     color: var(--celeste-oscuro);
@@ -105,7 +105,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* ===== Alerta de Cerrar Sesión ===== */
+/* Alerta de Cerrar Sesión */
 .alert-message {
     position: fixed;
     top: 50%;
@@ -124,14 +124,14 @@ body {
     z-index: 9999;
 }
 
-/* ===== Animación de Aparición ===== */
+/* Animación de Aparición */
 .alert-message.show {
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, -50%) scale(1);
 }
 
-/* ===== Colores para Diferentes Mensajes ===== */
+/* Colores para Diferentes Mensajes */
 .alert-message.success {
     background: var(--celeste-oscuro);
     border: 2px solid var(--celeste-claro);

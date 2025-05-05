@@ -1,8 +1,8 @@
 /* Estilo del contenedor principal */
 .container {
     background: var(--blanco);
-    padding: 20px; /*CAMBIO AQUÍ*/
-    max-width: 300px; /*CAMBIO AQUÍ*/
+    padding: 20px; 
+    max-width: 300px; 
     margin: auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px var(--sombra-cuadro);
@@ -36,7 +36,7 @@ input {
 
 /* Estilo de los botones */
 button {
-    background: var(--celeste-oscuro); /*CAMBIO AQUÍ*/
+    background: var(--celeste-oscuro); 
     color: white;
     padding: 8px;
     border: none;
@@ -71,21 +71,21 @@ a:hover {
 
 /* Estilos del mensaje de confirmación */
 #mensaje {
-    font-size: 15px; /*CAMBIO AQUÍ*/
+    font-size: 15px; 
     font-weight: bold;
     margin-top: 8px;
     color: green;
 }
 
-/*NUEVO*/
+
 #mensaje2 {
-    font-size: 15px; /*CAMBIO AQUÍ*/
+    font-size: 15px; 
     font-weight: bold;
     margin-top: 8px;
     color: green;
 }
 
-/*NUEVO*/
+
 .user-info {
     font-size: 16px;
     font-weight: bold;
@@ -93,4 +93,3 @@ a:hover {
     margin-bottom: 10px;
     margin-top: 20px;
 }
-/*HASTA ACÁ*/

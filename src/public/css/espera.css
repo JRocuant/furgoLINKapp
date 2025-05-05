@@ -80,8 +80,8 @@ body {
 
 /*Estilo del botón cancelar*/
 .cancel-btn {
-    background: var(--celeste-oscuro); /*CAMBIO AQUÍ*/
-    color: var(--blanco); /*CAMBIO AQUÍ*/
+    background: var(--celeste-oscuro);
+    color: var(--blanco);
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -95,7 +95,7 @@ body {
 }
 
 .cancel-btn:hover {
-    background: var(--celeste-claro); /*CAMBIO AQUÍ*/
+    background: var(--celeste-claro);
     color: var(--blanco);
 }
 
@@ -134,7 +134,6 @@ body {
     }
 }
 
-/*NUEVO*/
 .user-info {
     font-size: 16px;
     font-weight: bold;
@@ -142,4 +141,3 @@ body {
     margin-bottom: 10px;
     margin-top: 20px;
 }
-/*HASTA ACÁ*/

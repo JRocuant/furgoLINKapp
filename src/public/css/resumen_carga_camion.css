@@ -2,7 +2,7 @@
 .container {
     background: var(--blanco);
     padding: 20px;
-    max-width: 300px; /*CAMBIO AQUÍ*/
+    max-width: 300px; 
     margin: auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px var(--sombra-cuadro);
@@ -16,7 +16,7 @@ h1 {
 }
 
 p {
-    font-size: 14px; /*CAMBIO AQUÍ*/
+    font-size: 14px; 
     color: var(--celeste-oscuro);
     display: inline-block;
     width: 80%; /* O un valor que obligue a la división */
@@ -25,28 +25,28 @@ p {
 
 /*Estilos del botón confirmar*/
 button {
-    background: var(--celeste-oscuro); /*CAMBIO AQUÍ*/
+    background: var(--celeste-oscuro);
     color: white;
     padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 15px;
-    width: 80%; /*CAMBIO AQUÍ*/
+    width: 80%; 
 }
 
 button:hover {
     background: var(--celeste-claro);
 }
 
-/*NUEVO DESDE AQUÍ*/
+
 a {
     display: block;
     margin-top: 20px;
     text-decoration: none;
     color: var(--celeste-oscuro);
 }
-/*HASTA ACÁ*/
+
 
 /*Estilos del mensaje de confirmación*/
 #mensaje {
@@ -56,7 +56,7 @@ a {
     color: green;
 }
 
-/*NUEVO*/
+
 .user-info {
     font-size: 16px;
     font-weight: bold;
@@ -64,4 +64,3 @@ a {
     margin-bottom: 10px;
     margin-top: 20px;
 }
-/*HASTA ACÁ*/
