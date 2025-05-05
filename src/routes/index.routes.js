@@ -1,17 +1,12 @@
-// Importa el módulo 'Router' desde el paquete Express.
-// 'Router' permite definir rutas de forma modular y organizada.
-const { Router } = require('express')
+const { Router } = require('express') // Importa el módulo 'Router' desde el paquete Express.
 
-// Crea una nueva instancia de router para definir rutas específicas de este módulo.
-const router = Router();
+const router = Router(); // Crea una nueva instancia de router para definir rutas específicas de este módulo.
 
-// Importa la función controladora 'renderIndex' desde el archivo 'index.controller'.
-// Esta función se encarga de manejar la lógica cuando se accede a la ruta raíz ('/').
+// Importa la función renderIndex desde el archivo los controladores.
 const { renderIndex } = require('../controllers/index.controller')
 
-// Define una ruta GET para la raíz del sitio ('/'), que renderiza la vista principal.
-// Normalmente es la página de inicio o bienvenida del sistema.
+//Define una ruta que renderiza la vista principal.
 router.get('/', renderIndex);
 
-// Exporta el router para que pueda ser utilizado en otros módulos, como el archivo principal del servidor.
-module.exports = router;
+module.exports = router; // Exporta el router para ser usado en la configuración principal del servidor
+

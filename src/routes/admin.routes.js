@@ -10,8 +10,7 @@ const {
     renderTransportes,            
     renderCargarCamionAdmin,      
     renderRetirarPalletAdmin,     
-    renderCambioEntreBahiasAdmin, 
-    renderTiempoReal              
+    renderCambioEntreBahiasAdmin           
 } = require('../controllers/admin.controller');
 
 // Ruta para renderizar la página de inicio del administrador.
@@ -32,8 +31,4 @@ router.get('/admin/retirarPalletAdmin', renderRetirarPalletAdmin);
 // Ruta que gestiona el cambio de pallets entre bahías en el modo administrador.
 router.get('/admin/cambioEntreBahiasAdmin', renderCambioEntreBahiasAdmin);
 
-// Ruta que muestra datos o indicadores en tiempo real en el panel de administración.
-router.get('/admin/tiempos', renderTiempoReal);
-
-// Exporta el objeto router para que pueda ser utilizado en otras partes de la aplicación.
-module.exports = router;
+module.exports = router; // Exporta el router para ser usado en la configuración principal del servidor

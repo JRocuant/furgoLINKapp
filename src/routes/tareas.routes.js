@@ -1,8 +1,7 @@
 const { Router } = require('express') // Importa el módulo Router de Express para definir rutas específicas
 const router = Router() // Crea una instancia de Router
 
-// Importa múltiples funciones controladoras desde el archivo 'tareas.controller'
-// Cada función representa la lógica que se ejecuta al acceder a su respectiva ruta
+// Importa múltiples funciones controladoras desde el archivo tareas.controller
 const {               
     seleccion,                   
     espera,                      

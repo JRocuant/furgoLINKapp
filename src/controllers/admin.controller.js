@@ -327,10 +327,5 @@ adminCtrl.renderCambioEntreBahiasAdmin = async (req, res) => {
     }
 };
 
-// Renderiza la vista de monitoreo en tiempo real
-adminCtrl.renderTiempoReal = (req, res) => {
-    res.render('admin/tiempoReal'); // Renderiza plantilla correspondiente a tiempo real
-};
-
 // Exporta el objeto controlador para usarlo en rutas u otras partes de la aplicación
 module.exports = adminCtrl;
