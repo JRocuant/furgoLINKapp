@@ -20,51 +20,52 @@ app.engine('.hbs',engine({
     partialsDir: path.join(app.get('views'), 'partials'), //Carpeta para los partials (modulos de html)
     extname: '.hbs',
     helpers: {
-        formatDate: function(date) {
-            if (!date) return '';
-            return new Date(date).toISOString().split('T')[0];
+        formatDate: function(date) { // Formatea una fecha a formato YYYY-MM-DD
+            if (!date) return ''; // Si no hay fecha, retorna cadena vacía
+            return new Date(date).toISOString().split('T')[0]; // Convierte a ISO y extrae solo la parte de la fecha
         },
-        json: function(context) {
-          return JSON.stringify(context);
+        json: function(context) { // Convierte un objeto o valor a formato JSON
+          return JSON.stringify(context); // Retorna el valor convertido a string JSON
         },
-        get: function(arr, index) {
-            return Array.isArray(arr) && arr.length > index ? arr[index] : '';
+        get: function(arr, index) { // Obtiene el elemento en cierta posisción de un arreglo
+            return Array.isArray(arr) && arr.length > index ? arr[index] : ''; // Si es un arreglo válido y el índice existe, lo retorna; si no, retorna cadena vacía
         }
     }
+    
 }));
-app.set('view engine', '.hbs');
+app.set('view engine', '.hbs'); // Configura Handlebars como motor de plantillas para la aplicación.
 
-//Middlewares
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(morgan('dev')); //Utilizar morgan en modo desarrollo para ver las solicitudes de la app web
-app.use(express.urlencoded({extended: false})); //Utilizar express para traducir a JSON
-app.use(methodOverride('_method'));
-app.use(session({ //Utilización de express-session
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
+// Middlewares
+app.use(express.json()); // Middleware para analizar el cuerpo de las solicitudes con formato JSON.
+app.use(express.urlencoded({ extended: true })); // Middleware para analizar el cuerpo de las solicitudes con formato URL-encoded.
+app.use(morgan('dev')); // Utiliza morgan en modo desarrollo para ver las solicitudes HTTP en la consola.
+app.use(express.urlencoded({extended: false})); // Middleware para analizar el cuerpo de las solicitudes con formato URL-encoded.
+app.use(methodOverride('_method')); // Middleware que permite sobrecargar el método HTTP usando un campo _method, utilizado en los PUT.
+app.use(session({ // Utiliza express-session para gestionar sesiones de usuario.
+    secret: 'secret', //Para firmar las sesiones.
+    resave: true, // Fuerza la sesión a ser guardada en cada solicitud.
+    saveUninitialized: true // Guarda la sesión incluso si no se modificó.
 }));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize()); // Inicializa Passport.js para la autenticación de usuarios.
+app.use(passport.session()); // Establece la sesión con Passport.js.
 
-app.use(flash()); //Utilización de connect flash
+app.use(flash()); // Utiliza connect-flash para mostrar mensajes temporales como alertas o notificaciones.
 
-//Variables Globales
-app.use((req, res, next) => {
-    res.locals.success_msg = req.flash('success_msg');
-    res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error');
-    next();
+// Variables Globales
+app.use((req, res, next) => { 
+    res.locals.success_msg = req.flash('success_msg'); // Asigna el mensaje de éxito global a la vista.
+    res.locals.error_msg = req.flash('error_msg'); // Asigna el mensaje de error global a la vista.
+    res.locals.error = req.flash('error'); // Asigna un mensaje de error general a la vista.
+    next(); // Pasa al siguiente middleware.
 })
 
-//Rutas
+// Rutas
 app.use(require('./routes/index.routes'));
-app.use(require('./routes/tareas.routes'));
-app.use(require('./routes/users.routes'));
+app.use(require('./routes/tareas.routes')); 
+app.use(require('./routes/users.routes')); 
 app.use(require('./routes/admin.routes'));
 
-//Archivos estaticos
-app.use(express.static(path.join(__dirname, 'public')))
+ // Archivos estáticos
+app.use(express.static(path.join(__dirname, 'public'))) // Sirve archivos estáticos desde la carpeta public.
 
-module.exports = app;
+module.exports = app; // Exportación para que sea utilizada en otro archivo.

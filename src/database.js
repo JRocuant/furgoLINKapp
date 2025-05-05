@@ -9,7 +9,7 @@ mongoose.connect(MONGODB_URI, { //Conexión con la base de datos
 })
 
     .then(db => console.log('La base de datos esta conectada'))//Mensaje de confirmación conexion con la base de datos
-    .catch(err => console.log(err)); //Mensaje de erro para conexión fallida
+    .catch(err => console.log(err)); //Mensaje de error para conexión fallida
 
 
 
