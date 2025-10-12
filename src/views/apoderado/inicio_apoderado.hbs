@@ -37,13 +37,14 @@
 
 <!-- Contenedor principal para la selección de tarea -->
 <div class="task-container">
-    <h2>Seleccionar Tarea</h2>
+    <h2>Seleccione Opción</h2>
     
 
     <!-- Botones para seleccionar diferentes tareas -->
-    <button class="task-btn" data-task="cargar-camion">Cargar Camión</button>
-    <button class="task-btn" data-task="retirar-pallet">Retirar Pallet a Bahía de Carga</button>
-    <button class="task-btn" data-task="cambio-entre-bahías">Cambio entre Bahías de Carga</button>
+    <button class="task-btn" data-task="cargar-camion">Funcionalidad 1</button>
+    <button class="task-btn" data-task="retirar-pallet">Funcionalidad 2</button>
+    <button class="task-btn" data-task="cambio-entre-bahías">Funcionalidad 3</button>
+    <button class="task-btn" data-task="cambio-entre-bahías">Funcionalidad 4</button>
     
     <!-- Se define un elemento p con un id usuarioActual -->
     <p id="usuarioActual"></p>
@@ -52,7 +53,23 @@
     <button class="logout-btn" id="logoutBtn">Cerrar Sesión</button>
 </div>
 
+<script>
+// Obtiene el botón de cerrar sesión por su ID
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            // Limpia tanto sessionStorage como localStorage para cerrar sesión correctamente
+            sessionStorage.clear();
+            localStorage.clear();
+            localStorage.removeItem('tareaActual');
+
+            // Redirige al usuario a la página principal o de inicio de sesión
+            window.location.href = '/';
+        });
+    }
+    
+</script>
 <!-- Enlace al script de manejo de selección de tarea -->
-<script src="/javascript/seleccion.js"></script>
+<!-- <script src="/javascript/seleccion.js"></script> -->
 
 </body>

@@ -1,5 +1,5 @@
 {
-  "name": "andina",
+  "name": "furgoLINK",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/NicolasAraya932/andina.git"
+    "url": "git+https://gitlab.com/NicolasAraya932/furgoLINK.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/NicolasAraya932/andina/issues"
+    "url": "https://gitlab.com/NicolasAraya932/furgoLINK/issues"
   },
-  "homepage": "https://gitlab.com/NicolasAraya932/andina#readme",
+  "homepage": "https://gitlab.com/NicolasAraya932/furgoLINK#readme",
   "description": "",
   "dependencies": {
     "bcryptjs": "^3.0.2",

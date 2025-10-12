@@ -19,25 +19,34 @@
         <h2>Registrar Usuario</h2>
 
         <!-- Formulario que envía los datos al servidor -->
-        <form action="/users/signup" method="post">
+        <form action="/users/signup_apoderado" method="post">
+
+            <input type="hidden" name="rol" value="apoderado">
+
 
             <!-- Campo de texto para el nombre del usuario -->
             <div class="form-group">
                 <input type="text" name="name" placeholder="Nombre" value="{{name}}" required>
             </div>
 
+            <!-- Campo de texto para el nombre del usuario -->
+            <div class="form-group">
+                <input type="text" name="lastName" placeholder="Apellido" value="{{lastName}}" required>
+            </div>
+
+            <!-- Campo de texto para el nombre del usuario -->
+            <div class="form-group">
+                <input type="text" name="pasajeroName" placeholder="Nombre Pasajero" value="{{pasajeroName}}" required>
+            </div>
+
+            <!-- Campo de texto para el nombre del usuario -->
+            <div class="form-group">
+                <input type="text" name="pasajeroLastName" placeholder="Apellido Pasajero" value="{{pasajeroLastName}}" required>
+            </div>
+
             <!-- Campo de texto para el correo electrónico -->
             <div class="form-group">
                 <input type="email" name="email" placeholder="Email" value="{{email}}" required>
-            </div>
-
-            <!-- Menú desplegable para seleccionar el rol del usuario -->
-            <div class="form-group">
-                <select name="rol" required>
-                    <option value="" disabled selected>Selecciona un rol</option>
-                    <option value="administrador">Administrador</option>
-                    <option value="copiloto">Copiloto</option>
-                </select>
             </div>
 
             <!-- Campo para ingresar la contraseña -->
@@ -48,6 +57,16 @@
             <!-- Campo para confirmar la contraseña -->
             <div class="form-group">
                 <input type="password" name="confirm_password" placeholder="Confirmar Contraseña" required>
+            </div>
+
+            <!-- Menú desplegable para seleccionar el colegio del usuario -->
+            <div class="form-group">
+                <select name="colegio" required>
+                    <option value="" disabled selected>Selecciona un colegio</option>
+                    <option value="colegio1">Colegio 1</option>
+                    <option value="colegio2">Colegio 2</option>
+                    <option value="colegio3">Colegio 3</option>
+                </select>
             </div>
 
             <!-- Botón para enviar el formulario -->

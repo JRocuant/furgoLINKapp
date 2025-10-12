@@ -16,22 +16,16 @@
         };
         localStorage.setItem('usuarioActual', JSON.stringify(usuarioActual));
 
-        // Definimos constantes para guardar transportes y palletMaximo en Local Storage
-        const transportes = {{{transportes}}}; // Se usa triple mustache para parsear JSON correctamente
-        const palletMaximo = {{{palletMaximo}}};
-
-        // Guardamos transportes y palletMaximo en Local Storage
-        localStorage.setItem('transportes', JSON.stringify(transportes));
-        localStorage.setItem('palletMaximo', JSON.stringify(palletMaximo));
-
         //Obtenemos el rol
         const rol = usuarioActual.rol;
 
         // Redirigimos según el rol
         if (rol === "administrador" || rol === "jefeDeTurno") {
             window.location.href = "/admin/inicio";
-        } else if (rol === "operador") {
-            window.location.href = "/tareas/seleccion";
+        } else if (rol === "copiloto") {
+            window.location.href = "/apoderado/inicio";
+        } else if (rol === "apoderado") {
+            window.location.href = "/apoderado/inicio";
         } else {
             window.location.href = "/"; 
         }

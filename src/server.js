@@ -64,6 +64,7 @@ app.use(require('./routes/index.routes'));
 app.use(require('./routes/tareas.routes')); 
 app.use(require('./routes/users.routes')); 
 app.use(require('./routes/admin.routes'));
+app.use(require('./routes/apoderado.routes'));
 
  // Archivos estáticos
 app.use(express.static(path.join(__dirname, 'public'))) // Sirve archivos estáticos desde la carpeta public.

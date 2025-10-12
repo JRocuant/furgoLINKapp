@@ -3,9 +3,11 @@ const router = Router(); // Crea una instancia de Router
 
 // Importa múltiples funciones controladoras desde el archivo users.controller
 const { 
-    renderSignUpForm,                                            
+    renderSignUpForm,
+    renderSignUpForm_apoderado,                                            
     renderSigninForm,                                            
-    signup,                                                      
+    signup,
+    signup_apoderado,                                                      
     signin,                                                      
     logout,                                                      
     olvido                                                       
@@ -13,6 +15,9 @@ const {
 
 router.get('/users/signup', renderSignUpForm); // Ruta para formulario de registro
 router.post('/users/signup', signup); // Ruta para crear un nuevo usuario
+
+router.get('/users/signup_apoderado', renderSignUpForm_apoderado); // Ruta para formulario de registro apoderado
+router.post('/users/signup_apoderado', signup_apoderado); // Ruta para crear un nuevo apoderaado
 
 router.get('/users/signin', renderSigninForm); // Ruta para formulario de login
 router.post('/users/signin', signin); // Ruta para iniciar sesión

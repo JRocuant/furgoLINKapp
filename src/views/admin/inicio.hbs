@@ -1,133 +1,21 @@
-<!DOCTYPE html>
-<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard - Coke Kronos</title>
-  <link rel="stylesheet" href="/css/tiempos.css" />
-  <link rel="stylesheet" href="/css/footer.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/selecciontarea.css">
+  <link rel="stylesheet" href="/css/footer.css">
 </head>
+
 <body>
-  <div class="sidebar">
-    <h2><strong>Dashboard</strong></h2>
-    <button onclick="window.location.href='/admin/usuarios'">Usuarios</button>
-    <button onclick="window.location.href='/admin/cargarCamionAdmin'">Cargar Camión</button>
-    <button onclick="window.location.href='/admin/retirarPalletAdmin'">Retirar Pallet</button>
-    <button onclick="window.location.href='/admin/cambioEntreBahiasAdmin'">Cambio entre Bahías</button>
-    <button class="logout-btn" id="logoutBtn">Cerrar Sesión</button>
-  </div>
 
-  <div class="content">
-    <div class="header">
-      <h1>Resumen de Tiempos</h1>
-      <div class="fecha">
-        <strong>{{fechaActual}}</strong><br />
-        {{horaActual}} hrs
-      </div>
-    </div>
+<div class="task-container">
+    <h2>Bienvenido</h2>
 
-    <hr />
+    <!-- Botón que redirige al registro -->
+    <button class="task-btn" onclick="window.location.href='/users/signup'">
+      Registrar usuario
+    </button>
+</div>
 
-    <!-- RESUMEN MENSUAL -->
-    <div class="section">
-      <h2>Resumen Mensual</h2>
-      <table class="summary-table">
-        <thead>
-          <tr>
-            <th>Operaciones</th>
-            <th>Tiempo Total</th>
-            <th>Turnos</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              • Cargar Camión<br />
-              • Cambio entre bahías<br />
-              • Retirar Pallet
-            </td>
-            <td>
-              • {{totalDuraciones.cargar}}<br />
-              • {{totalDuraciones.cambiar}}<br />
-              • {{totalDuraciones.retirar}}
-            </td>
-            <td>
-              • {{turnos.cargar}}<br />
-              • {{turnos.cambiar}}<br />
-              • {{turnos.retirar}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <hr />
-
-    <!-- OPERACIONES TOTALES -->
-    <div class="section">
-      <h2>Operaciones Totales</h2>
-      <table class="tasks-table">
-        <thead>
-          <tr>
-            <th>Cambios de Bahía</th>
-            <th>Pallets Retirados de Picking</th>
-            <th>Camiones Cargados</th>
-            <!-- <th>Camiones Cargados</th> -->
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>• {{totalOperaciones.cambiar}}</td>
-            <td>• {{totalOperaciones.retirar}}</td>
-            <td>• {{totalOperaciones.cargar}}</td>
-            <!-- <td>• {{totalCamionesCargados}}</td> -->
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <hr />
-
-    <!-- RENDIMIENTO GENERAL -->
-    <div class="section">
-      <h2>Rendimiento General</h2>
-      <table class="tasks-table">
-        <thead>
-          <tr>
-            <th>Turno más rápido</th>
-            <th>Actividad más frecuente</th>
-            <th>Actividad más demandante</th>
-            <th>Turno más lento</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>• {{rendimiento.turnoRapido.turno}}</td>
-            <td>• {{get rendimiento.actividadFrecuente 0}}</td>
-            <td>• {{get rendimiento.actividadDemandante 0}}</td>
-            <td>• {{rendimiento.turnoLento.turno}}</td>
-          </tr>
-          <tr>
-            <td>• {{rendimiento.turnoRapido.promedio}}</td>
-            <td>• {{get rendimiento.actividadFrecuente 1}} veces</td>
-            <td>• {{get rendimiento.actividadDemandante 1}} segundos</td>
-            <td>• {{rendimiento.turnoLento.promedio}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <script>
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-      logoutBtn.addEventListener('click', () => {
-        sessionStorage.clear();
-        localStorage.clear();
-        localStorage.removeItem('tareaActual');
-        window.location.href = '/';
-      });
-    }
-  </script>
 </body>
-</html>

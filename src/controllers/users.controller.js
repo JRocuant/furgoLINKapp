@@ -22,8 +22,8 @@ usersCtrl.signup = async (req, res) => { // Controlador para registrar nuevos us
     if (password != confirm_password) { // Verifica que las contraseñas coincidan
         errors.push({text: 'Las Contraseñas no coinciden'}); // Agrega error si no coinciden
     }
-    if (password.length < 4) { // Verifica que la contraseña tenga al menos 4 caracteres
-        errors.push({text: 'La contraseña debe tener al menos 4 caracteres'});  // Agrega error si es muy corta
+    if (password.length < 10) { // Verifica que la contraseña tenga al menos 4 caracteres
+        errors.push({text: 'La contraseña debe tener al menos 10 caracteres'});  // Agrega error si es muy corta
     }
 
     if (errors.length > 0){ // Si hay errores, renderiza nuevamente el formulario con los mensajes
@@ -46,73 +46,114 @@ usersCtrl.signup = async (req, res) => { // Controlador para registrar nuevos us
     }
 };
 
+usersCtrl.renderSignUpForm_apoderado = (req, res) => { // Muestra el formulario de registro
+    res.render('users/signup_apoderado'); // Renderiza la vista signup
+};
+
+usersCtrl.signup_apoderado = async (req, res) => {
+    console.log(req.body);
+    const errors = [];
+    const {
+        name,
+        lastName,
+        email,
+        rol,
+        password,
+        confirm_password,
+        colegio,
+        pasajeroName,
+        pasajeroLastName
+    } = req.body;
+
+    // Validaciones básicas
+    if (password !== confirm_password) {
+        errors.push({ text: 'Las contraseñas no coinciden' });
+    }
+    if (password.length < 10) {
+        errors.push({ text: 'La contraseña debe tener al menos 10 caracteres' });
+    }
+
+    // Validación avanzada (opcional)
+    const passwordcheck = (password) => {
+        const minuscula = /[a-z]/.test(password);
+        const mayuscula = /[A-Z]/.test(password);
+        const numero = /[0-9]/.test(password);
+        const simbolo = /[^a-zA-Z0-9]/.test(password);
+        return minuscula && mayuscula && numero && simbolo;
+    };
+
+    if (!passwordcheck(password)) {
+        errors.push({ text: 'La contraseña debe incluir mayúsculas, minúsculas, números y símbolos.' });
+    }
+
+    // Si hay errores → mostrar formulario
+    if (errors.length > 0) {
+        return res.render('users/signup_apoderado', {
+            errors,
+            name,
+            email
+        });
+    }
+
+    // Verifica si el correo ya existe
+    const emailUser = await User.findOne({ email });
+    if (emailUser) {
+        req.flash('error_msg', 'Este correo electrónico ya se encuentra en uso.');
+        return res.redirect('/users/signup_apoderado');
+    }
+
+    // Crea el nuevo usuario/apoderado
+    const newUser = new User({
+        name,
+        lastName,
+        email,
+        rol,
+        colegio,
+        pasajeroName,
+        pasajeroLastName
+    });
+    newUser.password = await newUser.encriptarPassword(password);
+    await newUser.save();
+
+    // Redirige al inicio
+    return res.redirect('/');
+};
+
 // Muestra el formulario de inicio de sesión
 usersCtrl.renderSigninForm = (req, res) => { 
     res.render('users/signin');       
 };
 
 // Controlador para el inicio de sesión
-usersCtrl.signin = (req, res, next) => {                
-    passport.authenticate('local', (err, user, info) => { // Autenticación 
+// Controlador para el inicio de sesión
+usersCtrl.signin = (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
         if (err) return next(err); // Si hay error, lo pasa al middleware de error
+
         if (!user) { // Si el usuario no existe o es inválido
             req.flash('error_msg', info.message); // Muestra mensaje de error
             return res.redirect('/'); // Redirige al inicio
         }
 
-        req.logIn(user, (err) => { // Si la autenticación es exitosa, inicia sesión
+        // Si la autenticación es exitosa, inicia sesión
+        req.logIn(user, (err) => {
             if (err) return next(err);
+
             console.log(user); // Muestra el usuario autenticado
 
             const { name, email, _id, rol } = user; // Extrae datos del usuario
-            const transportes = {}; // Objeto para almacenar transportes y sus pallets
-            const palletMaximo = {}; // Objeto para almacenar el pallet máximo por transporte
-            let headers = []; // Arreglo para los encabezados del CSV
 
-            fs.createReadStream(path.resolve(__dirname, '..', 'public', 'datos', 'RP2.csv')) // Abre archivo CSV
-                .pipe(csv({ separator: ',' })) // Lo procesa como CSV
-                .on('headers', (headerRow) => { // Captura los encabezados
-                    headers = headerRow;
-                })
-                .on('data', (data) => { // Procesa cada fila del CSV
-                    const transporte = data[headers[0]]; // Obtiene el nombre del transporte
-                    const pallet = parseInt(data[headers[1]], 10); // Convierte el valor del pallet a número
-
-                    if (isNaN(pallet)) { // Verifica que el valor sea válido
-                        console.warn(`Valor de pallet no válido: ${data[headers[1]]}`); // Muestra advertencia
-                        return;
-                    }
-
-                    if (!transportes[transporte]) { // Si el transporte no existe, lo inicializa como un Set
-                        transportes[transporte] = new Set();
-                    }
-
-                    transportes[transporte].add(pallet);  // Agrega el pallet al conjunto del transporte
-                })
-                .on('end', () => {  // Cuando termina de procesar el CSV
-                    for (const transporte in transportes) {
-                        transportes[transporte] = Array.from(transportes[transporte]);   // Convierte Set a Array
-                        palletMaximo[transporte] = Math.max(...transportes[transporte]); // Obtiene el valor máximo
-                    }
-
-                    // Renderiza la vista post-login para cualquier rol
-                    res.render('users/postlogin', { 
-                        name, 
-                        email, 
-                        id: _id,
-                        rol,
-                        // Serializa los datos para enviarlos a la vista 
-                        transportes: JSON.stringify(transportes), 
-                        palletMaximo: JSON.stringify(palletMaximo) 
-                    });
-                })
-                .on('error', (err) => {  // Captura errores durante la lectura del CSV
-                    console.error('Error al procesar el archivo CSV:', err.message);
-                    res.status(500).send('Error al procesar el archivo CSV'); // Muestra error al cliente
-                });
+            // Renderiza la vista post-login para cualquier rol
+            res.render('users/postlogin', {
+                name,
+                email,
+                id: _id,
+                rol
+            });
         });
-    })(req, res, next);  // Ejecuta la función de autenticación con los argumentos de Express
+    })(req, res, next); // Se debe invocar passport.authenticate
 };
+
 
 /*
 - - - TESTEAR DESDE CONSOLA - - -
