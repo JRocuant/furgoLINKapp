@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/NicolasAraya932/furgoLINK.git"
+    "url": "git+https://github.com/JRocuant/furgoLINKapp.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/NicolasAraya932/furgoLINK/issues"
+    "url": "https://github.com/JRocuant/furgoLINKapp/issues"
   },
-  "homepage": "https://gitlab.com/NicolasAraya932/furgoLINK#readme",
+  "homepage": "https://github.com/JRocuant/furgoLINKapp#readme",
   "description": "",
   "dependencies": {
     "bcryptjs": "^3.0.2",
