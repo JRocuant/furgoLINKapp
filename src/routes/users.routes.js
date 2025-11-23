@@ -26,4 +26,6 @@ router.get('/users/logout', logout); // Ruta para cerrar sesión
 
 router.get('/users/olvido', olvido); // Ruta para recuperación de contraseña
 
+
+
 module.exports = router; // Exporta el router para ser usado en la configuración principal del servidor
