@@ -35,6 +35,47 @@ adminCtrl.renderInicio = async (req, res) => {
     res.render('admin/inicio');
 };
 
+// LISTAR USUARIOS
+adminCtrl.listUsers = async (req, res) => {  
+    try {
+        // Busca todos los usuarios en la base de datos usando el modelo User
+        // .find() obtiene todos los documentos
+        // .lean() convierte los resultados a objetos JavaScript simples (más livianos)
+        const users = await User.find().lean(); 
+
+        // Renderiza la vista "admin/list" y le pasa la lista de usuarios
+        res.render("admin/list", { users });
+
+    } catch (error) {
+        // Muestra el error en consola si ocurre un problema
+        console.error(error);
+
+        // Envía un mensaje simple al navegador indicando que hubo un error
+        res.send("Error al obtener usuarios");
+    }
+};
+
+// ELIMINAR USUARIO
+adminCtrl.deleteUser = async (req, res) => {
+    try {
+        // Extrae el id del usuario desde los parámetros de la URL (/admin/delete/:id)
+        const { id } = req.params;
+
+        // Elimina el usuario que coincide con el id
+        await User.findByIdAndDelete(id);
+
+        // Redirige nuevamente al listado de usuarios después de eliminar
+        res.redirect("/admin/list");
+
+    } catch (error) {
+        // Muestra en consola el error en caso de fallar el borrado
+        console.error(error);
+
+        // Envía un mensaje simple al navegador indicando el fallo
+        res.send("Error al eliminar usuario");
+    }
+};
+
 
 // Exporta el objeto controlador para usarlo en rutas u otras partes de la aplicación
 module.exports = adminCtrl;

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Usuarios</title>
+
+    <!-- Importas tu CSS aquí -->
+    <link rel="stylesheet" href="/css/list.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+
+<body style="padding: 30px;">
+
+<div class="task-container" style="max-width:900px; width:95%;">
+
+    <h1>Listado de Usuarios</h1>
+
+    <table border="1" cellpadding="10" style="width:100%; border-collapse: collapse; margin-top:20px;">
+
+        <thead style="background: var(--celeste-claro); color: var(--celeste-oscuro);">
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>ID</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each users}}
+            <tr style="background: var(--fondo-celeste);">
+                <td>{{this.name}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.rol}}</td>
+                <td>{{this._id}}</td>
+
+                <td>
+                    <form action="/admin/delete/{{this._id}}" method="POST" onsubmit="return confirmarEliminacion()">
+                        <button 
+                            type="submit" 
+                            style="
+                                background:red;
+                                color:white;
+                                padding:7px 12px;
+                                border-radius:6px;
+                                cursor:pointer;
+                                border:none;
+                            ">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+</div>
+
+<!-- Script de confirmación -->
+<script>
+function confirmarEliminacion() {
+    return confirm("¿Seguro que deseas eliminar este usuario?");
+}
+</script>
+
+</body>
+</html>

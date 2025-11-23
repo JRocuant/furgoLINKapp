@@ -1,0 +1,77 @@
+/* ======= Estilos generales ======= */
+body {
+    background: var(--fondo-celeste);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 30px;
+    display: flex;
+    justify-content: center;   /* Centra horizontalmente */
+}
+
+/* ======= Contenedor principal ======= */
+.table-container {
+    background: var(--blanco);
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    padding: 40px 30px;
+    max-width: 900px;
+    width: 95%;
+    box-sizing: border-box;
+    text-align: center;        /* Centra el título */
+}
+
+/* Título */
+.table-container h1 {
+    color: var(--celeste-oscuro);
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;        /* Refuerzo extra */
+}
+
+/* ======= Tabla ======= */
+.table-container table {
+    margin: 0 auto;            /* <-- CENTRA LA TABLA */
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table-container th {
+    background: var(--celeste-claro);
+    color: var(--celeste-oscuro);
+    padding: 14px;
+    font-size: 16px;
+}
+
+.table-container td {
+    background: var(--blanco);
+    padding: 12px;
+    border-bottom: 1px solid #d0d0d0;
+    font-size: 15px;
+}
+
+.table-container tr:nth-child(even) td {
+    background: var(--fondo-celeste);
+}
+
+/* ======= Botón de eliminar ======= */
+.delete-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-weight: bold;
+}
+
+.delete-btn:hover {
+    background: #c60000;
+    transform: scale(1.03);
+}
+
+.delete-btn:active {
+    transform: scale(0.97);
+}
