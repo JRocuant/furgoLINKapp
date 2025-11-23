@@ -1,44 +1,69 @@
+<!-- Documento HTML que lista usuarios -->
 <!DOCTYPE html>
 <html lang="es">
-    
+<!-- Elemento raíz del documento; idioma establecido en español -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta para que el sitio sea responsivo en dispositivos móviles -->
     <title>Listado de Usuarios</title>
 
-    <!-- Importas tu CSS aquí -->
     <link rel="stylesheet" href="/css/list.css">
+    <!-- Enlace a la hoja de estilos principal para la vista de listado -->
     <link rel="stylesheet" href="/css/footer.css">
+    <!-- Enlace a la hoja de estilos del pie de página -->
 </head>
 
 <body style="padding: 30px;">
+<!-- Cuerpo del documento; padding inline para separar contenido de los bordes -->
 
 <div class="task-container" style="max-width:900px; width:95%;">
-
+    <!-- Contenedor principal que centra y limita el ancho del contenido -->
     <h1>Listado de Usuarios</h1>
 
     <table border="1" cellpadding="10" style="width:100%; border-collapse: collapse; margin-top:20px;">
+        <!-- Tabla que mostrará los usuarios; borde y espaciado definido inline -->
+        <!-- border-collapse: collapse unifica los bordes de la tabla para limpieza visual -->
+        <!-- margin-top separa la tabla del título -->
 
         <thead style="background: var(--celeste-claro); color: var(--celeste-oscuro);">
+            <!-- Cabecera de la tabla -->
             <tr>
+                <!-- Fila de cabecera -->
                 <th>Nombre</th>
+                <!-- Columna para el nombre del usuario -->
                 <th>Email</th>
+                <!-- Columna para el correo electrónico -->
                 <th>Rol</th>
+                <!-- Columna para el rol del usuario -->
                 <th>ID</th>
+                <!-- Columna para el identificador único del usuario -->
                 <th>Acciones</th>
+                <!-- Columna para acciones disponibles -->
             </tr>
         </thead>
 
         <tbody>
+            <!-- Cuerpo de la tabla donde se iteran los usuarios -->
             {{#each users}}
+            <!-- Inicio de iteración Handlebars: recorre la colección 'users' -->
             <tr style="background: var(--fondo-celeste);">
+                <!-- Fila por cada usuario -->
                 <td>{{this.name}}</td>
+                <!-- Celda que muestra el nombre del usuario actual en la iteración -->
                 <td>{{this.email}}</td>
+                <!-- Celda que muestra el email del usuario actual -->
                 <td>{{this.rol}}</td>
+                <!-- Celda que muestra el rol del usuario actual -->
                 <td>{{this._id}}</td>
+                <!-- Celda que muestra el _id (identificador) del usuario actual -->
 
                 <td>
+                    <!-- Celda que contiene el formulario para la acción de eliminar -->
                     <form action="/admin/delete/{{this._id}}" method="POST" onsubmit="return confirmarEliminacion()">
+                        <!-- Formulario POST que llama a la ruta de borrado con el id del usuario -->
+                        <!-- onsubmit ejecuta la función de confirmación antes de enviar -->
                         <button 
                             type="submit" 
                             style="
@@ -49,12 +74,14 @@
                                 cursor:pointer;
                                 border:none;
                             ">
+                            <!-- Botón de envío estilizado inline para la acción de eliminar -->
                             Eliminar
                         </button>
                     </form>
                 </td>
             </tr>
             {{/each}}
+            <!-- Fin de la iteración Handlebars -->
         </tbody>
     </table>
 
@@ -62,7 +89,10 @@
 
 <!-- Script de confirmación -->
 <script>
+// Función que solicita confirmación al usuario antes de enviar el formulario
 function confirmarEliminacion() {
+    // Muestra un diálogo de confirmación nativo del navegador
+    // Si el usuario confirma devuelve true (permite envío), si cancela devuelve false (previene envío)
     return confirm("¿Seguro que deseas eliminar este usuario?");
 }
 </script>
